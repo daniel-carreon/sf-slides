@@ -419,23 +419,23 @@ export async function importPptx(file: File): Promise<Presentation> {
     const spTree = qs(doc, "spTree");
 
     if (spTree) {
-      // Regular shapes + text
-      for (const sp of qsa(spTree, "sp")) {
-        const el = parseShape(sp, slideImages, nextId);
-        if (el) elements.push(el);
-      }
-
-      // Picture elements
-      for (const pic of qsa(spTree, "pic")) {
-        const el = parseShape(pic, slideImages, nextId);
-        if (el) elements.push(el);
-      }
-
-      // Group shapes (recursive — flatten for now)
-      for (const grpSp of qsa(spTree, "grpSp")) {
-        for (const sp of qsa(grpSp, "sp")) {
-          const el = parseShape(sp, slideImages, nextId);
+      // Iterate ALL direct children of spTree in document order.
+      // PPTX z-order = document order (first = back, last = front).
+      // We MUST preserve this order so images don't cover text.
+      for (const child of Array.from(spTree.children)) {
+        const localName = child.localName;
+        if (localName === "sp" || localName === "pic") {
+          const el = parseShape(child as Element, slideImages, nextId);
           if (el) elements.push(el);
+        } else if (localName === "grpSp") {
+          // Flatten group shapes — process children in order
+          for (const grpChild of Array.from(child.children)) {
+            const grpLocalName = grpChild.localName;
+            if (grpLocalName === "sp" || grpLocalName === "pic") {
+              const el = parseShape(grpChild as Element, slideImages, nextId);
+              if (el) elements.push(el);
+            }
+          }
         }
       }
     }
