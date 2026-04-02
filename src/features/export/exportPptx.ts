@@ -36,7 +36,8 @@ function pxToInchH(px: number): number {
 }
 
 function fontSizeToPt(px: number): number {
-  return px; // Our sizes are already in pt-equivalent units
+  // Canvas is 144 DPI (1920px / 13.33"). Font px → pt: divide by (144/72) = 2
+  return px / 2;
 }
 
 function hexToRgb(hex: string): string {

@@ -27,6 +27,10 @@ function qsa(parent: Element | Document, localName: string): Element[] {
 // Both axes: 1 px = 6350 EMU (12192000/1920 = 6858000/1080 = 6350)
 const EMU_PER_PX = 6350;
 
+// Canvas DPI: 1920 / 13.333" = 144 DPI
+// Font pt → canvas px: pt × (144/72) = pt × 2
+const PT_TO_CANVAS_PX = 2;
+
 function emuToPx(emu: number): number {
   return emu / EMU_PER_PX;
 }
@@ -34,6 +38,12 @@ function emuToPx(emu: number): number {
 // Only round at final assignment — preserves sub-pixel accuracy through calculations
 function roundPx(v: number): number {
   return Math.round(v * 10) / 10; // keep 1 decimal for precision
+}
+
+// OOXML booleans can be "1", "true", "on", or just present (no value = true)
+function ooxmlBool(val: string | null): boolean {
+  if (val === null) return false;
+  return val !== "0" && val !== "false" && val !== "off";
 }
 
 // Parse hex color from OOXML (e.g., "FF6B00" → "#FF6B00")
@@ -152,7 +162,8 @@ function parseBodyPr(txBody: Element): {
 function parseShape(
   spNode: Element,
   slideImages: Map<string, string>,
-  nextId: () => string
+  nextId: () => string,
+  themeFonts?: { major: string; minor: string }
 ): SlideElement | null {
   // Get transform (position + size)
   const spPr = qs(spNode, "spPr");
@@ -260,20 +271,23 @@ function parseShape(
         if (rPr) {
           const sz = rPr.getAttribute("sz");
           // PPTX stores font size in hundredths of a point (e.g. 3200 = 32pt)
-          // Keep precision: round to nearest 0.5pt
+          // Convert: hundredths → points → canvas pixels (×PT_TO_CANVAS_PX)
           if (sz) {
-            const rawSize = parseFloat(sz) / 100;
-            fontSize = Math.round(rawSize * 2) / 2; // nearest 0.5
+            const points = parseFloat(sz) / 100;
+            fontSize = Math.round(points * PT_TO_CANVAS_PX);
           }
 
-          bold = rPr.getAttribute("b") === "1";
-          italic = rPr.getAttribute("i") === "1";
-          underline = rPr.getAttribute("u") === "sng" || rPr.getAttribute("u") === "dbl";
+          // OOXML booleans: "1", "true", "on", or present = true
+          bold = ooxmlBool(rPr.getAttribute("b"));
+          italic = ooxmlBool(rPr.getAttribute("i"));
+          const uAttr = rPr.getAttribute("u");
+          underline = uAttr !== null && uAttr !== "none";
 
           // Character spacing: spc is in hundredths of a point
           const spc = rPr.getAttribute("spc");
           if (spc) {
-            letterSpacing = parseFloat(spc) / 100; // Convert to points
+            // Convert to canvas pixels: hundredths-of-pt / 100 → pt, then × PT_TO_CANVAS_PX
+            letterSpacing = (parseFloat(spc) / 100) * PT_TO_CANVAS_PX;
           }
 
           // Color
@@ -282,10 +296,14 @@ function parseShape(
             color = parseColor(solidFill);
           }
 
-          // Font
+          // Font — resolve theme references
           const latin = qs(rPr, "latin");
           if (latin) {
-            fontFamily = latin.getAttribute("typeface") || "";
+            const typeface = latin.getAttribute("typeface") || "";
+            // Skip theme font references (+mj-lt, +mn-lt) — resolved later from theme
+            if (typeface && !typeface.startsWith("+")) {
+              fontFamily = typeface;
+            }
           }
         }
       });
@@ -310,7 +328,9 @@ function parseShape(
       valign: body.anchor,
       rotation,
     };
-    if (fontFamily) el.font_family = mapFont(fontFamily);
+    // Resolve font: explicit font > theme font > default
+    const resolvedFont = fontFamily || (themeFonts?.minor ?? "Arial");
+    el.font_family = mapFont(resolvedFont);
     if (lineSpacing !== undefined) el.line_spacing = lineSpacing;
     if (letterSpacing !== undefined) el.letter_spacing = letterSpacing;
     return el;
@@ -540,6 +560,28 @@ export async function importPptx(file: File): Promise<Presentation> {
   const nextId = () => `imp_${++elementCounter}`;
 
   const parser = new DOMParser();
+
+  // Resolve theme fonts (+mj-lt = heading font, +mn-lt = body font)
+  let themeMajorFont = "Arial";
+  let themeMinorFont = "Arial";
+  try {
+    const themeFile = zip.file("ppt/theme/theme1.xml");
+    if (themeFile) {
+      const themeXml = await themeFile.async("text");
+      const themeDoc = parser.parseFromString(themeXml, "text/xml");
+      const majorFont = qs(themeDoc, "majorFont");
+      const minorFont = qs(themeDoc, "minorFont");
+      if (majorFont) {
+        const latin = qs(majorFont, "latin");
+        if (latin) themeMajorFont = latin.getAttribute("typeface") || "Arial";
+      }
+      if (minorFont) {
+        const latin = qs(minorFont, "latin");
+        if (latin) themeMinorFont = latin.getAttribute("typeface") || "Arial";
+      }
+    }
+  } catch { /* use defaults */ }
+
   const slides: Slide[] = [];
 
   for (let i = 0; i < slideFiles.length; i++) {
@@ -567,7 +609,7 @@ export async function importPptx(file: File): Promise<Presentation> {
       for (const child of Array.from(spTree.children)) {
         const localName = child.localName;
         if (localName === "sp" || localName === "pic") {
-          const el = parseShape(child as Element, slideImages, nextId);
+          const el = parseShape(child as Element, slideImages, nextId, { major: themeMajorFont, minor: themeMinorFont });
           if (el) elements.push(el);
         } else if (localName === "grpSp") {
           // Flatten group shapes — process children in order
