@@ -13,6 +13,7 @@ export default function SlideCanvas() {
   const fabricRef = useRef<fabric.Canvas | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const syncingRef = useRef(false);
+  const canvasEditRef = useRef(false); // true when canvas itself caused the store change
   const [dragOver, setDragOver] = useState(false);
 
   const currentSlideIndex = useStore((s) => s.currentSlideIndex);
@@ -86,6 +87,8 @@ export default function SlideCanvas() {
       // Push undo before applying changes
       useStore.getState().pushUndo();
 
+      // Mark that this change came from canvas interaction — skip re-render
+      canvasEditRef.current = true;
       const update = fabricObjectToElementUpdate(obj);
       useStore.getState().updateElement(obj.data.elementId as string, update);
 
@@ -229,6 +232,12 @@ export default function SlideCanvas() {
   useEffect(() => {
     const canvas = fabricRef.current;
     if (!canvas || !slide) return;
+
+    // If this change came from the canvas itself (drag/resize), don't re-render
+    if (canvasEditRef.current) {
+      canvasEditRef.current = false;
+      return;
+    }
 
     let cancelled = false;
     syncingRef.current = true;
