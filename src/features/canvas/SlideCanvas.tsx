@@ -1,9 +1,10 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import * as fabric from "fabric";
 import { useStore } from "@/shared/store";
 import { createFabricObject, fabricObjectToElementUpdate } from "./element-renderers";
 import { SLIDE_WIDTH, SLIDE_HEIGHT } from "./types";
 import type { SlideElement, TextElement, ShapeElement, ImageElement } from "./types";
+import { ImagePlus } from "lucide-react";
 
 type FabricObjectWithData = fabric.FabricObject & { data?: Record<string, unknown> };
 
@@ -12,6 +13,7 @@ export default function SlideCanvas() {
   const fabricRef = useRef<fabric.Canvas | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const syncingRef = useRef(false);
+  const [dragOver, setDragOver] = useState(false);
 
   const currentSlideIndex = useStore((s) => s.currentSlideIndex);
   const presentation = useStore((s) => s.presentation);
@@ -341,14 +343,96 @@ export default function SlideCanvas() {
     return () => observer.disconnect();
   }, [resizeCanvas]);
 
+  // --- Drag & Drop images ---
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.dataTransfer.types.includes("Files")) {
+      setDragOver(true);
+    }
+  }, []);
+
+  const handleDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragOver(false);
+  }, []);
+
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragOver(false);
+
+    const files = Array.from(e.dataTransfer.files).filter((f) =>
+      f.type.startsWith("image/")
+    );
+    if (files.length === 0) return;
+
+    // Calculate drop position in slide coordinates
+    const canvas = fabricRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
+
+    const rect = container.getBoundingClientRect();
+    const canvasEl = canvas.getElement();
+    const canvasRect = canvasEl.getBoundingClientRect();
+    const scaleX = SLIDE_WIDTH / canvasRect.width;
+    const scaleY = SLIDE_HEIGHT / canvasRect.height;
+    const dropX = Math.round((e.clientX - canvasRect.left) * scaleX);
+    const dropY = Math.round((e.clientY - canvasRect.top) * scaleY);
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const dataUrl = reader.result as string;
+        const img = new window.Image();
+        img.onload = () => {
+          // Scale to fit within 600px max dimension while preserving aspect ratio
+          const maxDim = 600;
+          let w = img.width;
+          let h = img.height;
+          if (w > maxDim || h > maxDim) {
+            const scale = maxDim / Math.max(w, h);
+            w = Math.round(w * scale);
+            h = Math.round(h * scale);
+          }
+          useStore.getState().addElement({
+            type: "image",
+            src: dataUrl,
+            x: Math.max(0, dropX - w / 2),
+            y: Math.max(0, dropY - h / 2),
+            width: w,
+            height: h,
+            corner_radius: 0,
+          } as Omit<ImageElement, "id">);
+        };
+        img.src = dataUrl;
+      };
+      reader.readAsDataURL(file);
+    });
+  }, []);
+
   return (
     <div
       ref={containerRef}
-      className="h-full w-full flex items-center justify-center bg-neutral-950 overflow-hidden"
+      className="h-full w-full flex items-center justify-center bg-neutral-950 overflow-hidden relative"
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
     >
       <div className="shadow-2xl shadow-black/50 rounded-sm">
         <canvas ref={canvasRef} />
       </div>
+
+      {/* Drop overlay */}
+      {dragOver && (
+        <div className="absolute inset-0 bg-morado-500/10 border-2 border-dashed border-morado-500/50 flex items-center justify-center z-50 pointer-events-none">
+          <div className="flex flex-col items-center gap-2 text-morado-400">
+            <ImagePlus size={48} className="opacity-60" />
+            <span className="text-sm font-medium">Drop image here</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

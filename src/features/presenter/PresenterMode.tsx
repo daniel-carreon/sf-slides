@@ -15,6 +15,8 @@ export default function PresenterMode() {
   const [showNotes, setShowNotes] = useState(false);
   const [blackScreen, setBlackScreen] = useState(false);
   const [elapsed, setElapsed] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
+  const [transitionClass, setTransitionClass] = useState("");
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fabricRef = useRef<fabric.StaticCanvas | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -121,6 +123,45 @@ export default function PresenterMode() {
     return () => ro.disconnect();
   }, [presenterActive, resizeCanvas]);
 
+  // Slide transition helper
+  const goToSlide = useCallback(
+    (newIndex: number, direction: "forward" | "backward") => {
+      if (transitioning) return;
+      if (newIndex < 0 || newIndex >= totalSlides || newIndex === slideIndexRef.current) return;
+
+      const nextSlide = presentation.slides[newIndex];
+      const transitionType = nextSlide?.transition || "fade";
+
+      if (transitionType === "none") {
+        setSlideIndex(newIndex);
+        return;
+      }
+
+      // Apply exit transition
+      setTransitioning(true);
+      if (transitionType === "slide") {
+        setTransitionClass(direction === "forward" ? "presenter-slide-exit-left" : "presenter-slide-exit-right");
+      } else {
+        setTransitionClass("presenter-fade-exit");
+      }
+
+      setTimeout(() => {
+        setSlideIndex(newIndex);
+        // Apply enter transition
+        if (transitionType === "slide") {
+          setTransitionClass(direction === "forward" ? "presenter-slide-enter-right" : "presenter-slide-enter-left");
+        } else {
+          setTransitionClass("presenter-fade-enter");
+        }
+        setTimeout(() => {
+          setTransitionClass("");
+          setTransitioning(false);
+        }, 300);
+      }, 250);
+    },
+    [totalSlides, transitioning, presentation.slides]
+  );
+
   // Keyboard
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -129,12 +170,12 @@ export default function PresenterMode() {
         case " ":
         case "Enter":
           e.preventDefault();
-          setSlideIndex((i) => Math.min(i + 1, totalSlides - 1));
+          goToSlide(slideIndexRef.current + 1, "forward");
           break;
         case "ArrowLeft":
         case "Backspace":
           e.preventDefault();
-          setSlideIndex((i) => Math.max(i - 1, 0));
+          goToSlide(slideIndexRef.current - 1, "backward");
           break;
         case "Escape":
           setPresenterActive(false);
@@ -149,7 +190,7 @@ export default function PresenterMode() {
           break;
       }
     },
-    [totalSlides, setPresenterActive]
+    [totalSlides, setPresenterActive, goToSlide]
   );
 
   useEffect(() => {
@@ -186,12 +227,14 @@ export default function PresenterMode() {
       {/* Slide */}
       <div
         ref={containerRef}
-        className="flex-1 flex items-center justify-center"
+        className="flex-1 flex items-center justify-center overflow-hidden"
       >
         {blackScreen ? (
           <div className="text-white/20 text-lg">Screen blacked out (B)</div>
         ) : (
-          <canvas ref={canvasRef} />
+          <div className={transitionClass} style={{ transition: "all 0.3s ease-in-out" }}>
+            <canvas ref={canvasRef} />
+          </div>
         )}
       </div>
 
@@ -202,10 +245,25 @@ export default function PresenterMode() {
         </div>
       )}
 
+      {/* Slide number overlay (bottom-right corner of slide) */}
+      {!blackScreen && (
+        <div className="absolute bottom-16 right-8 text-white/15 text-sm font-medium pointer-events-none">
+          {slideIndex + 1}
+        </div>
+      )}
+
+      {/* Progress bar */}
+      <div className="h-0.5 bg-white/5">
+        <div
+          className="h-full bg-morado-500/60 transition-all duration-300 ease-out"
+          style={{ width: `${((slideIndex + 1) / totalSlides) * 100}%` }}
+        />
+      </div>
+
       {/* Bottom bar */}
       <div className="flex items-center justify-between px-6 py-2 bg-black/60 text-white/60 text-sm">
         <div className="flex items-center gap-4">
-          <span>
+          <span className="font-medium">
             {slideIndex + 1} / {totalSlides}
           </span>
           <span>{formatTime(elapsed)}</span>

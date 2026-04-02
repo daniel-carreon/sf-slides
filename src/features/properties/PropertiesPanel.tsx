@@ -10,6 +10,14 @@ import {
   AlignLeft,
   AlignCenter,
   AlignRight,
+  AlignStartVertical,
+  AlignCenterVertical,
+  AlignEndVertical,
+  AlignStartHorizontal,
+  AlignCenterHorizontal,
+  AlignEndHorizontal,
+  AlignHorizontalSpaceAround,
+  AlignVerticalSpaceAround,
   Bold,
   Italic,
   Underline,
@@ -138,15 +146,28 @@ function TextProps({ el }: { el: TextElement }) {
         }}
         className="w-full bg-white/5 border border-white/10 rounded px-2 py-1.5 text-xs text-white/80 mb-1.5 focus:outline-none focus:border-morado-500/50"
       >
-        <option value="Inter, system-ui, sans-serif">Inter</option>
-        <option value="Georgia, serif">Georgia</option>
-        <option value="Menlo, monospace">Menlo (Mono)</option>
-        <option value="Helvetica Neue, Arial, sans-serif">Helvetica</option>
-        <option value="Times New Roman, serif">Times New Roman</option>
-        <option value="Courier New, monospace">Courier New</option>
-        <option value="system-ui, sans-serif">System UI</option>
-        <option value="Avenir Next, sans-serif">Avenir Next</option>
-        <option value="SF Pro Display, system-ui, sans-serif">SF Pro Display</option>
+        <optgroup label="Sans Serif">
+          <option value="Inter, system-ui, sans-serif">Inter</option>
+          <option value="Poppins, sans-serif">Poppins</option>
+          <option value="Montserrat, sans-serif">Montserrat</option>
+          <option value="Lato, sans-serif">Lato</option>
+          <option value="Open Sans, sans-serif">Open Sans</option>
+          <option value="Raleway, sans-serif">Raleway</option>
+          <option value="Helvetica Neue, Arial, sans-serif">Helvetica Neue</option>
+          <option value="SF Pro Display, system-ui, sans-serif">SF Pro Display</option>
+          <option value="Avenir Next, sans-serif">Avenir Next</option>
+        </optgroup>
+        <optgroup label="Serif">
+          <option value="Playfair Display, Georgia, serif">Playfair Display</option>
+          <option value="Georgia, serif">Georgia</option>
+          <option value="Times New Roman, serif">Times New Roman</option>
+        </optgroup>
+        <optgroup label="Monospace">
+          <option value="Roboto Mono, Menlo, monospace">Roboto Mono</option>
+          <option value="Source Code Pro, monospace">Source Code Pro</option>
+          <option value="Menlo, monospace">Menlo</option>
+          <option value="Courier New, monospace">Courier New</option>
+        </optgroup>
       </select>
       <NumberInput
         label="Sz"
@@ -456,6 +477,35 @@ const GRADIENT_PRESETS = [
 
 const SOLID_PRESETS = ["#0f0f17", "#1a1a2e", "#ffffff", "#000000", "#1e293b", "#0c0a09"];
 
+function SlideTransitionEditor() {
+  const currentSlideIndex = useStore((s) => s.currentSlideIndex);
+  const slide = useStore((s) => s.presentation.slides[s.currentSlideIndex]);
+
+  const setTransition = (transition: string) => {
+    // We need to update the slide's transition field directly
+    useStore.setState((state) => {
+      const slides = [...state.presentation.slides];
+      slides[currentSlideIndex] = { ...slides[currentSlideIndex], transition };
+      return { presentation: { ...state.presentation, slides }, dirty: true };
+    });
+  };
+
+  return (
+    <>
+      <SectionLabel>Transition</SectionLabel>
+      <select
+        value={slide?.transition || "fade"}
+        onChange={(e) => setTransition(e.target.value)}
+        className="w-full bg-white/5 border border-white/10 rounded px-2 py-1.5 text-xs text-white/80 focus:outline-none focus:border-morado-500/50"
+      >
+        <option value="fade">Fade</option>
+        <option value="slide">Slide</option>
+        <option value="none">None</option>
+      </select>
+    </>
+  );
+}
+
 function SlideBackgroundEditor() {
   const currentSlideIndex = useStore((s) => s.currentSlideIndex);
   const slide = useStore(
@@ -520,6 +570,85 @@ function SlideBackgroundEditor() {
   );
 }
 
+// --- Alignment Tools ---
+function AlignmentTools({ ids }: { ids: string[] }) {
+  const align = useStore((s) => s.alignElements);
+  const distribute = useStore((s) => s.distributeElements);
+  const showDistribute = ids.length >= 3;
+
+  return (
+    <>
+      <SectionLabel>Align</SectionLabel>
+      <div className="flex items-center gap-0.5 flex-wrap">
+        <button
+          onClick={() => align(ids, "left")}
+          title="Align left"
+          className="p-1.5 rounded text-white/40 hover:text-white/70 hover:bg-white/5 transition-colors"
+        >
+          <AlignStartVertical size={13} />
+        </button>
+        <button
+          onClick={() => align(ids, "center")}
+          title="Align center horizontally"
+          className="p-1.5 rounded text-white/40 hover:text-white/70 hover:bg-white/5 transition-colors"
+        >
+          <AlignCenterVertical size={13} />
+        </button>
+        <button
+          onClick={() => align(ids, "right")}
+          title="Align right"
+          className="p-1.5 rounded text-white/40 hover:text-white/70 hover:bg-white/5 transition-colors"
+        >
+          <AlignEndVertical size={13} />
+        </button>
+        <div className="w-px h-4 bg-white/10 mx-0.5" />
+        <button
+          onClick={() => align(ids, "top")}
+          title="Align top"
+          className="p-1.5 rounded text-white/40 hover:text-white/70 hover:bg-white/5 transition-colors"
+        >
+          <AlignStartHorizontal size={13} />
+        </button>
+        <button
+          onClick={() => align(ids, "middle")}
+          title="Align middle vertically"
+          className="p-1.5 rounded text-white/40 hover:text-white/70 hover:bg-white/5 transition-colors"
+        >
+          <AlignCenterHorizontal size={13} />
+        </button>
+        <button
+          onClick={() => align(ids, "bottom")}
+          title="Align bottom"
+          className="p-1.5 rounded text-white/40 hover:text-white/70 hover:bg-white/5 transition-colors"
+        >
+          <AlignEndHorizontal size={13} />
+        </button>
+      </div>
+      {showDistribute && (
+        <>
+          <SectionLabel>Distribute</SectionLabel>
+          <div className="flex items-center gap-0.5">
+            <button
+              onClick={() => distribute(ids, "horizontal")}
+              title="Distribute horizontally"
+              className="p-1.5 rounded text-white/40 hover:text-white/70 hover:bg-white/5 transition-colors"
+            >
+              <AlignHorizontalSpaceAround size={13} />
+            </button>
+            <button
+              onClick={() => distribute(ids, "vertical")}
+              title="Distribute vertically"
+              className="p-1.5 rounded text-white/40 hover:text-white/70 hover:bg-white/5 transition-colors"
+            >
+              <AlignVerticalSpaceAround size={13} />
+            </button>
+          </div>
+        </>
+      )}
+    </>
+  );
+}
+
 // ============================================================
 // Main Properties Panel
 // ============================================================
@@ -539,7 +668,11 @@ export default function PropertiesPanel() {
     <div className="h-full flex flex-col bg-slide-panel border-l border-slide-border overflow-y-auto">
       <div className="px-3 py-2 border-b border-slide-border">
         <span className="text-xs font-medium text-white/50 uppercase tracking-wider">
-          {selectedElement ? selectedElement.type : "Slide"}
+          {selectedElement
+            ? selectedElement.type
+            : selectedElementIds.length > 1
+              ? `${selectedElementIds.length} elements`
+              : "Slide"}
         </span>
       </div>
 
@@ -562,10 +695,19 @@ export default function PropertiesPanel() {
 
             {/* Position (always shown for selected element) */}
             <PositionProps el={selectedElement} />
+
+            {/* Alignment (single element = align to slide) */}
+            <AlignmentTools ids={selectedElementIds} />
+          </>
+        ) : selectedElementIds.length > 1 ? (
+          <>
+            {/* Multi-select: show alignment tools */}
+            <AlignmentTools ids={selectedElementIds} />
           </>
         ) : (
           <>
             <SlideBackgroundEditor />
+            <SlideTransitionEditor />
             <NotesEditor />
           </>
         )}

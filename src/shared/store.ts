@@ -9,6 +9,8 @@ import {
   createDefaultPresentation,
   createEmptySlide,
   generateElementId,
+  SLIDE_WIDTH,
+  SLIDE_HEIGHT,
 } from "@/features/canvas/types";
 
 interface UndoSnapshot {
@@ -71,6 +73,10 @@ interface SlidesStore {
   duplicateElements: (ids: string[]) => void;
   bringToFront: (id: string) => void;
   sendToBack: (id: string) => void;
+
+  // --- Alignment ---
+  alignElements: (ids: string[], alignment: "left" | "center" | "right" | "top" | "middle" | "bottom") => void;
+  distributeElements: (ids: string[], direction: "horizontal" | "vertical") => void;
 
   // --- Undo/Redo ---
   pushUndo: () => void;
@@ -334,6 +340,111 @@ export const useStore = create<SlidesStore>((set, get) => ({
         presentation: { ...state.presentation, slides },
         dirty: true,
       };
+    });
+  },
+
+  // --- Alignment ---
+  alignElements: (ids, alignment) => {
+    if (ids.length < 1) return;
+    get().pushUndo();
+    set((state) => {
+      const slides = [...state.presentation.slides];
+      const slide = { ...slides[state.currentSlideIndex] };
+      const elements = [...slide.elements];
+      const targets = elements.filter((el) => ids.includes(el.id));
+      if (targets.length === 0) return state;
+
+      if (ids.length === 1) {
+        // Align single element to slide
+        const el = targets[0];
+        let changes: Partial<SlideElement> = {};
+        switch (alignment) {
+          case "left": changes = { x: 0 }; break;
+          case "center": changes = { x: Math.round((SLIDE_WIDTH - el.width) / 2) }; break;
+          case "right": changes = { x: SLIDE_WIDTH - el.width }; break;
+          case "top": changes = { y: 0 }; break;
+          case "middle": changes = { y: Math.round((SLIDE_HEIGHT - el.height) / 2) }; break;
+          case "bottom": changes = { y: SLIDE_HEIGHT - el.height }; break;
+        }
+        slide.elements = elements.map((e) => e.id === el.id ? ({ ...e, ...changes } as SlideElement) : e);
+      } else {
+        // Align multiple elements relative to each other
+        const bounds = {
+          left: Math.min(...targets.map((e) => e.x)),
+          right: Math.max(...targets.map((e) => e.x + e.width)),
+          top: Math.min(...targets.map((e) => e.y)),
+          bottom: Math.max(...targets.map((e) => e.y + e.height)),
+        };
+        const updateMap = new Map<string, Partial<SlideElement>>();
+        for (const el of targets) {
+          switch (alignment) {
+            case "left": updateMap.set(el.id, { x: bounds.left }); break;
+            case "center": updateMap.set(el.id, { x: Math.round(bounds.left + (bounds.right - bounds.left) / 2 - el.width / 2) }); break;
+            case "right": updateMap.set(el.id, { x: bounds.right - el.width }); break;
+            case "top": updateMap.set(el.id, { y: bounds.top }); break;
+            case "middle": updateMap.set(el.id, { y: Math.round(bounds.top + (bounds.bottom - bounds.top) / 2 - el.height / 2) }); break;
+            case "bottom": updateMap.set(el.id, { y: bounds.bottom - el.height }); break;
+          }
+        }
+        slide.elements = elements.map((e) => {
+          const u = updateMap.get(e.id);
+          return u ? ({ ...e, ...u } as SlideElement) : e;
+        });
+      }
+
+      slides[state.currentSlideIndex] = slide;
+      return { presentation: { ...state.presentation, slides }, dirty: true };
+    });
+  },
+
+  distributeElements: (ids, direction) => {
+    if (ids.length < 3) return;
+    get().pushUndo();
+    set((state) => {
+      const slides = [...state.presentation.slides];
+      const slide = { ...slides[state.currentSlideIndex] };
+      const elements = [...slide.elements];
+      const targets = elements.filter((el) => ids.includes(el.id));
+      if (targets.length < 3) return state;
+
+      const sorted = [...targets].sort((a, b) =>
+        direction === "horizontal" ? a.x - b.x : a.y - b.y
+      );
+      const first = sorted[0];
+      const last = sorted[sorted.length - 1];
+
+      if (direction === "horizontal") {
+        const totalSpace = (last.x + last.width) - first.x;
+        const totalWidths = sorted.reduce((sum, e) => sum + e.width, 0);
+        const gap = (totalSpace - totalWidths) / (sorted.length - 1);
+        let currentX = first.x;
+        const updateMap = new Map<string, number>();
+        for (const el of sorted) {
+          updateMap.set(el.id, Math.round(currentX));
+          currentX += el.width + gap;
+        }
+        slide.elements = elements.map((e) => {
+          const x = updateMap.get(e.id);
+          return x !== undefined ? ({ ...e, x } as SlideElement) : e;
+        });
+      } else {
+        const totalSpace = (last.y + last.height) - first.y;
+        const totalHeights = sorted.reduce((sum, e) => sum + e.height, 0);
+        const gap = (totalSpace - totalHeights) / (sorted.length - 1);
+        let currentY = first.y;
+        const updateMap = new Map<string, number>();
+        for (const el of sorted) {
+          updateMap.set(el.id, Math.round(currentY));
+          currentY += el.height + gap;
+        }
+        slide.elements = elements.map((e) => {
+          const y = updateMap.get(e.id);
+          return y !== undefined ? ({ ...e, y } as SlideElement) : e;
+        });
+      }
+
+      slides[state.currentSlideIndex] = slide;
+      return { presentation: { ...state.presentation, slides }, dirty: true };
     });
   },
 
