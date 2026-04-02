@@ -250,13 +250,26 @@ export default function HomeScreen() {
   };
 
   const deleteProject = async (project: ProjectInfo) => {
-    if (!confirm(`Delete "${project.title}"?`)) return;
     try {
+      const dialog = await import("@tauri-apps/plugin-dialog");
+      const confirmed = await dialog.confirm(`Delete "${project.title}"?`, {
+        title: "SF-Slides",
+        kind: "warning",
+      });
+      if (!confirmed) return;
       const fs = await import("@tauri-apps/plugin-fs");
       await fs.remove(project.path);
       loadProjects();
     } catch (err) {
-      console.error("Failed to delete:", err);
+      // Fallback to browser confirm
+      if (!confirm(`Delete "${project.title}"?`)) return;
+      try {
+        const fs = await import("@tauri-apps/plugin-fs");
+        await fs.remove(project.path);
+        loadProjects();
+      } catch (e) {
+        console.error("Failed to delete:", e);
+      }
     }
   };
 
