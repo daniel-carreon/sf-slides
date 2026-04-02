@@ -3,7 +3,17 @@ import * as fabric from "fabric";
 import { useStore } from "@/shared/store";
 import { createFabricObject } from "@/features/canvas/element-renderers";
 import { SLIDE_WIDTH, SLIDE_HEIGHT } from "@/features/canvas/types";
+import type { SlideElement } from "@/features/canvas/types";
 import { X } from "lucide-react";
+
+// Get the max animation order for a slide's elements
+function getMaxAnimOrder(elements: SlideElement[]): number {
+  let max = 0;
+  for (const el of elements) {
+    if (el.animation?.order && el.animation.order > max) max = el.animation.order;
+  }
+  return max;
+}
 
 export default function PresenterMode() {
   const presenterActive = useStore((s) => s.presenterActive);
@@ -12,6 +22,7 @@ export default function PresenterMode() {
   const [slideIndex, setSlideIndex] = useState(
     useStore.getState().currentSlideIndex
   );
+  const [animStep, setAnimStep] = useState(999); // which animation step we've revealed (999 = all)
   const [showNotes, setShowNotes] = useState(false);
   const [blackScreen, setBlackScreen] = useState(false);
   const [elapsed, setElapsed] = useState(0);
@@ -23,10 +34,13 @@ export default function PresenterMode() {
   const startTimeRef = useRef(Date.now());
 
   const slideIndexRef = useRef(slideIndex);
+  const animStepRef = useRef(animStep);
   useEffect(() => { slideIndexRef.current = slideIndex; }, [slideIndex]);
+  useEffect(() => { animStepRef.current = animStep; }, [animStep]);
 
   const slide = presentation.slides[slideIndex];
   const totalSlides = presentation.slides.length;
+  const maxAnimOrder = slide ? getMaxAnimOrder(slide.elements) : 0;
 
   // Timer
   useEffect(() => {
@@ -78,6 +92,10 @@ export default function PresenterMode() {
       );
       for (const el of sorted) {
         if (cancelled) return;
+        // Skip elements whose animation order hasn't been revealed yet
+        const elOrder = el.animation?.order ?? 0;
+        if (elOrder > 0 && elOrder > animStep) continue;
+
         const obj = await createFabricObject(el);
         if (cancelled) return;
         if (obj) {
@@ -92,7 +110,7 @@ export default function PresenterMode() {
     renderSlide();
 
     return () => { cancelled = true; };
-  }, [presenterActive, slideIndex, slide]);
+  }, [presenterActive, slideIndex, slide, animStep]);
 
   // Resize
   const resizeCanvas = useCallback(() => {
@@ -122,6 +140,15 @@ export default function PresenterMode() {
     ro.observe(container);
     return () => ro.disconnect();
   }, [presenterActive, resizeCanvas]);
+
+  // Reset animation step when slide changes
+  useEffect(() => {
+    const s = presentation.slides[slideIndex];
+    const maxOrder = s ? getMaxAnimOrder(s.elements) : 0;
+    // If the slide has animated elements, start at step 0 (show only non-animated)
+    // If no animated elements, show everything
+    setAnimStep(maxOrder > 0 ? 0 : 999);
+  }, [slideIndex, presentation.slides]);
 
   // Slide transition helper
   const goToSlide = useCallback(
@@ -168,15 +195,29 @@ export default function PresenterMode() {
       switch (e.key) {
         case "ArrowRight":
         case " ":
-        case "Enter":
+        case "Enter": {
           e.preventDefault();
-          goToSlide(slideIndexRef.current + 1, "forward");
+          // If there are more animation steps to reveal, advance animation first
+          const currentSlide = presentation.slides[slideIndexRef.current];
+          const currentMax = currentSlide ? getMaxAnimOrder(currentSlide.elements) : 0;
+          if (animStepRef.current < currentMax) {
+            setAnimStep(animStepRef.current + 1);
+          } else {
+            goToSlide(slideIndexRef.current + 1, "forward");
+          }
           break;
+        }
         case "ArrowLeft":
-        case "Backspace":
+        case "Backspace": {
           e.preventDefault();
-          goToSlide(slideIndexRef.current - 1, "backward");
+          // If we have revealed animation steps, go back one step
+          if (animStepRef.current > 0 && animStepRef.current < 999) {
+            setAnimStep(animStepRef.current - 1);
+          } else {
+            goToSlide(slideIndexRef.current - 1, "backward");
+          }
           break;
+        }
         case "Escape":
           setPresenterActive(false);
           break;

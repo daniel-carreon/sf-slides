@@ -8,6 +8,9 @@ import type {
   ShapeElement,
   ImageElement,
   LineElement,
+  TableElement,
+  TableCell,
+  ChartElement,
   SlideBackground,
   GradientFill,
 } from "@/features/canvas/types";
@@ -176,6 +179,66 @@ function exportLineElement(
   });
 }
 
+function exportTableElement(
+  pptxSlide: PptxGenJS.Slide,
+  el: TableElement
+) {
+  const cells = el.cells || [];
+  const rows: PptxGenJS.TableRow[] = cells.map((row, ri) => {
+    const isHeader = !!(el.header_row && ri === 0);
+    return row.map((cell): PptxGenJS.TableCell => {
+      const text = typeof cell === "string" ? cell : cell.text;
+      const cellObj = typeof cell === "string" ? null : cell;
+      return {
+        text,
+        options: {
+          bold: cellObj?.bold ?? isHeader,
+          color: hexToRgb(cellObj?.color ?? (isHeader ? (el.header_text_color ?? "FFFFFF") : (el.text_color ?? "FFFFFF"))),
+          fill: { color: hexToRgb(cellObj?.background ?? (isHeader ? (el.header_color ?? "8B5CF6") : (el.cell_color ?? "1a1a2e"))) },
+          fontSize: el.font_size ?? 14,
+          fontFace: el.font_family || "Arial",
+          align: cellObj?.align ?? "left",
+          border: { type: "solid", color: hexToRgb(el.border_color ?? "2a2a3e"), pt: el.border_width ?? 1 },
+        },
+      };
+    });
+  });
+
+  pptxSlide.addTable(rows, {
+    x: pxToInchX(el.x),
+    y: pxToInchY(el.y),
+    w: pxToInchW(el.width),
+    colW: Array(cells[0]?.length ?? 1).fill(pxToInchW(el.width) / (cells[0]?.length ?? 1)),
+  });
+}
+
+function exportChartElement(
+  pptxSlide: PptxGenJS.Slide,
+  el: ChartElement
+) {
+  // Export chart as a text placeholder with data summary (pptxgenjs charts are complex)
+  // For maximum compatibility, render as a shape + text description
+  const summary = el.title ? `[Chart: ${el.title}]` : `[${el.chart_type} chart]`;
+  pptxSlide.addShape("rect" as PptxGenJS.ShapeType, {
+    x: pxToInchX(el.x),
+    y: pxToInchY(el.y),
+    w: pxToInchW(el.width),
+    h: pxToInchH(el.height),
+    fill: { color: hexToRgb(el.background ?? "1a1a2e") },
+    rectRadius: 0.1,
+  });
+  pptxSlide.addText(summary, {
+    x: pxToInchX(el.x),
+    y: pxToInchY(el.y),
+    w: pxToInchW(el.width),
+    h: pxToInchH(el.height),
+    fontSize: 14,
+    color: "999999",
+    align: "center",
+    valign: "middle",
+  });
+}
+
 function exportSlide(pptx: PptxGenJS, slide: Slide) {
   const pptxSlide = pptx.addSlide();
 
@@ -199,6 +262,12 @@ function exportSlide(pptx: PptxGenJS, slide: Slide) {
         break;
       case "line":
         exportLineElement(pptxSlide, el as LineElement);
+        break;
+      case "table":
+        exportTableElement(pptxSlide, el as TableElement);
+        break;
+      case "chart":
+        exportChartElement(pptxSlide, el as ChartElement);
         break;
     }
   }

@@ -20,6 +20,7 @@ export default function SlideCanvas() {
   const selectedElementIds = useStore((s) => s.selectedElementIds);
   const toolMode = useStore((s) => s.toolMode);
   const zoom = useStore((s) => s.zoom);
+  const showGrid = useStore((s) => s.showGrid);
 
   const slide = presentation.slides[currentSlideIndex];
 
@@ -95,11 +96,18 @@ export default function SlideCanvas() {
       }
     });
 
-    // Snap guidelines
+    // Smart snap guidelines — snaps to slide edges, center, AND other elements
     const guideLines: fabric.Line[] = [];
-    const SNAP_THRESHOLD = 10;
-    const centerX = SLIDE_WIDTH / 2;
-    const centerY = SLIDE_HEIGHT / 2;
+    const SNAP_THRESHOLD = 8;
+
+    function addGuide(x1: number, y1: number, x2: number, y2: number, color = "#8B5CF6") {
+      const line = new fabric.Line([x1, y1, x2, y2], {
+        stroke: color, strokeWidth: 1, strokeDashArray: [4, 4],
+        selectable: false, evented: false, opacity: 0.6,
+      });
+      canvas.add(line);
+      guideLines.push(line);
+    }
 
     canvas.on("object:moving", (e) => {
       const obj = e.target;
@@ -109,37 +117,88 @@ export default function SlideCanvas() {
       guideLines.forEach((l) => canvas.remove(l));
       guideLines.length = 0;
 
-      const objCenterX = (obj.left ?? 0) + ((obj.width ?? 0) * (obj.scaleX ?? 1)) / 2;
-      const objCenterY = (obj.top ?? 0) + ((obj.height ?? 0) * (obj.scaleY ?? 1)) / 2;
+      const objL = obj.left ?? 0;
+      const objT = obj.top ?? 0;
+      const objW = (obj.width ?? 0) * (obj.scaleX ?? 1);
+      const objH = (obj.height ?? 0) * (obj.scaleY ?? 1);
+      const objR = objL + objW;
+      const objB = objT + objH;
+      const objCX = objL + objW / 2;
+      const objCY = objT + objH / 2;
 
-      // Snap to horizontal center
-      if (Math.abs(objCenterX - centerX) < SNAP_THRESHOLD) {
-        obj.set({ left: centerX - ((obj.width ?? 0) * (obj.scaleX ?? 1)) / 2 });
-        const vLine = new fabric.Line([centerX, 0, centerX, SLIDE_HEIGHT], {
-          stroke: "#8B5CF6",
-          strokeWidth: 1,
-          strokeDashArray: [5, 5],
-          selectable: false,
-          evented: false,
-          opacity: 0.7,
-        });
-        canvas.add(vLine);
-        guideLines.push(vLine);
+      let snappedX = false;
+      let snappedY = false;
+
+      // Collect snap targets: slide edges + center + other elements
+      const hTargets: { pos: number; label: string }[] = [
+        { pos: 0, label: "edge" },
+        { pos: SLIDE_WIDTH / 2, label: "center" },
+        { pos: SLIDE_WIDTH, label: "edge" },
+      ];
+      const vTargets: { pos: number; label: string }[] = [
+        { pos: 0, label: "edge" },
+        { pos: SLIDE_HEIGHT / 2, label: "center" },
+        { pos: SLIDE_HEIGHT, label: "edge" },
+      ];
+
+      // Add other elements as snap targets
+      canvas.getObjects().forEach((other) => {
+        if (other === obj || guideLines.includes(other as fabric.Line)) return;
+        if (!(other as FabricObjectWithData).data?.elementId) return;
+        const oL = other.left ?? 0;
+        const oT = other.top ?? 0;
+        const oW = (other.width ?? 0) * (other.scaleX ?? 1);
+        const oH = (other.height ?? 0) * (other.scaleY ?? 1);
+        hTargets.push(
+          { pos: oL, label: "el" },
+          { pos: oL + oW / 2, label: "el" },
+          { pos: oL + oW, label: "el" },
+        );
+        vTargets.push(
+          { pos: oT, label: "el" },
+          { pos: oT + oH / 2, label: "el" },
+          { pos: oT + oH, label: "el" },
+        );
+      });
+
+      // Check horizontal snaps (left edge, center, right edge of moving obj)
+      const objHPoints = [
+        { pos: objL, anchor: "left" },
+        { pos: objCX, anchor: "center" },
+        { pos: objR, anchor: "right" },
+      ];
+      for (const op of objHPoints) {
+        if (snappedX) break;
+        for (const t of hTargets) {
+          if (Math.abs(op.pos - t.pos) < SNAP_THRESHOLD) {
+            const shift = t.pos - op.pos;
+            obj.set({ left: objL + shift });
+            addGuide(t.pos, 0, t.pos, SLIDE_HEIGHT,
+              t.label === "center" ? "#8B5CF6" : t.label === "el" ? "#f69f02" : "#8B5CF688");
+            snappedX = true;
+            break;
+          }
+        }
       }
 
-      // Snap to vertical center
-      if (Math.abs(objCenterY - centerY) < SNAP_THRESHOLD) {
-        obj.set({ top: centerY - ((obj.height ?? 0) * (obj.scaleY ?? 1)) / 2 });
-        const hLine = new fabric.Line([0, centerY, SLIDE_WIDTH, centerY], {
-          stroke: "#8B5CF6",
-          strokeWidth: 1,
-          strokeDashArray: [5, 5],
-          selectable: false,
-          evented: false,
-          opacity: 0.7,
-        });
-        canvas.add(hLine);
-        guideLines.push(hLine);
+      // Check vertical snaps (top, center, bottom of moving obj)
+      const objVPoints = [
+        { pos: objT, anchor: "top" },
+        { pos: objCY, anchor: "center" },
+        { pos: objB, anchor: "bottom" },
+      ];
+      for (const op of objVPoints) {
+        if (snappedY) break;
+        for (const t of vTargets) {
+          if (Math.abs(op.pos - t.pos) < SNAP_THRESHOLD) {
+            const shift = t.pos - op.pos;
+            obj.set({ top: objT + shift });
+            addGuide(0, t.pos, SLIDE_WIDTH, t.pos,
+              t.label === "center" ? "#8B5CF6" : t.label === "el" ? "#f69f02" : "#8B5CF688");
+            snappedY = true;
+            break;
+          }
+        }
       }
     });
 
@@ -420,8 +479,25 @@ export default function SlideCanvas() {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <div className="shadow-2xl shadow-black/50 rounded-sm">
+      <div className="shadow-2xl shadow-black/50 rounded-sm relative">
         <canvas ref={canvasRef} />
+        {showGrid && (
+          <svg
+            className="absolute inset-0 pointer-events-none"
+            style={{ width: "100%", height: "100%", opacity: 0.12 }}
+          >
+            <defs>
+              <pattern id="grid" width="10%" height="10%" patternUnits="userSpaceOnUse" x="0" y="0">
+                <line x1="0" y1="0" x2="0" y2="100%" stroke="#8B5CF6" strokeWidth="0.5" />
+                <line x1="0" y1="0" x2="100%" y2="0" stroke="#8B5CF6" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+            {/* Center crosshair */}
+            <line x1="50%" y1="0" x2="50%" y2="100%" stroke="#8B5CF6" strokeWidth="1" opacity="0.5" />
+            <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#8B5CF6" strokeWidth="1" opacity="0.5" />
+          </svg>
+        )}
       </div>
 
       {/* Drop overlay */}

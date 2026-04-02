@@ -4,6 +4,8 @@ import type {
   ShapeElement,
   ImageElement,
   LineElement,
+  TableElement,
+  ChartElement,
   SlideElement,
 } from "@/features/canvas/types";
 import {
@@ -231,6 +233,119 @@ function TextProps({ el }: { el: TextElement }) {
         value={el.background ?? "transparent"}
         onChange={(v) => update(el.id, { background: v === "transparent" ? null : v })}
       />
+
+      <SectionLabel>List</SectionLabel>
+      <select
+        value={el.list_type ?? "none"}
+        onChange={(e) => {
+          useStore.getState().pushUndo();
+          const val = e.target.value;
+          update(el.id, { list_type: val === "none" ? null : val as "bullet" | "numbered" });
+        }}
+        className="w-full bg-white/5 border border-white/10 rounded px-2 py-1.5 text-xs text-white/80 focus:outline-none focus:border-morado-500/50"
+      >
+        <option value="none">None</option>
+        <option value="bullet">Bullet List</option>
+        <option value="numbered">Numbered List</option>
+      </select>
+    </>
+  );
+}
+
+// --- Table Properties ---
+function TableProps({ el }: { el: TableElement }) {
+  const update = useStore((s) => s.updateElement);
+  return (
+    <>
+      <SectionLabel>Table</SectionLabel>
+      <div className="text-[10px] text-white/40 mb-1">
+        {el.cells?.length ?? 0} rows × {el.cells?.[0]?.length ?? 0} cols
+      </div>
+      <ColorInput
+        label="Hdr"
+        value={el.header_color ?? "#8B5CF6"}
+        onChange={(v) => update(el.id, { header_color: v })}
+      />
+      <ColorInput
+        label="Cell"
+        value={el.cell_color ?? "#1a1a2e"}
+        onChange={(v) => update(el.id, { cell_color: v })}
+      />
+      <ColorInput
+        label="Txt"
+        value={el.text_color ?? "#ffffff"}
+        onChange={(v) => update(el.id, { text_color: v })}
+      />
+      <ColorInput
+        label="Bdr"
+        value={el.border_color ?? "#2a2a3e"}
+        onChange={(v) => update(el.id, { border_color: v })}
+      />
+      <NumberInput
+        label="Sz"
+        value={el.font_size ?? 14}
+        onChange={(v) => update(el.id, { font_size: v })}
+        min={8}
+        max={48}
+      />
+      <NumberInput
+        label="Rad"
+        value={el.corner_radius ?? 8}
+        onChange={(v) => update(el.id, { corner_radius: v })}
+        min={0}
+        max={30}
+      />
+    </>
+  );
+}
+
+// --- Chart Properties ---
+function ChartProps({ el }: { el: ChartElement }) {
+  const update = useStore((s) => s.updateElement);
+  return (
+    <>
+      <SectionLabel>Chart</SectionLabel>
+      <select
+        value={el.chart_type}
+        onChange={(e) => {
+          useStore.getState().pushUndo();
+          update(el.id, { chart_type: e.target.value as ChartElement["chart_type"] });
+        }}
+        className="w-full bg-white/5 border border-white/10 rounded px-2 py-1.5 text-xs text-white/80 focus:outline-none focus:border-morado-500/50"
+      >
+        <option value="bar">Bar</option>
+        <option value="line">Line</option>
+        <option value="pie">Pie</option>
+        <option value="donut">Donut</option>
+      </select>
+      <ColorInput
+        label="Bg"
+        value={el.background ?? "transparent"}
+        onChange={(v) => update(el.id, { background: v === "transparent" ? undefined : v })}
+      />
+      <ColorInput
+        label="Txt"
+        value={el.text_color ?? "#ffffff"}
+        onChange={(v) => update(el.id, { text_color: v })}
+      />
+      <div className="flex items-center gap-2 mt-1">
+        <label className="flex items-center gap-1 text-[10px] text-white/50">
+          <input
+            type="checkbox"
+            checked={el.show_legend ?? false}
+            onChange={(e) => update(el.id, { show_legend: e.target.checked })}
+            className="rounded"
+          /> Legend
+        </label>
+        <label className="flex items-center gap-1 text-[10px] text-white/50">
+          <input
+            type="checkbox"
+            checked={el.show_values ?? false}
+            onChange={(e) => update(el.id, { show_values: e.target.checked })}
+            className="rounded"
+          /> Values
+        </label>
+      </div>
     </>
   );
 }
@@ -691,6 +806,12 @@ export default function PropertiesPanel() {
             )}
             {selectedElement.type === "line" && (
               <LineProps el={selectedElement as LineElement} />
+            )}
+            {selectedElement.type === "table" && (
+              <TableProps el={selectedElement as TableElement} />
+            )}
+            {selectedElement.type === "chart" && (
+              <ChartProps el={selectedElement as ChartElement} />
             )}
 
             {/* Position (always shown for selected element) */}

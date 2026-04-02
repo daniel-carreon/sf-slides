@@ -21,6 +21,7 @@ import {
   ZoomIn,
   ZoomOut,
   Layers,
+  Grid3x3,
 } from "lucide-react";
 
 interface ToolButtonProps {
@@ -70,6 +71,8 @@ export default function Toolbar() {
   const redoStack = useStore((s) => s.redoStack);
   const setAppView = useStore((s) => s.setAppView);
   const presentationTitle = useStore((s) => s.presentation.metadata?.title || "Untitled");
+  const showGrid = useStore((s) => s.showGrid);
+  const setShowGrid = useStore((s) => s.setShowGrid);
   const { save, open, importPptxFile } = useFileOperations();
 
   const tools: { mode: ToolMode; icon: React.ReactNode; label: string }[] = [
@@ -190,6 +193,13 @@ export default function Toolbar() {
           icon={<ZoomIn size={14} />}
           label="Zoom in"
           onClick={() => setZoom(zoom + 0.1)}
+        />
+
+        <ToolButton
+          icon={<Grid3x3 size={14} />}
+          label="Toggle grid"
+          active={showGrid}
+          onClick={() => setShowGrid(!showGrid)}
         />
 
         <Separator />

@@ -24,14 +24,16 @@ function qsa(parent: Element | Document, localName: string): Element[] {
 // EMU → pixel conversion (PPTX uses English Metric Units)
 // Standard widescreen: 12192000 x 6858000 EMU = 13.33" x 7.5"
 // Our canvas: 1920 x 1080 px
-const EMU_TO_PX_X = 1920 / 12192000;
-const EMU_TO_PX_Y = 1080 / 6858000;
+// Both axes: 1 px = 6350 EMU (12192000/1920 = 6858000/1080 = 6350)
+const EMU_PER_PX = 6350;
 
-function emuToPxX(emu: number): number {
-  return Math.round(emu * EMU_TO_PX_X);
+function emuToPx(emu: number): number {
+  return emu / EMU_PER_PX;
 }
-function emuToPxY(emu: number): number {
-  return Math.round(emu * EMU_TO_PX_Y);
+
+// Only round at final assignment — preserves sub-pixel accuracy through calculations
+function roundPx(v: number): number {
+  return Math.round(v * 10) / 10; // keep 1 decimal for precision
 }
 
 // Parse hex color from OOXML (e.g., "FF6B00" → "#FF6B00")
@@ -57,6 +59,95 @@ function parseColor(node: Element | null, fallback = "#ffffff"): string {
   return fallback;
 }
 
+// Preserve original font names with appropriate fallback chains.
+// macOS has Arial, Helvetica, Times New Roman, Georgia, Courier New,
+// Verdana, Tahoma, Trebuchet MS built-in — no need to remap these.
+// Only remap fonts that truly aren't available on the system.
+function mapFont(pptxFont: string): string {
+  // Fonts available on macOS — preserve them with fallbacks
+  const systemFonts: Record<string, string> = {
+    "Arial": "Arial, Helvetica, sans-serif",
+    "Helvetica": "Helvetica, Arial, sans-serif",
+    "Helvetica Neue": "Helvetica Neue, Helvetica, Arial, sans-serif",
+    "Times New Roman": "Times New Roman, Times, serif",
+    "Georgia": "Georgia, serif",
+    "Courier New": "Courier New, Courier, monospace",
+    "Verdana": "Verdana, Geneva, sans-serif",
+    "Tahoma": "Tahoma, Geneva, sans-serif",
+    "Trebuchet MS": "Trebuchet MS, sans-serif",
+    "Impact": "Impact, sans-serif",
+    "Comic Sans MS": "Comic Sans MS, cursive",
+    "Lucida Grande": "Lucida Grande, sans-serif",
+    "Futura": "Futura, sans-serif",
+    "Avenir": "Avenir, sans-serif",
+    "Avenir Next": "Avenir Next, sans-serif",
+    "SF Pro Display": "SF Pro Display, system-ui, sans-serif",
+    "Menlo": "Menlo, Monaco, monospace",
+  };
+  if (systemFonts[pptxFont]) return systemFonts[pptxFont];
+
+  // Windows-only fonts — map to closest available alternative
+  const remapFonts: Record<string, string> = {
+    "Calibri": "Helvetica Neue, Helvetica, Arial, sans-serif",
+    "Calibri Light": "Helvetica Neue, Helvetica, Arial, sans-serif",
+    "Segoe UI": "Helvetica Neue, Helvetica, Arial, sans-serif",
+    "Cambria": "Georgia, serif",
+    "Consolas": "Roboto Mono, Menlo, monospace",
+    "Century Gothic": "Poppins, Futura, sans-serif",
+    "Gill Sans MT": "Lato, Gill Sans, sans-serif",
+    "Franklin Gothic Medium": "Montserrat, sans-serif",
+    "Garamond": "Playfair Display, Georgia, serif",
+    "Rockwell": "Georgia, serif",
+    "Lucida Console": "Source Code Pro, Menlo, monospace",
+  };
+  if (remapFonts[pptxFont]) return remapFonts[pptxFont];
+
+  // Unknown font: pass through with generic fallback
+  return `${pptxFont}, sans-serif`;
+}
+
+// Default PPTX text body insets in EMU (the internal padding of text boxes)
+// These are defined in the OOXML spec as default values for bodyPr
+const DEFAULT_L_INS = 91440;  // ~14.4px — left margin
+const DEFAULT_T_INS = 45720;  // ~7.2px  — top margin
+const DEFAULT_R_INS = 91440;  // ~14.4px — right margin
+const DEFAULT_B_INS = 45720;  // ~7.2px  — bottom margin
+
+// Parse text body properties (margins, vertical alignment)
+function parseBodyPr(txBody: Element): {
+  lIns: number;
+  tIns: number;
+  rIns: number;
+  bIns: number;
+  anchor: "top" | "middle" | "bottom";
+} {
+  const bodyPr = qs(txBody, "bodyPr");
+  let lIns = DEFAULT_L_INS;
+  let tIns = DEFAULT_T_INS;
+  let rIns = DEFAULT_R_INS;
+  let bIns = DEFAULT_B_INS;
+  let anchor: "top" | "middle" | "bottom" = "top";
+
+  if (bodyPr) {
+    // Parse explicit insets (only override if explicitly present)
+    const lVal = bodyPr.getAttribute("lIns");
+    const tVal = bodyPr.getAttribute("tIns");
+    const rVal = bodyPr.getAttribute("rIns");
+    const bVal = bodyPr.getAttribute("bIns");
+    if (lVal !== null) lIns = parseInt(lVal);
+    if (tVal !== null) tIns = parseInt(tVal);
+    if (rVal !== null) rIns = parseInt(rVal);
+    if (bVal !== null) bIns = parseInt(bVal);
+
+    // Parse vertical alignment
+    const anchorAttr = bodyPr.getAttribute("anchor");
+    if (anchorAttr === "ctr") anchor = "middle";
+    else if (anchorAttr === "b") anchor = "bottom";
+  }
+
+  return { lIns, tIns, rIns, bIns, anchor };
+}
+
 // Parse a single shape/text element from XML
 function parseShape(
   spNode: Element,
@@ -73,12 +164,13 @@ function parseShape(
   const ext = qs(xfrmOrSpPr, "ext");
   if (!off || !ext) return null;
 
-  const x = emuToPxX(parseInt(off.getAttribute("x") || "0"));
-  const y = emuToPxY(parseInt(off.getAttribute("y") || "0"));
-  const width = emuToPxX(parseInt(ext.getAttribute("cx") || "0"));
-  const height = emuToPxY(parseInt(ext.getAttribute("cy") || "0"));
+  // Keep precise floating-point values through the pipeline
+  const rawX = emuToPx(parseInt(off.getAttribute("x") || "0"));
+  const rawY = emuToPx(parseInt(off.getAttribute("y") || "0"));
+  const rawW = emuToPx(parseInt(ext.getAttribute("cx") || "0"));
+  const rawH = emuToPx(parseInt(ext.getAttribute("cy") || "0"));
 
-  if (width === 0 && height === 0) return null;
+  if (rawW < 1 && rawH < 1) return null;
 
   // Check rotation
   const rot = xfrmOrSpPr.getAttribute("rot");
@@ -98,10 +190,10 @@ function parseShape(
       id: nextId(),
       type: "image",
       src: imgSrc,
-      x,
-      y,
-      width,
-      height,
+      x: Math.round(rawX),
+      y: Math.round(rawY),
+      width: Math.round(rawW),
+      height: Math.round(rawH),
       corner_radius: 0,
       rotation,
     } as ImageElement;
@@ -110,14 +202,32 @@ function parseShape(
   // Check for text body
   const txBody = qs(spNode, "txBody");
   if (txBody) {
+    // Parse text body margins and vertical alignment
+    const body = parseBodyPr(txBody);
+    const marginL = emuToPx(body.lIns);
+    const marginT = emuToPx(body.tIns);
+    const marginR = emuToPx(body.rIns);
+    const marginB = emuToPx(body.bIns);
+
+    // Adjust text element position/size to account for internal margins.
+    // In PPTX the shape box has margins inside; text renders within the inner area.
+    // Our TextElement x/y IS where text starts, so we offset by the margins.
+    const textX = roundPx(rawX + marginL);
+    const textY = roundPx(rawY + marginT);
+    const textW = roundPx(rawW - marginL - marginR);
+    const textH = roundPx(rawH - marginT - marginB);
+
     const paragraphs = qsa(txBody, "p");
     let fullText = "";
     let fontSize = 32;
     let color = "#ffffff";
     let bold = false;
     let italic = false;
+    let underline = false;
     let align: "left" | "center" | "right" = "left";
     let fontFamily = "";
+    let lineSpacing: number | undefined;
+    let letterSpacing: number | undefined;
 
     paragraphs.forEach((p, pi) => {
       if (pi > 0) fullText += "\n";
@@ -128,6 +238,16 @@ function parseShape(
         const algn = pPr.getAttribute("algn");
         if (algn === "ctr") align = "center";
         else if (algn === "r") align = "right";
+
+        // Line spacing
+        const lnSpc = qs(pPr, "lnSpc");
+        if (lnSpc) {
+          const spcPct = qs(lnSpc, "spcPct");
+          if (spcPct) {
+            const val = spcPct.getAttribute("val");
+            if (val) lineSpacing = parseInt(val) / 100000;
+          }
+        }
       }
 
       const runs = qsa(p, "r");
@@ -139,10 +259,22 @@ function parseShape(
         const rPr = qs(r, "rPr");
         if (rPr) {
           const sz = rPr.getAttribute("sz");
-          if (sz) fontSize = Math.round(parseInt(sz) / 100);
+          // PPTX stores font size in hundredths of a point (e.g. 3200 = 32pt)
+          // Keep precision: round to nearest 0.5pt
+          if (sz) {
+            const rawSize = parseFloat(sz) / 100;
+            fontSize = Math.round(rawSize * 2) / 2; // nearest 0.5
+          }
 
           bold = rPr.getAttribute("b") === "1";
           italic = rPr.getAttribute("i") === "1";
+          underline = rPr.getAttribute("u") === "sng" || rPr.getAttribute("u") === "dbl";
+
+          // Character spacing: spc is in hundredths of a point
+          const spc = rPr.getAttribute("spc");
+          if (spc) {
+            letterSpacing = parseFloat(spc) / 100; // Convert to points
+          }
 
           // Color
           const solidFill = qs(rPr, "solidFill");
@@ -165,18 +297,22 @@ function parseShape(
       id: nextId(),
       type: "text",
       content: fullText.trim(),
-      x,
-      y,
-      width,
-      height,
+      x: Math.round(textX),
+      y: Math.round(textY),
+      width: Math.round(textW),
+      height: Math.round(textH),
       font_size: fontSize,
       color,
       bold,
       italic,
+      underline,
       align,
+      valign: body.anchor,
       rotation,
     };
-    if (fontFamily) el.font_family = fontFamily;
+    if (fontFamily) el.font_family = mapFont(fontFamily);
+    if (lineSpacing !== undefined) el.line_spacing = lineSpacing;
+    if (letterSpacing !== undefined) el.letter_spacing = letterSpacing;
     return el;
   }
 
@@ -214,14 +350,20 @@ function parseShape(
     const lnW = ln.getAttribute("w");
     const lnFill = qs(ln, "solidFill");
     if (lnFill) {
+      // Line width in EMU: 12700 EMU = 1pt = ~1.33px
+      const widthPt = lnW ? parseFloat(lnW) / 12700 : 1;
       stroke = {
         color: parseColor(lnFill, "#ffffff"),
-        width: lnW ? Math.round(parseInt(lnW) / 12700) : 1,
+        width: Math.max(1, Math.round(widthPt)),
       };
     }
   }
 
   // Corner radius for roundRect
+  const x = Math.round(rawX);
+  const y = Math.round(rawY);
+  const width = Math.round(rawW);
+  const height = Math.round(rawH);
   let cornerRadius = 0;
   if (geomType === "roundRect" && prstGeom) {
     const avLst = qs(prstGeom, "avLst");
@@ -473,7 +615,7 @@ export async function importPptx(file: File): Promise<Presentation> {
       created: new Date().toISOString().split("T")[0],
     },
     defaults: {
-      font_family: "Helvetica Neue, Arial, sans-serif",
+      font_family: "Inter, system-ui, sans-serif",
       background: { type: "solid", color: "#0D0D0D" },
     },
     slides,

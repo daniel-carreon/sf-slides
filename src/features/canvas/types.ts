@@ -56,6 +56,14 @@ export type SlideBackground =
   | GradientBackground
   | ImageBackground;
 
+// --- Animation ---
+export interface ElementAnimation {
+  type: "fade_in" | "slide_left" | "slide_right" | "slide_up" | "zoom_in" | "none";
+  order?: number;   // sequence order (1 = first to appear), elements without order show immediately
+  delay?: number;    // additional delay in ms
+  duration?: number; // animation duration in ms (default 400)
+}
+
 // --- Base Element ---
 export interface BaseElement {
   id: string;
@@ -70,6 +78,7 @@ export interface BaseElement {
   locked?: boolean;
   name?: string;
   shadow?: ShadowDef | null;
+  animation?: ElementAnimation | null;
 }
 
 // --- Text Element ---
@@ -89,6 +98,7 @@ export interface TextElement extends BaseElement {
   background?: string | null;
   padding?: number;
   corner_radius?: number;
+  list_type?: "bullet" | "numbered" | null;
 }
 
 // --- Rich Text ---
@@ -160,13 +170,66 @@ export interface LineElement extends BaseElement {
   curve?: number;
 }
 
+// --- Table Element ---
+export interface TableCell {
+  text: string;
+  bold?: boolean;
+  color?: string;
+  background?: string;
+  align?: "left" | "center" | "right";
+}
+
+export interface TableElement extends BaseElement {
+  type: "table";
+  cells: (string | TableCell)[][]; // 2D array: cells[row][col]. String = simple text, TableCell = styled
+  header_row?: boolean;            // First row styled as header
+  header_color?: string;           // Header bg color
+  cell_color?: string;             // Default cell bg color
+  alt_row_color?: string;          // Alternating row color
+  text_color?: string;             // Default text color
+  header_text_color?: string;      // Header text color
+  border_color?: string;           // Grid line color
+  border_width?: number;           // Grid line width
+  font_size?: number;
+  font_family?: string;
+  corner_radius?: number;
+  padding?: number;                // Cell padding
+}
+
+// --- Chart Element ---
+export interface ChartDataset {
+  label: string;
+  values: number[];
+  color: string;
+}
+
+export interface ChartElement extends BaseElement {
+  type: "chart";
+  chart_type: "bar" | "line" | "pie" | "donut";
+  data: {
+    labels: string[];
+    datasets: ChartDataset[];
+  };
+  show_legend?: boolean;
+  show_labels?: boolean;
+  show_values?: boolean;
+  title?: string;
+  colors?: string[];          // Override colors for pie/donut slices
+  background?: string;        // Chart background color
+  text_color?: string;
+  font_size?: number;
+  font_family?: string;
+}
+
 // --- Union ---
 export type SlideElement =
   | TextElement
   | RichTextElement
   | ImageElement
   | ShapeElement
-  | LineElement;
+  | LineElement
+  | TableElement
+  | ChartElement;
 
 // --- Slide ---
 export interface Slide {

@@ -43,6 +43,10 @@ interface SlidesStore {
   // --- Presenter ---
   presenterActive: boolean;
 
+  // --- Grid ---
+  showGrid: boolean;
+  setShowGrid: (show: boolean) => void;
+
   // --- Document Actions ---
   setPresentation: (p: Presentation, filePath?: string | null) => void;
   setFilePath: (path: string | null) => void;
@@ -107,6 +111,8 @@ export const useStore = create<SlidesStore>((set, get) => ({
   undoStack: [],
   redoStack: [],
   presenterActive: false,
+  showGrid: false,
+  setShowGrid: (show) => set({ showGrid: show }),
 
   // --- Document ---
   setPresentation: (p, filePath) =>

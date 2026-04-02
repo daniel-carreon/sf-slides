@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef } from "react";
+import { useEffect, useCallback, useRef, useState } from "react";
 import { useStore } from "@/shared/store";
 import type { SlideElement } from "@/features/canvas/types";
 import { generateElementId } from "@/features/canvas/types";
@@ -8,6 +8,7 @@ import SlideCanvas from "@/features/canvas/SlideCanvas";
 import PropertiesPanel from "@/features/properties/PropertiesPanel";
 import PresenterMode from "@/features/presenter/PresenterMode";
 import HomeScreen from "@/features/home/HomeScreen";
+import FindReplace from "@/features/find-replace/FindReplace";
 import { useFileOperations } from "@/features/file-io/useFileOperations";
 import { useFileWatcher } from "@/features/file-io/useFileWatcher";
 
@@ -24,6 +25,7 @@ export default function App() {
 function EditorView() {
   const { save, saveAs, open, newPresentation } = useFileOperations();
   useFileWatcher();
+  const [findReplaceOpen, setFindReplaceOpen] = useState(false);
 
   const setToolMode = useStore((s) => s.setToolMode);
   const undo = useStore((s) => s.undo);
@@ -70,6 +72,12 @@ function EditorView() {
       if (meta && e.key === "n") {
         e.preventDefault();
         newPresentation();
+        return;
+      }
+      // Cmd+F Find
+      if (meta && e.key === "f") {
+        e.preventDefault();
+        setFindReplaceOpen(true);
         return;
       }
       // Cmd+Z Undo
@@ -254,6 +262,9 @@ function EditorView() {
           <PropertiesPanel />
         </div>
       </div>
+
+      {/* Find & Replace */}
+      <FindReplace open={findReplaceOpen} onClose={() => setFindReplaceOpen(false)} />
 
       {/* Presenter overlay */}
       <PresenterMode />
