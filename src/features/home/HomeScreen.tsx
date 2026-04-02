@@ -330,7 +330,7 @@ export default function HomeScreen() {
   return (
     <div className="h-screen w-screen flex flex-col bg-neutral-950 overflow-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between pl-20 pr-8 py-4 border-b border-white/5 titlebar-drag">
+      <header className="flex items-center justify-between pl-24 pr-8 py-4 border-b border-white/5 titlebar-drag">
         <SFLogo />
         <div className="flex items-center gap-3">
           {/* Search */}

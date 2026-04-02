@@ -84,7 +84,7 @@ export default function Toolbar() {
   ];
 
   return (
-    <div className="flex items-center gap-0.5 pl-20 pr-3 py-1.5 bg-slide-panel border-b border-slide-border titlebar-drag">
+    <div className="flex items-center gap-0.5 pl-24 pr-3 py-1.5 bg-slide-panel border-b border-slide-border titlebar-drag">
       {/* Home button + title */}
       <div className="flex items-center gap-2 titlebar-no-drag mr-2">
         <button
