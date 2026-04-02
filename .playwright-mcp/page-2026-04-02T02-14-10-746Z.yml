@@ -1,0 +1,3666 @@
+- application [ref=e1]:
+  - iframe [ref=e2]:
+    
+  - iframe [ref=e3]:
+    
+  - iframe [ref=e4]:
+    - img [ref=f14e2]
+  - banner "Barra de menú" [ref=e5]:
+    - generic [ref=e8]:
+      - link "Página de inicio de Presentaciones" [ref=e10] [cursor=pointer]:
+        - /url: https://docs.google.com/presentation/u/0/?authuser=0&usp=slides_web
+      - generic [ref=e17]:
+        - generic "Mi Business OS" [ref=e19]:
+          - generic [ref=e20]:
+            - generic: Mi Business OS
+            - textbox "Cambiar el nombre" [ref=e22]: Mi Business OS
+          - generic [ref=e23]:
+            - checkbox "Destacar" [ref=e25] [cursor=pointer]
+            - button "Mover" [ref=e29] [cursor=pointer]
+            - 'button "Estado del documento: Guardado en Drive." [ref=e33]':
+              - generic [ref=e38] [cursor=pointer]: Guardado en Drive
+        - generic [ref=e41]:
+          - button "La última modificación se realizó hace 5 horas." [ref=e43] [cursor=pointer]
+          - button "Mostrar todos los comentarios" [ref=e47] [cursor=pointer]
+          - button "Únete a una llamada aquí o presenta esta pestaña en la llamada" [ref=e51] [cursor=pointer]
+          - generic [ref=e56]:
+            - button "Iniciar presentación de diapositivas (⌘+Intro)" [ref=e57]: Presentación de diapositivas
+            - button "Opciones de presentación" [ref=e58] [cursor=pointer]
+          - button "Compartir. Privado, solo para mí." [ref=e61] [cursor=pointer]
+          - generic [ref=e66]:
+            - generic:
+              - button "Probar Gemini" [ref=e69] [cursor=pointer]:
+                - img [ref=e72]
+              - tooltip [ref=e75]: Probar Gemini
+          - 'button "Cuenta de Google: Daniel Carreón (danielcarreong00@gmail.com)" [ref=e78] [cursor=pointer]':
+            - img [ref=e79]
+    - generic [ref=e80]:
+      - menubar [ref=e82]:
+        - menuitem "Archivo" [ref=e83] [cursor=pointer]
+        - menuitem "Editar" [ref=e84] [cursor=pointer]
+        - menuitem "Ver" [ref=e85] [cursor=pointer]
+        - menuitem "Insertar" [ref=e86] [cursor=pointer]
+        - menuitem "Formato" [ref=e87] [cursor=pointer]
+        - menuitem "Diapositiva" [ref=e88] [cursor=pointer]
+        - menuitem "Estructura" [ref=e89] [cursor=pointer]
+        - menuitem "Herramientas" [ref=e90] [cursor=pointer]
+        - menuitem "Extensiones" [ref=e91] [cursor=pointer]
+        - menuitem "Ayuda" [ref=e92] [cursor=pointer]
+      - generic [ref=e93]:
+        - generic [ref=e94]:
+          - toolbar "Buscar en el menú (Opción+/)" [ref=e95]:
+            - combobox "Menús" [ref=e97]
+          - toolbar "Principal" [ref=e98]:
+            - button "Nueva diapositiva (Ctrl+M)" [ref=e99] [cursor=pointer]
+            - button "Diseño de la nueva diapositiva" [ref=e104] [cursor=pointer]
+            - separator [disabled] [ref=e110]
+            - button "Deshacer (⌘Z)" [ref=e111] [cursor=pointer]
+            - button "Rehacer (⌘Y)" [ref=e116] [cursor=pointer]
+            - button "Imprimir (⌘P)" [ref=e121] [cursor=pointer]
+            - button "Copiar formato" [disabled] [ref=e126]
+            - button "Acercar" [ref=e131] [cursor=pointer]
+            - combobox "Zoom" [ref=e136] [cursor=pointer]:
+              - option "Lista Zoom. Se seleccionó Ajustar." [selected] [ref=e139]:
+                - textbox "Zoom" [ref=e140]: Ajustar
+            - separator [disabled] [ref=e144]
+            - button "Seleccionar (Esc)" [pressed] [ref=e145] [cursor=pointer]
+            - button "Cuadro de texto" [ref=e150] [cursor=pointer]
+            - button "Forma" [ref=e155] [cursor=pointer]
+            - button "Línea" [ref=e161] [cursor=pointer]
+            - button "Seleccionar línea" [ref=e166] [cursor=pointer]
+            - separator [disabled] [ref=e172]
+            - button "Agregar comentario (⌘+Opción+M)" [ref=e173] [cursor=pointer]
+            - separator [disabled] [ref=e178]
+            - button "Cambiar fondo" [ref=e179] [cursor=pointer]:
+              - generic [ref=e181]: Fondo
+            - separator [disabled] [ref=e182]
+            - button "Aplicar diseño" [ref=e183] [cursor=pointer]:
+              - generic [ref=e186]: Diseño
+            - separator [disabled] [ref=e187]
+            - button "Cambiar tema" [ref=e188] [cursor=pointer]:
+              - generic [ref=e190]: Tema
+            - separator [disabled] [ref=e191]
+            - button "Cambiar transición" [ref=e192] [cursor=pointer]:
+              - generic [ref=e194]: Transición
+        - toolbar "Modo y vista" [ref=e195]:
+          - button "Tu puntero está oculto (Ctrl+⌘L Ctrl+⌘M)" [ref=e196] [cursor=pointer]
+          - button "Configuración de punteros en vivo" [ref=e201] [cursor=pointer]
+          - button "Oculta los menús. (Ctrl+Mayús+F)" [ref=e207] [cursor=pointer]
+    - generic:
+      - generic:
+        - button "Mostrar panel lateral":
+          - img [ref=e213] [cursor=pointer]
+  - generic [ref=e217]:
+    - generic [ref=e218]:
+      - navigation [ref=e219]:
+        - img [ref=e222]:
+          - generic [ref=e226]: "1"
+          - generic [ref=e232]: "2"
+          - generic [ref=e236]:
+            - generic [ref=e238]: "3"
+            - generic "Daniel Carreón" [ref=e247]
+          - generic [ref=e250]: "4"
+          - generic [ref=e256]: "5"
+          - generic [ref=e262]: "6"
+          - generic [ref=e268]: "7"
+          - generic [ref=e274]: "24"
+          - generic [ref=e278]:
+            - generic [ref=e280]: "25"
+            - img [ref=e282]:
+              - generic [ref=e285]:
+                - generic [ref=e437]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: CRONOGRAMA
+                            - generic: DE
+                            - generic: AGENTES
+                - generic [ref=e444]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: LA
+                            - generic: MÁQUINA
+                            - generic: NOCTURNA
+                - generic [ref=e451]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 11:55
+                            - generic: PM
+                - generic [ref=e458]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: EXTRACCIÓ
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "N"
+                - generic [ref=e465]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 12:15
+                            - generic: AM
+                - generic [ref=e472]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ANÁLISI
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: S
+                - generic [ref=e479]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 1-3
+                            - generic: AM
+                - generic [ref=e486]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: OPTIMIZACIÓ
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "N"
+                - generic [ref=e493]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 3:37
+                            - generic: AM
+                - generic [ref=e500]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: CONTENIDO
+                - generic [ref=e507]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 4-6
+                            - generic: AM
+                - generic [ref=e514]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DISTRIBUCIÓ
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "N"
+                - generic [ref=e521]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 6:00
+                            - generic: AM
+                - generic [ref=e528]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: LISTO
+                - generic [ref=e535]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Mientras
+                            - generic: duermo,
+                            - generic: el
+                            - generic: sistema
+                            - generic: procesa
+                            - generic: todas
+                            - generic: las
+                            - generic: variables
+                            - generic: del
+                            - generic: negocio,
+                            - generic: aprende
+                            - generic: de
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: los
+                            - generic: datos
+                            - generic: del
+                            - generic: día
+                            - generic: anterior
+                            - generic: "y"
+                            - generic: prepara
+                            - generic: la
+                            - generic: estrategia
+                            - generic: de
+                            - generic: hoy.
+                - generic [ref=e542]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: INVERSIÓN
+                            - generic: OPERATIVA
+                - generic [ref=e549]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: $5-7
+                - generic [ref=e556]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: USD
+                            - generic: /
+                            - generic: noche
+          - generic [ref=e560]:
+            - generic [ref=e562]: "26"
+            - img [ref=e564]:
+              - generic [ref=e567]:
+                - generic [ref=e703]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: CONTROL
+                            - generic: OPERATIVO
+                - generic [ref=e710]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Gestión
+                            - generic: en
+                            - generic: "60"
+                            - generic: Segundos
+                - generic [ref=e717]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 07:00
+                            - generic: AM
+                - generic [ref=e724]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Despertar
+                - generic [ref=e731]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Sin
+                            - generic: abrir
+                            - generic: Slack,
+                            - generic: sin
+                            - generic: correos,
+                            - generic: solo
+                            - generic: una
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: notificación.
+                - generic [ref=e738]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 60s
+                - generic [ref=e745]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Lectura
+                            - generic: Crítica
+                - generic [ref=e752]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Resumen
+                            - generic: ejecutivo
+                            - generic: de
+                            - generic: las
+                            - generic: últimas
+                            - generic: "24"
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: horas
+                            - generic: generado
+                            - generic: por
+                            - generic: el
+                            - generic: OS.
+                - generic [ref=e759]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: CLARIDAD
+                            - generic: TOTAL
+                - generic [ref=e766]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Omnisciencia
+                - generic [ref=e773]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Ventas,
+                            - generic: churn,
+                            - generic: métricas
+                            - generic: de
+                            - generic: YouTube
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "y"
+                            - generic: salud
+                            - generic: del
+                            - generic: sistema.
+                - generic [ref=e780]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"No"
+                            - generic: trabajo
+                            - generic: más
+                            - generic: horas.
+                            - generic: Tomo
+                            - generic: mejores
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: decisiones
+                            - generic: en
+                            - generic: menos
+                            - generic: tiempo."
+                - generic [ref=e787]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: STATUS
+                - generic [ref=e794]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Sistema
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Sincronizado
+          - generic [ref=e798]:
+            - generic [ref=e800]: "27"
+            - img [ref=e802]:
+              - generic [ref=e805]:
+                - generic [ref=e933]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: IA
+                            - generic: PREDICTIVE
+                            - generic: ENGINE
+                - generic [ref=e940]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Machine
+                            - generic: Learning
+                            - generic: Aplicado
+                - generic [ref=e947]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: El
+                            - generic: sistema
+                            - generic: "no"
+                            - generic: solo
+                            - generic: procesa
+                            - generic: datos,
+                            - generic: toma
+                            - generic: decisiones
+                            - generic: autónomas
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: basadas
+                            - generic: en
+                            - generic: el
+                            - generic: comportamiento
+                            - generic: histórico.
+                - generic [ref=e954]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: PREDICCIÓN
+                - generic [ref=e961]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Detecta
+                            - generic: cancelaciones
+                            - generic: "2"
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: semanas
+                            - generic: antes
+                - generic [ref=e968]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Analiza
+                            - generic: patrones
+                            - generic: de
+                            - generic: inactividad
+                            - generic: "y"
+                            - generic: gatilla
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: flujos
+                            - generic: de
+                            - generic: retención
+                            - generic: automáticos.
+                - generic [ref=e975]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ESTRATEGIA
+                - generic [ref=e982]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Recomienda
+                            - generic: qué
+                            - generic: video
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: grabar
+                - generic [ref=e989]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Cruza
+                            - generic: datos
+                            - generic: de
+                            - generic: YouTube
+                            - generic: con
+                            - generic: ventas
+                            - generic: reales
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: para
+                            - generic: encontrar
+                            - generic: el
+                            - generic: ángulo
+                            - generic: de
+                            - generic: mayor
+                            - generic: ROI.
+                - generic [ref=e996]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: OPTIMIZACIÓN
+                - generic [ref=e1003]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Agentes
+                            - generic: se
+                            - generic: mejoran
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: solos
+                            - generic: cada
+                            - generic: noche
+                - generic [ref=e1010]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Machine
+                            - generic: Learning
+                            - generic: para
+                            - generic: ajustar
+                            - generic: prompts
+                            - generic: "y"
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: lógica
+                            - generic: de
+                            - generic: negocio
+                            - generic: sin
+                            - generic: intervención
+                            - generic: humana.
+                - generic [ref=e1017]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Mi
+                            - generic: Business
+                            - generic: OS
+                - generic [ref=e1024]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Daniel
+                            - generic: Carreon
+                            - generic: "|"
+                            - generic: SaaS
+                            - generic: Factory
+                            - generic: Community
+                - generic [ref=e1031]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: TALENT
+                            - generic: LAND
+                            - generic: "2026"
+          - generic [ref=e1035]:
+            - generic [ref=e1037]: "28"
+            - img [ref=e1039]:
+              - generic [ref=e1042]:
+                - generic [ref=e1186]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DATA
+                            - generic: INSIGHT
+                            - generic: DISCOVERY
+                - generic [ref=e1193]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: El
+                            - generic: Hallazgo
+                            - generic: del
+                            - generic: Sistema
+                - generic [ref=e1200]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ENTRADA
+                - generic [ref=e1207]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Variables
+                            - generic: de
+                            - generic: Negocio
+                - generic [ref=e1214]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: PROCESAMIENTO
+                - generic [ref=e1221]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Análisis
+                            - generic: Predictivo
+                - generic [ref=e1228]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: RESULTADO
+                - generic [ref=e1235]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Patrón
+                            - generic: Crítico
+                - generic [ref=e1242]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"El"
+                            - generic: dato
+                            - generic: más
+                            - generic: importante
+                            - generic: que
+                            - generic: descubrió
+                            - generic: mi
+                            - generic: sistema..."
+                - generic [ref=e1249]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "No"
+                            - generic: se
+                            - generic: trata
+                            - generic: de
+                            - generic: quién
+                            - generic: compra,
+                            - generic: sino
+                            - generic: de
+                            - generic: cuándo
+                            - generic: dejan
+                            - generic: de
+                            - generic: interactuar.
+                - generic [ref=e1256]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Daniel
+                            - generic: Carreon
+                            - generic: "|"
+                            - generic: Business
+                            - generic: OS
+                - generic [ref=e1263]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MACHINE
+                            - generic: LEARNING
+                            - generic: PROTOCOL
+                            - generic: "4.0"
+          - generic [ref=e1267]:
+            - generic [ref=e1269]: "29"
+            - img [ref=e1271]:
+              - generic [ref=e1274]:
+                - generic [ref=e1386]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: COMPORTAMIENTO
+                            - generic: DE
+                            - generic: USUARIO
+                - generic [ref=e1393]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: El
+                            - generic: churn
+                            - generic: es
+                            - generic: SILENCIOSO
+                - generic [ref=e1400]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 2.9%
+                - generic [ref=e1407]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: LOS
+                            - generic: QUE
+                            - generic: CANCELAN
+                - generic [ref=e1414]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Desaparecen
+                            - generic: sin
+                            - generic: ruido
+                - generic [ref=e1421]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: VS
+                - generic [ref=e1428]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 10.7%
+                - generic [ref=e1435]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: LOS
+                            - generic: QUE
+                            - generic: SE
+                            - generic: QUEDAN
+                - generic [ref=e1442]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Interacción
+                            - generic: constante
+                - generic [ref=e1449]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"Los"
+                            - generic: que
+                            - generic: se
+                            - generic: van
+                            - generic: "no"
+                            - generic: se
+                            - generic: quejan.
+                            - generic: Simplemente
+                            - generic: desaparecen.
+                            - generic: "\""
+                - generic [ref=e1456]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ANÁLISIS
+                            - generic: PREDICTIVO
+                - generic [ref=e1463]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: BUSINESS
+                            - generic: OS
+                            - generic: ENGINE
+          - generic [ref=e1467]:
+            - generic [ref=e1469]: "30"
+            - img [ref=e1471]:
+              - generic [ref=e1474]:
+                - generic [ref=e1594]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MÓDULO
+                            - generic: DE
+                            - generic: RETENCIÓN
+                            - generic: IA
+                - generic [ref=e1601]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: PREVENCIÓN
+                            - generic: AUTOMATIZADA
+                - generic [ref=e1608]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DETECCIÓN
+                - generic [ref=e1615]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Identifica
+                            - generic: patrones
+                            - generic: de
+                            - generic: inactividad
+                            - generic: "2"
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: semanas
+                            - generic: antes
+                            - generic: del
+                            - generic: churn.
+                - generic [ref=e1622]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ANÁLISIS
+                - generic [ref=e1629]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: El
+                            - generic: sistema
+                            - generic: cruza
+                            - generic: variables
+                            - generic: para
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: entender
+                            - generic: por
+                            - generic: qué
+                            - generic: el
+                            - generic: usuario
+                            - generic: se
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: aleja.
+                - generic [ref=e1636]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ACCIÓN
+                - generic [ref=e1643]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Envío
+                            - generic: automático
+                            - generic: de
+                            - generic: mensaje
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: personalizado
+                            - generic: con
+                            - generic: oferta.
+                - generic [ref=e1650]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"Mi"
+                            - generic: sistema
+                            - generic: los
+                            - generic: detecta
+                            - generic: "2"
+                            - generic: semanas
+                            - generic: antes
+                            - generic: "y"
+                            - generic: actúa
+                            - generic: automáticamente
+                            - generic: ."
+                - generic [ref=e1657]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DANIEL
+                            - generic: CARREON
+                            - generic: "|"
+                            - generic: BUSINESS
+                            - generic: OS
+                - generic [ref=e1664]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "STATUS:"
+                            - generic: PREDICTIVE
+                            - generic: MODE
+                            - generic: ACTIVE
+                - generic [ref=e1671]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: TALENT
+                            - generic: LAND
+                            - generic: "2026"
+          - generic [ref=e1675]:
+            - generic [ref=e1677]: "31"
+            - img [ref=e1679]:
+              - generic [ref=e1682]:
+                - generic [ref=e1810]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ANÁLISIS
+                            - generic: DE
+                            - generic: CONVERSIÓN
+                - generic [ref=e1817]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Qué
+                            - generic: Convierte
+                            - generic: Realmente
+                - generic [ref=e1824]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: EL
+                            - generic: MITO
+                            - generic: DE
+                            - generic: LAS
+                            - generic: VISTAS
+                - generic [ref=e1831]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Las
+                            - generic: métricas
+                            - generic: de
+                            - generic: vanidad
+                            - generic: (views/likes)
+                            - generic: "no"
+                            - generic: pagan
+                            - generic: el
+                            - generic: servidor.
+                            - generic: El
+                            - generic: sistema
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: detectó
+                            - generic: que
+                            - generic: el
+                            - generic: tráfico
+                            - generic: masivo
+                            - generic: a
+                            - generic: menudo
+                            - generic: diluye
+                            - generic: la
+                            - generic: intención
+                            - generic: de
+                            - generic: compra.
+                - generic [ref=e1838]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: FACTORES
+                            - generic: DE
+                            - generic: CONVERSIÓN
+                            - generic: REAL
+                - generic [ref=e1845]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Retención
+                            - generic: de
+                            - generic: valor
+                            - generic: en
+                            - generic: los
+                            - generic: primeros
+                            - generic: 60s
+                - generic [ref=e1852]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Segmentación
+                            - generic: por
+                            - generic: comportamiento
+                            - generic: de
+                            - generic: búsqueda
+                - generic [ref=e1859]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Triggers
+                            - generic: de
+                            - generic: urgencia
+                            - generic: basados
+                            - generic: en
+                            - generic: datos
+                            - generic: de
+                            - generic: usuario
+                - generic [ref=e1866]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"Mi"
+                            - generic: modelo
+                            - generic: descubrió
+                            - generic: que
+                            - generic: el
+                            - generic: 80%
+                            - generic: de
+                            - generic: las
+                            - generic: ventas
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: provienen
+                            - generic: del
+                            - generic: 20%
+                            - generic: de
+                            - generic: los
+                            - generic: videos
+                            - generic: con
+                            - generic: menos
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: vistas."
+                - generic [ref=e1873]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "[INSERTAR"
+                            - generic: IMAGEN]
+                - generic [ref=e1880]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MODEL_INSIGHT_VISUALIZATION.PNG
+                - generic [ref=e1887]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DATA
+                            - generic: "SOURCE:"
+                            - generic: CLAUDE.MD
+                            - generic: INSIGHTS
+                - generic [ref=e1894]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "CONFIDENCE:"
+                            - generic: 98.4%
+                - generic [ref=e1901]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: BUSINESS
+                            - generic: OS
+                            - generic: LIVE
+                            - generic: ANALYSIS
+                - generic [ref=e1908]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Talent
+                            - generic: Land
+                            - generic: "2026"
+                            - generic: "|"
+                            - generic: SaaS
+                            - generic: Factory
+          - generic [ref=e1920]:
+            - generic [ref=e1922]: "16"
+            - img [ref=e1924]:
+              - generic [ref=e1927]:
+                - generic [ref=e2015]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: FASE
+                            - generic: DE
+                            - generic: TRANSICIÓN
+                - generic [ref=e2022]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: IMPLEMENTACIÓN
+                            - generic: PRÁCTICA
+                - generic [ref=e2029]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"Ahora"
+                            - generic: les
+                            - generic: voy
+                            - generic: a
+                            - generic: enseñar
+                            - generic: QUÉ
+                            - generic: hice
+                            - generic: con
+                            - generic: esto."
+                - generic [ref=e2036]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: La
+                            - generic: teoría
+                            - generic: de
+                            - generic: la
+                            - generic: superinteligencia
+                            - generic: "no"
+                            - generic: sirve
+                            - generic: de
+                            - generic: nada
+                            - generic: sin
+                            - generic: un
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: sistema
+                            - generic: que
+                            - generic: la
+                            - generic: ejecute.
+                - generic [ref=e2043]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Avance
+                            - generic: Tecnológico
+                - generic [ref=e2050]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Modelos
+                            - generic: LLM
+                            - generic: masivos,
+                            - generic: agentes
+                            - generic: autónomos
+                            - generic: "y"
+                            - generic: leyes
+                            - generic: de
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: escalado
+                            - generic: (Moore).
+                - generic [ref=e2057]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Mi
+                            - generic: Business
+                            - generic: OS
+                - generic [ref=e2064]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Un
+                            - generic: ecosistema
+                            - generic: real
+                            - generic: que
+                            - generic: factura
+                            - generic: $72,000+
+                            - generic: operando
+                            - generic: 24/7.
+                - generic [ref=e2071]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ENTRANDO
+                            - generic: AL
+                            - generic: CORE
+                            - generic: DEL
+                            - generic: NEGOCIO
+                - generic [ref=e2078]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DANIEL
+                            - generic: CARREON
+                            - generic: "|"
+                            - generic: SAAS
+                            - generic: FACTORY
+                - generic [ref=e2085]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: LIVE
+                            - generic: SYSTEM
+                            - generic: DEPLOYMENT
+                - generic [ref=e2092]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: TALENT
+                            - generic: LAND
+                            - generic: "2026"
+          - generic [ref=e2096]:
+            - generic [ref=e2098]: "32"
+            - img [ref=e2100]:
+              - generic [ref=e2103]:
+                - generic [ref=e2231]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: EL
+                            - generic: FLYWHEEL
+                            - generic: DE
+                            - generic: DATOS
+                - generic [ref=e2238]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Todo
+                            - generic: se
+                            - generic: conecta,
+                            - generic: todo
+                            - generic: se
+                            - generic: compone
+                - generic [ref=e2245]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: El
+                            - generic: secreto
+                            - generic: "no"
+                            - generic: es
+                            - generic: el
+                            - generic: software,
+                            - generic: es
+                            - generic: el
+                            - generic: Flywheel
+                            - generic: ":"
+                            - generic: un
+                            - generic: ciclo
+                            - generic: donde
+                            - generic: cada
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: interacción
+                            - generic: alimenta
+                            - generic: la
+                            - generic: inteligencia
+                            - generic: del
+                            - generic: sistema.
+                - generic [ref=e2252]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: YOUTUBE
+                - generic [ref=e2259]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Captación
+                            - generic: masiva
+                - generic [ref=e2266]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: PAGOS
+                - generic [ref=e2273]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Validación
+                            - generic: de
+                            - generic: valor
+                - generic [ref=e2280]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MIEMBROS
+                - generic [ref=e2287]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Generación
+                            - generic: de
+                            - generic: datos
+                - generic [ref=e2294]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: AGENTES
+                            - generic: "&"
+                            - generic: ML
+                - generic [ref=e2301]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Análisis
+                            - generic: "y"
+                            - generic: mejora
+                - generic [ref=e2308]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Interés
+                            - generic: compuesto
+                            - generic: de
+                            - generic: datos
+                - generic [ref=e2315]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"Cada"
+                            - generic: nuevo
+                            - generic: miembro
+                            - generic: hace
+                            - generic: que
+                            - generic: el
+                            - generic: sistema
+                            - generic: sea
+                            - generic: más
+                            - generic: inteligente
+                            - generic: para
+                            - generic: el
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: siguiente,
+                            - generic: reduciendo
+                            - generic: el
+                            - generic: costo
+                            - generic: "y"
+                            - generic: aumentando
+                            - generic: el
+                            - generic: valor
+                            - generic: automáticamente."
+                - generic [ref=e2322]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "[INSERTAR"
+                            - generic: "IMAGEN:"
+                            - generic: FLYWHEEL]
+                - generic [ref=e2329]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Diagrama
+                            - generic: circular
+                            - generic: mostrando
+                            - generic: la
+                            - generic: retroalimentación
+                            - generic: entre
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: contenido
+                            - generic: "y"
+                            - generic: aprendizaje
+                            - generic: automático.
+          - generic [ref=e2341]:
+            - generic [ref=e2343]: "33"
+            - img [ref=e2345]:
+              - generic [ref=e2348]:
+                - generic [ref=e2436]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: SISTEMA
+                            - generic: EVOLUTIVO
+                - generic [ref=e2443]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Poder
+                            - generic: Acumulativo
+                - generic [ref=e2450]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"Cada"
+                            - generic: modelo
+                            - generic: nuevo
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: hace
+                            - generic: que
+                            - generic: TODO
+                            - generic: esto
+                            - generic: sea
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: más
+                            - generic: poderoso.
+                            - generic: "\""
+                - generic [ref=e2457]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Sin
+                            - generic: tocar
+                            - generic: una
+                            - generic: sola
+                            - generic: línea
+                            - generic: de
+                            - generic: código.
+                            - generic: Sin
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: intervención
+                            - generic: humana.
+                - generic [ref=e2464]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: APALANCAMIENTO
+                            - generic: PASIVO
+                - generic [ref=e2471]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: EVOLUCIÓN
+                            - generic: EXTERNA
+                - generic [ref=e2478]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: CAPACIDAD
+                            - generic: DEL
+                            - generic: AGENTE
+                            - generic: VS
+                            - generic: TIEMPO
+                            - generic: (METR.ORG)
+                - generic [ref=e2485]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: El
+                            - generic: sistema
+                            - generic: es
+                            - generic: un
+                            - generic: activo
+                            - generic: que
+                            - generic: se
+                            - generic: aprecia
+                            - generic: con
+                            - generic: el
+                            - generic: progreso
+                            - generic: tecnológico
+                            - generic: global.
+                - generic [ref=e2492]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DANIEL
+                            - generic: CARREON
+                            - generic: "|"
+                            - generic: SAAS
+                            - generic: FACTORY
+                            - generic: COMMUNITY
+                - generic [ref=e2499]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: TALENT
+                            - generic: LAND
+                            - generic: "2026"
+                            - generic: "|"
+                            - generic: BUSINESS
+                            - generic: LAND
+          - generic [ref=e2503]:
+            - generic [ref=e2505]: "34"
+            - img [ref=e2507]:
+              - generic [ref=e2510]:
+                - generic [ref=e2630]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ADVERTENCIA
+                            - generic: DEL
+                            - generic: SISTEMA
+                - generic [ref=e2637]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: EL
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MODELO
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MÁS
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DÉBIL
+                - generic [ref=e2644]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"Todo"
+                            - generic: lo
+                            - generic: que
+                            - generic: les
+                            - generic: mostré
+                            - generic: funciona
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: con
+                            - generic: el
+                            - generic: modelo
+                            - generic: de
+                            - generic: HOY
+                            - generic: ."
+                - generic [ref=e2651]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: EL
+                            - generic: MÁS
+                            - generic: DÉBIL
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: QUE
+                            - generic: JAMÁS
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: VOLVEREMOS
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: A
+                            - generic: USAR.
+                - generic [ref=e2658]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ACELERACIÓN
+                - generic [ref=e2665]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Sin
+                            - generic: plateau
+                - generic [ref=e2672]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: BASE
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MÍNIMA
+                - generic [ref=e2679]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Zero
+                            - generic: inicio
+                - generic [ref=e2686]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: OBSOLESCENCIA
+                - generic [ref=e2693]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Ritmo
+                            - generic: cuatrimestral
+                - generic [ref=e2700]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "@danielcarreong"
+                - generic [ref=e2707]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "|"
+                - generic [ref=e2714]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: SAAS
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: FACTORY
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: COMMUNITY
+                - generic [ref=e2721]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "ESTADO:"
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: EVOLUCIÓN
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: CRÍTICA
+          - generic [ref=e2725]:
+            - generic [ref=e2727]: "35"
+            - img [ref=e2729]:
+              - generic [ref=e2732]:
+                - generic [ref=e2868]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ESTRATEGIA
+                            - generic: DE
+                            - generic: MERCADO
+                - generic [ref=e2875]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: La
+                            - generic: ventana
+                            - generic: se
+                            - generic: cierra
+                - generic [ref=e2882]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 18-24
+                            - generic: Meses
+                - generic [ref=e2889]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Es
+                            - generic: el
+                            - generic: tiempo
+                            - generic: estimado
+                            - generic: de
+                            - generic: ventaja
+                            - generic: competitiva
+                            - generic: real
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: antes
+                            - generic: de
+                            - generic: que
+                            - generic: la
+                            - generic: IA
+                            - generic: deje
+                            - generic: de
+                            - generic: ser
+                            - generic: un
+                            - generic: diferenciador
+                            - generic: "y"
+                            - generic: se
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: convierta
+                            - generic: en
+                            - generic: un
+                            - generic: estándar
+                            - generic: de
+                            - generic: la
+                            - generic: industria.
+                - generic [ref=e2896]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Adopción
+                            - generic: temprana
+                            - generic: =
+                            - generic: Márgenes
+                            - generic: masivos
+                - generic [ref=e2903]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: El
+                            - generic: costo
+                            - generic: de
+                            - generic: esperar
+                            - generic: es
+                            - generic: la
+                            - generic: obsolescencia.
+                - generic [ref=e2910]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "[INSERTAR"
+                            - generic: "IMAGEN:"
+                            - generic: VENTANA-SE-CIERRA.PNG]
+                - generic [ref=e2917]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: BUSINESS
+                            - generic: LAND
+                            - generic: "2026"
+                - generic [ref=e2924]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Daniel
+                            - generic: Carreon
+                            - generic: "|"
+                            - generic: SaaS
+                            - generic: Factory
+          - generic [ref=e2936]:
+            - generic [ref=e2938]: "36"
+            - img [ref=e2940]:
+              - generic [ref=e2943]:
+                - generic [ref=e3167]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ESTRUCTURA
+                            - generic: DE
+                            - generic: CRECIMIENTO
+                - generic [ref=e3174]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Reacción
+                            - generic: en
+                            - generic: Cadena
+                - generic [ref=e3181]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MODELO
+                            - generic: TRADICIONAL
+                - generic [ref=e3188]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Avance
+                            - generic: Secuencial
+                - generic [ref=e3195]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Paso
+                            - generic: "1"
+                - generic [ref=e3202]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Paso
+                            - generic: "2"
+                - generic [ref=e3209]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Paso
+                            - generic: "3"
+                - generic [ref=e3216]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Crecimiento
+                            - generic: limitado
+                            - generic: por
+                            - generic: el
+                            - generic: tiempo
+                            - generic: "y"
+                            - generic: la
+                            - generic: capacidad
+                            - generic: humana.
+                - generic [ref=e3223]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: BUSINESS
+                            - generic: OS
+                - generic [ref=e3230]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: EXPONENCIAL
+                - generic [ref=e3237]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Procesos
+                            - generic: Paralelos
+                - generic [ref=e3244]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: La
+                            - generic: IA
+                            - generic: ejecuta
+                            - generic: múltiples
+                            - generic: dominios
+                            - generic: de
+                            - generic: forma
+                            - generic: simultánea.
+                - generic [ref=e3251]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: YOUTUBE
+                - generic [ref=e3258]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MARKETING
+                - generic [ref=e3265]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: COMUNIDAD
+                - generic [ref=e3272]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DATOS
+                - generic [ref=e3279]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: AGENTES
+                            - generic: IA
+                - generic [ref=e3286]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: RETENCIÓN
+                - generic [ref=e3293]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"No"
+                            - generic: son
+                            - generic: secuenciales.
+                            - generic: Son
+                            - generic: paralelos.
+                            - generic: Es
+                            - generic: una
+                            - generic: reacción
+                            - generic: en
+                            - generic: cadena."
+                - generic [ref=e3300]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: SINCRONIZACIÓN
+                            - generic: TOTAL
+                - generic [ref=e3307]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Cada
+                            - generic: nodo
+                            - generic: alimenta
+                            - generic: "y"
+                            - generic: fortalece
+                            - generic: a
+                            - generic: los
+                            - generic: demás
+                            - generic: en
+                            - generic: tiempo
+                            - generic: real.
+          - generic [ref=e3313]: "37"
+          - generic [ref=e3317]:
+            - generic [ref=e3319]: "38"
+            - img [ref=e3321]:
+              - generic [ref=e3324]:
+                - generic [ref=e3476]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: APALANCAMIENTO
+                            - generic: INFINITO
+                - generic [ref=e3483]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 1,000x
+                            - generic: más
+                            - generic: Apalancamiento
+                - generic [ref=e3490]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: INPUT
+                            - generic: PERSONAL
+                - generic [ref=e3497]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Mismas
+                            - generic: Horas
+                - generic [ref=e3504]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: SISTEMA
+                            - generic: OPERATIVO
+                - generic [ref=e3511]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Business
+                            - generic: OS
+                - generic [ref=e3518]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MULTIPLICADOR
+                            - generic: DE
+                            - generic: FUERZA
+                - generic [ref=e3525]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 1,000
+                            - generic: x
+                - generic [ref=e3532]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "No"
+                            - generic: es
+                            - generic: trabajar
+                            - generic: más
+                            - generic: duro,
+                            - generic: es
+                            - generic: que
+                            - generic: cada
+                            - generic: segundo
+                            - generic: de
+                            - generic: tu
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: tiempo
+                            - generic: sea
+                            - generic: ejecutado
+                            - generic: por
+                            - generic: un
+                            - generic: ejército
+                            - generic: de
+                            - generic: agentes.
+                - generic [ref=e3539]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 24/7
+                - generic [ref=e3546]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: OPERACIÓN
+                            - generic: CONTINUA
+                - generic [ref=e3553]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Zero
+                            - generic: Latency
+                - generic [ref=e3560]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: RESPUESTA
+                            - generic: INMEDIATA
+                - generic [ref=e3567]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"No"
+                            - generic: trabajo
+                            - generic: más
+                            - generic: horas.
+                            - generic: Las
+                            - generic: MISMAS
+                            - generic: horas
+                            - generic: con
+                            - generic: 1,000x
+                            - generic: más
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: apalancamiento."
+                - generic [ref=e3574]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DANIEL
+                            - generic: CARREON
+                            - generic: "|"
+                            - generic: BUSINESS
+                            - generic: LAND
+                            - generic: "2026"
+                - generic [ref=e3581]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "@SaaSFactory"
+          - generic [ref=e3585]:
+            - generic [ref=e3587]: "39"
+            - img [ref=e3589]:
+              - generic [ref=e3592]:
+                - generic [ref=e3688]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: CALL
+                            - generic: TO
+                            - generic: ACTION
+                - generic [ref=e3695]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: EL
+                            - generic: MOMENTO
+                            - generic: DE
+                            - generic: EMPEZAR
+                - generic [ref=e3702]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "No"
+                            - generic: se
+                            - generic: trata
+                            - generic: de
+                            - generic: SI
+                            - generic: lo
+                            - generic: harás,
+                - generic [ref=e3709]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ¿CUÁNDO
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: EMPIEZA
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: S?
+                - generic [ref=e3716]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Ventaja
+                            - generic: Temporal
+                - generic [ref=e3723]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: La
+                            - generic: ventana
+                            - generic: de
+                            - generic: oportunidad
+                            - generic: se
+                            - generic: cierra
+                            - generic: en
+                            - generic: los
+                            - generic: próximos
+                            - generic: 18-24
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: meses.
+                - generic [ref=e3730]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Apalancamiento
+                - generic [ref=e3737]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Multiplica
+                            - generic: tu
+                            - generic: capacidad
+                            - generic: operativa
+                            - generic: x1,000
+                            - generic: mientras
+                            - generic: otros
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: duermen.
+                - generic [ref=e3744]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Daniel
+                            - generic: Carreon
+                - generic [ref=e3751]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: SAAS
+                            - generic: FACTORY
+                            - generic: COMMUNITY
+                - generic [ref=e3758]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"El"
+                            - generic: futuro
+                            - generic: pertenece
+                            - generic: a
+                            - generic: quienes
+                            - generic: construyen
+                            - generic: hoy."
+          - generic [ref=e3762]:
+            - generic [ref=e3764]: "23"
+            - img [ref=e3766]:
+              - generic [ref=e3769]:
+                - generic [ref=e3937]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ARQUITECTURA
+                            - generic: DEL
+                            - generic: SISTEMA
+                - generic [ref=e3944]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Mi
+                            - generic: Business
+                            - generic: OS
+                - generic [ref=e3951]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: CLAUDE.md
+                - generic [ref=e3958]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: EL
+                            - generic: CEREBRO
+                - generic [ref=e3965]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 1,300+
+                            - generic: líneas
+                            - generic: de
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: instrucciones
+                            - generic: maestras
+                            - generic: "y"
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: lógica
+                            - generic: de
+                            - generic: negocio.
+                - generic [ref=e3972]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "18"
+                            - generic: Skills
+                - generic [ref=e3979]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ESPECIALIZACIÓN
+                - generic [ref=e3986]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Dominios
+                            - generic: técnicos
+                            - generic: "y"
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: creativos
+                            - generic: especializados
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: por
+                            - generic: tarea.
+                - generic [ref=e3993]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Memoria
+                - generic [ref=e4000]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: PERSISTENCIA
+                - generic [ref=e4007]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Base
+                            - generic: de
+                            - generic: conocimiento
+                            - generic: que
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: evoluciona
+                            - generic: con
+                            - generic: cada
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: interacción.
+                - generic [ref=e4014]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Cron
+                            - generic: Jobs
+                - generic [ref=e4021]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: AUTOMATIZACIÓN
+                - generic [ref=e4028]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "20"
+                            - generic: procesos
+                            - generic: activos
+                            - generic: 24/7
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: por
+                            - generic: solo
+                            - generic: $5
+                            - generic: USD
+                            - generic: la
+                            - generic: noche.
+                - generic [ref=e4035]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ML
+                            - generic: Engine
+                - generic [ref=e4042]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: PREDICCIÓN
+                - generic [ref=e4049]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Algoritmos
+                            - generic: que
+                            - generic: detectan
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: patrones
+                            - generic: "y"
+                            - generic: optimizan
+                            - generic: el
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: crecimiento.
+                - generic [ref=e4056]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DANIEL
+                            - generic: CARREON
+                            - generic: "|"
+                            - generic: SAAS
+                            - generic: FACTORY
+                            - generic: COMMUNITY
+                - generic [ref=e4063]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "INFRASTRUCTURE:"
+                            - generic: ACTIVE
+          - generic [ref=e4067]:
+            - generic [ref=e4069]: "22"
+            - img [ref=e4071]:
+              - generic [ref=e4074]:
+                - generic [ref=e4202]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: REVELACIÓN
+                            - generic: DE
+                            - generic: SISTEMA
+                - generic [ref=e4209]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: TODO
+                            - generic: ESTO
+                            - generic: SE
+                            - generic: RESUME
+                            - generic: EN
+                            - generic: UNA
+                            - generic: "COSA:"
+                - generic [ref=e4216]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ESO
+                            - generic: ES
+                            - generic: MI
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: BUSINESS
+                            - generic: OS
+                - generic [ref=e4223]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"La"
+                            - generic: superinteligencia
+                            - generic: como
+                            - generic: motor
+                            - generic: operativo"
+                - generic [ref=e4230]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: KERNEL
+                            - generic: LOADED
+                - generic [ref=e4237]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: AGENT
+                            - generic: "UPTIME:"
+                            - generic: 24/7
+                - generic [ref=e4244]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DANIEL
+                            - generic: CARREON
+                            - generic: "|"
+                            - generic: SAAS
+                            - generic: FACTORY
+                            - generic: COMMUNITY
+                - generic [ref=e4251]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: TALENT
+                            - generic: LAND
+                            - generic: "2026"
+          - generic [ref=e4255]:
+            - generic [ref=e4257]: "21"
+            - img [ref=e4259]:
+              - generic [ref=e4262]:
+                - generic [ref=e4414]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DATA
+                            - generic: ORCHESTRATION
+                - generic [ref=e4421]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Acceso
+                            - generic: Total
+                            - generic: a
+                            - generic: Variables
+                - generic [ref=e4428]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: El
+                            - generic: sistema
+                            - generic: "no"
+                            - generic: solo
+                            - generic: observa;
+                            - generic: procesa
+                            - generic: cada
+                            - generic: punto
+                            - generic: de
+                            - generic: contacto
+                            - generic: para
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: alimentar
+                            - generic: la
+                            - generic: inteligencia
+                            - generic: central.
+                - generic [ref=e4435]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: LIVE_FEED_01
+                - generic [ref=e4442]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Métricas
+                            - generic: YouTube
+                - generic [ref=e4449]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Retención,
+                            - generic: CTR
+                            - generic: "y"
+                            - generic: comportamiento
+                            - generic: de
+                            - generic: audiencia
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: por
+                            - generic: segundo.
+                - generic [ref=e4456]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: LIVE_FEED_02
+                - generic [ref=e4463]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Flujo
+                            - generic: de
+                            - generic: Caja
+                - generic [ref=e4470]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Checkouts
+                            - generic: exitosos,
+                            - generic: fallidos
+                            - generic: "y"
+                            - generic: valor
+                            - generic: de
+                            - generic: vida
+                            - generic: del
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: cliente
+                            - generic: (LTV).
+                - generic [ref=e4477]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: LIVE_FEED_03
+                - generic [ref=e4484]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Engagement
+                            - generic: Miembros
+                - generic [ref=e4491]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Consumo
+                            - generic: de
+                            - generic: contenido
+                            - generic: "y"
+                            - generic: actividad
+                            - generic: dentro
+                            - generic: de
+                            - generic: la
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: comunidad.
+                - generic [ref=e4498]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Un
+                            - generic: solo
+                            - generic: sistema.
+                            - generic: Acceso
+                            - generic: infinito.
+                - generic [ref=e4505]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"Un"
+                            - generic: sistema
+                            - generic: donde
+                            - generic: la
+                            - generic: IA
+                            - generic: tiene
+                            - generic: acceso
+                            - generic: a
+                            - generic: TODAS
+                            - generic: las
+                            - generic: variables
+                            - generic: del
+                            - generic: negocio."
+                - generic [ref=e4512]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ∞
+                            - generic: DATA
+                - generic [ref=e4519]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: PROCESSING
+                            - generic: 24/7
+                - generic [ref=e4526]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MI
+                            - generic: BUSINESS
+                            - generic: OS
+                            - generic: "|"
+                            - generic: DATA
+                            - generic: INTEGRATION
+                            - generic: LAYER
+          - generic [ref=e4532]: "20"
+          - generic [ref=e4536]:
+            - generic [ref=e4538]: "19"
+            - img [ref=e4540]:
+              - generic [ref=e4543]:
+                - generic [ref=e4719]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: PIPELINE
+                            - generic: OPERATIVO
+                - generic [ref=e4726]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Así
+                            - generic: funciona
+                            - generic: mi
+                            - generic: negocio
+                - generic [ref=e4733]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: YOUTUBE
+                - generic [ref=e4740]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Canal
+                            - generic: Único
+                            - generic: de
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Adquisición
+                - generic [ref=e4747]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: LANDING
+                - generic [ref=e4754]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Conversión
+                            - generic: "y"
+                            - generic: Valor
+                - generic [ref=e4761]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: CHECKOUT
+                - generic [ref=e4768]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Pasarela
+                            - generic: Stripe
+                - generic [ref=e4775]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MIEMBROS
+                - generic [ref=e4782]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Comunidad
+                            - generic: Pagada
+                - generic [ref=e4789]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: AGENTES
+                            - generic: IA
+                - generic [ref=e4796]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Optimización
+                            - generic: "y"
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Retención
+                - generic [ref=e4803]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"Y"
+                            - generic: todos
+                            - generic: esos
+                            - generic: datos
+                            - generic: alimentan
+                            - generic: la
+                            - generic: máquina."
+                - generic [ref=e4810]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: BUSINESS
+                            - generic: OS
+                            - generic: ARCHITECTURE
+          - generic [ref=e4814]:
+            - generic [ref=e4816]: "18"
+            - img [ref=e4818]:
+              - generic [ref=e4821]:
+                - generic [ref=e4901]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ESTRUCTURA
+                            - generic: DEL
+                            - generic: SISTEMA
+                - generic [ref=e4908]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Pipeline
+                            - generic: Video
+                            - generic: a
+                            - generic: Venta
+                - generic [ref=e4915]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Visualización
+                            - generic: del
+                            - generic: flujo
+                            - generic: de
+                            - generic: trabajo
+                            - generic: completo
+                            - generic: que
+                            - generic: transforma
+                            - generic: el
+                            - generic: contenido
+                            - generic: de
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: YouTube
+                            - generic: en
+                            - generic: ingresos
+                            - generic: directos
+                            - generic: "y"
+                            - generic: retención
+                            - generic: de
+                            - generic: usuarios.
+                - generic [ref=e4922]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "["
+                            - generic: INSERTAR
+                            - generic: "IMAGEN:"
+                            - generic: PIPELINE
+                            - generic: COMPLETO
+                            - generic: "]"
+                - generic [ref=e4929]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: YouTube
+                            - generic: →
+                            - generic: Landing
+                            - generic: →
+                            - generic: Checkout
+                            - generic: →
+                            - generic: Miembros
+                            - generic: →
+                            - generic: Agentes
+                            - generic: IA
+                - generic [ref=e4936]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "ENTRADA:"
+                            - generic: CONTENIDO
+                - generic [ref=e4943]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "PROCESO:"
+                            - generic: AUTOMATIZACIÓN
+                - generic [ref=e4950]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "SALIDA:"
+                            - generic: REVENUE
+                - generic [ref=e4957]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: SaaS
+                            - generic: Factory
+                            - generic: Community
+                            - generic: "|"
+                            - generic: Mi
+                            - generic: Business
+                            - generic: OS
+          - generic [ref=e4969]:
+            - generic [ref=e4971]: "17"
+            - img [ref=e4973]:
+              - generic [ref=e4976]:
+                - generic [ref=e5104]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MI
+                            - generic: NEGOCIO
+                - generic [ref=e5111]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: SaaS
+                            - generic: Factory
+                            - generic: Community
+                - generic [ref=e5118]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 700+
+                            - generic: miembros
+                            - generic: activos.
+                            - generic: YouTube
+                            - generic: como
+                            - generic: ÚNICO
+                            - generic: canal
+                            - generic: de
+                            - generic: adquisición.
+                - generic [ref=e5125]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 700+
+                - generic [ref=e5132]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MIEMBROS
+                - generic [ref=e5139]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Suscripción
+                            - generic: recurrente
+                - generic [ref=e5146]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "66"
+                - generic [ref=e5153]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: VIDEOS
+                - generic [ref=e5160]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Contenido
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Estratégico
+                - generic [ref=e5167]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: $0
+                - generic [ref=e5174]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: PUBLICIDAD
+                - generic [ref=e5181]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Crecimiento
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Orgánico
+                - generic [ref=e5188]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "01"
+                - generic [ref=e5195]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: EL
+                            - generic: MODELO
+                            - generic: DE
+                            - generic: APALANCAMIENTO
+                - generic [ref=e5202]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Utilizamos
+                            - generic: contenido
+                            - generic: de
+                            - generic: alto
+                            - generic: valor
+                            - generic: para
+                            - generic: atraer
+                            - generic: a
+                            - generic: una
+                            - generic: audiencia
+                            - generic: calificada.
+                            - generic: "No"
+                            - generic: buscamos
+                            - generic: vistas
+                            - generic: masivas,
+                            - generic: buscamos
+                            - generic: conversión
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: sistémica
+                            - generic: .
+                - generic [ref=e5209]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DANIEL
+                            - generic: CARREON
+                            - generic: "|"
+                            - generic: SAAS
+                            - generic: FACTORY
+                - generic [ref=e5216]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: TALENT
+                            - generic: LAND
+                            - generic: "2026"
+                - generic [ref=e5223]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: BUSINESS
+                            - generic: LAND
+        - generic [ref=e5228]:
+          - button "Vista de cuadrícula" [ref=e5230]:
+            - img [ref=e5233]
+          - button "Ocultar tira de diapositivas" [ref=e5236]:
+            - img [ref=e5240]
+      - generic [ref=e5242]:
+        - generic [ref=e5247]:
+          - generic [ref=e5248]: "14"
+          - generic [ref=e5257]: "13"
+          - generic [ref=e5266]: "12"
+          - generic [ref=e5275]: "11"
+          - generic [ref=e5284]: "10"
+          - generic [ref=e5293]: "9"
+          - generic [ref=e5302]: "8"
+          - generic [ref=e5311]: "7"
+          - generic [ref=e5320]: "6"
+          - generic [ref=e5329]: "5"
+          - generic [ref=e5338]: "4"
+          - generic [ref=e5347]: "3"
+          - generic [ref=e5356]: "2"
+          - generic [ref=e5365]: "1"
+          - generic [ref=e5382]: "1"
+          - generic [ref=e5391]: "2"
+          - generic [ref=e5400]: "3"
+          - generic [ref=e5409]: "4"
+          - generic [ref=e5418]: "5"
+          - generic [ref=e5427]: "6"
+          - generic [ref=e5436]: "7"
+          - generic [ref=e5445]: "8"
+          - generic [ref=e5454]: "9"
+          - generic [ref=e5463]: "10"
+          - generic [ref=e5472]: "11"
+          - generic [ref=e5481]: "12"
+          - generic [ref=e5490]: "13"
+        - generic [ref=e5502]:
+          - generic [ref=e5507]:
+            - generic [ref=e5508]: "8"
+            - generic [ref=e5517]: "7"
+            - generic [ref=e5526]: "6"
+            - generic [ref=e5535]: "5"
+            - generic [ref=e5544]: "4"
+            - generic [ref=e5553]: "3"
+            - generic [ref=e5562]: "2"
+            - generic [ref=e5571]: "1"
+            - generic [ref=e5588]: "1"
+            - generic [ref=e5597]: "2"
+            - generic [ref=e5606]: "3"
+            - generic [ref=e5615]: "4"
+            - generic [ref=e5624]: "5"
+            - generic [ref=e5633]: "6"
+            - generic [ref=e5642]: "7"
+          - generic [ref=e5655]:
+            - generic:
+              - list
+            - img [ref=e5658]:
+              - generic [ref=e5661]:
+                - generic [ref=e5783]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: MÓDULO
+                            - generic: DE
+                            - generic: RETENCIÓN
+                            - generic: IA
+                - generic [ref=e5794]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: PREVENCIÓN
+                            - generic: AUTOMATIZADA
+                - generic [ref=e5805]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DETECCIÓN
+                - generic [ref=e5816]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Identifica
+                            - generic: patrones
+                            - generic: de
+                            - generic: inactividad
+                            - generic: "2"
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: semanas
+                            - generic: antes
+                            - generic: del
+                            - generic: churn.
+                - generic [ref=e5827]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ANÁLISIS
+                - generic [ref=e5838]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: El
+                            - generic: sistema
+                            - generic: cruza
+                            - generic: variables
+                            - generic: para
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: entender
+                            - generic: por
+                            - generic: qué
+                            - generic: el
+                            - generic: usuario
+                            - generic: se
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: aleja.
+                - generic [ref=e5849]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ACCIÓN
+                - generic [ref=e5860]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Envío
+                            - generic: automático
+                            - generic: de
+                            - generic: mensaje
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: personalizado
+                            - generic: con
+                            - generic: oferta.
+                - generic [ref=e5871]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "\"Mi"
+                            - generic: sistema
+                            - generic: los
+                            - generic: detecta
+                            - generic: "2"
+                            - generic: semanas
+                            - generic: antes
+                            - generic: "y"
+                            - generic: actúa
+                            - generic: automáticamente
+                            - generic: ."
+                - generic [ref=e5882]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: DANIEL
+                            - generic: CARREON
+                            - generic: "|"
+                            - generic: BUSINESS
+                            - generic: OS
+                - generic [ref=e5893]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "STATUS:"
+                            - generic: PREDICTIVE
+                            - generic: MODE
+                            - generic: ACTIVE
+                - generic [ref=e5904]:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: TALENT
+                            - generic: LAND
+                            - generic: "2026"
+            - img
+        - complementary "Notas del orador" [ref=e5911]:
+          - img [ref=e5913]:
+            - generic [ref=e5915]:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic: Haz
+                        - generic: clic
+                        - generic: para
+                        - generic: agregar
+                        - generic: notas
+                        - generic: del
+                        - generic: orador
+      - generic [ref=e5920]:
+        - toolbar "Inserción"
+        - toolbar "Inserción" [ref=e5921]:
+          - button "Stock y Web" [ref=e5922] [cursor=pointer]
+          - button "Drive y Fotos" [ref=e5929] [cursor=pointer]
+        - toolbar "Inserción" [ref=e5936]:
+          - button "Convertir a video" [ref=e5937] [cursor=pointer]
+    - link "Vista HTML de la presentación" [ref=e5944] [cursor=pointer]:
+      - /url: https://docs.google.com/presentation/u/0/d/1ZkfsEr9jvp8DD9PAko6kHSEXUcDtGI7OD2kJgbyhR0k/htmlpresent
+  - iframe [ref=e5945]:
+    
+  - iframe [active] [ref=e5946]:
+    - textbox "Contenido del documento" [active] [ref=f16e1]
+    - group
+  - link "Activar la compatibilidad con el lector de pantalla" [ref=e5947] [cursor=pointer]:
+    - /url: "#"
+  - generic [ref=e5948]: Se ocultó el banner
+  - region
+  - region [ref=e5949]: Para habilitar la compatibilidad con lectores de pantalla, presiona ⌘+Opción+Z. Para más información sobre la combinación de teclas para acceso directo, presiona ⌘barra.

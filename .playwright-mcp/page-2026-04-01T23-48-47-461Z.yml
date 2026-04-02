@@ -1,0 +1,16 @@
+- generic [ref=e3]:
+  - link "Logotipo de Google" [ref=e5] [cursor=pointer]:
+    - /url: //support.google.com/docs/
+    - img "Logotipo de Google" [ref=e6]
+  - generic [ref=e7]:
+    - paragraph [ref=e8]: El archivo que solicitaste no existe.
+    - paragraph [ref=e9]: Asegúrate de que tienes la dirección URL correcta y de que el archivo existe.
+    - generic [ref=e10]:
+      - paragraph [ref=e11]:
+        - strong [ref=e12]: Realiza tus proyectos con Google Drive
+      - paragraph [ref=e13]: Las aplicaciones de Google Drive te facilitan la tarea de crear, almacenar y compartir documentos, hojas de cálculo, presentaciones y otros archivos en línea.
+      - paragraph [ref=e14]:
+        - text: Obtén más información en
+        - link "drive.google.com/start/apps" [ref=e15] [cursor=pointer]:
+          - /url: https://drive.google.com/start/apps
+        - text: .

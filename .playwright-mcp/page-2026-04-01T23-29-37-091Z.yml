@@ -1,0 +1,223 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - button "New presentation" [ref=e6] [cursor=pointer]:
+        - img [ref=e7]
+      - button "Open (Cmd+O)" [ref=e10] [cursor=pointer]:
+        - img [ref=e11]
+      - button "Save (Cmd+S)" [ref=e13] [cursor=pointer]:
+        - img [ref=e14]
+    - generic [ref=e19]:
+      - button "Select (V)" [ref=e20] [cursor=pointer]:
+        - img [ref=e21]
+      - button "Text (T)" [ref=e23] [cursor=pointer]:
+        - img [ref=e24]
+      - button "Shape (S)" [ref=e26] [cursor=pointer]:
+        - img [ref=e27]
+      - button "Image (I)" [ref=e29] [cursor=pointer]:
+        - img [ref=e30]
+      - button "Line (L)" [ref=e34] [cursor=pointer]:
+        - img [ref=e35]
+    - generic [ref=e37]:
+      - button "Undo (Cmd+Z)" [ref=e38] [cursor=pointer]:
+        - img [ref=e39]
+      - button "Redo (Cmd+Shift+Z)" [ref=e42] [cursor=pointer]:
+        - img [ref=e43]
+    - generic [ref=e46]:
+      - button "Zoom out" [ref=e47] [cursor=pointer]:
+        - img [ref=e48]
+      - generic [ref=e51]: 100%
+      - button "Zoom in" [ref=e52] [cursor=pointer]:
+        - img [ref=e53]
+      - button "Add slide" [ref=e57] [cursor=pointer]:
+        - img [ref=e58]
+      - button ".pptx" [active] [ref=e60] [cursor=pointer]:
+        - img [ref=e61]
+        - generic [ref=e64]: .pptx
+      - button "Present" [ref=e65] [cursor=pointer]:
+        - img [ref=e66]
+        - text: Present
+  - generic [ref=e68]:
+    - generic [ref=e70]:
+      - generic [ref=e71]:
+        - generic [ref=e72]: Slides
+        - button "Add slide" [ref=e73] [cursor=pointer]:
+          - img [ref=e74]
+      - generic [ref=e75]:
+        - button "Slide 1 1" [ref=e76] [cursor=pointer]:
+          - img "Slide 1" [ref=e77]
+          - generic [ref=e78]: "1"
+        - button "Slide 2 2" [ref=e113] [cursor=pointer]:
+          - img "Slide 2" [ref=e114]
+          - generic [ref=e115]: "2"
+        - button "Slide 3 3" [ref=e116] [cursor=pointer]:
+          - img "Slide 3" [ref=e117]
+          - generic [ref=e118]: "3"
+        - button "Slide 4 4" [ref=e119] [cursor=pointer]:
+          - img "Slide 4" [ref=e120]
+          - generic [ref=e121]: "4"
+        - button "Slide 5 5" [ref=e122] [cursor=pointer]:
+          - img "Slide 5" [ref=e123]
+          - generic [ref=e124]: "5"
+        - button "Slide 6 6" [ref=e125] [cursor=pointer]:
+          - img "Slide 6" [ref=e126]
+          - generic [ref=e127]: "6"
+        - button "Slide 7 7" [ref=e128] [cursor=pointer]:
+          - img "Slide 7" [ref=e129]
+          - generic [ref=e130]: "7"
+        - button "Slide 8 8" [ref=e131] [cursor=pointer]:
+          - img "Slide 8" [ref=e132]
+          - generic [ref=e133]: "8"
+        - button "Slide 9 9" [ref=e134] [cursor=pointer]:
+          - img "Slide 9" [ref=e135]
+          - generic [ref=e136]: "9"
+        - button "Slide 10 10" [ref=e137] [cursor=pointer]:
+          - img "Slide 10" [ref=e138]
+          - generic [ref=e139]: "10"
+        - button "Slide 11 11" [ref=e140] [cursor=pointer]:
+          - img "Slide 11" [ref=e141]
+          - generic [ref=e142]: "11"
+        - button "Slide 12 12" [ref=e143] [cursor=pointer]:
+          - img "Slide 12" [ref=e144]
+          - generic [ref=e145]: "12"
+        - button "Slide 13 13" [ref=e146] [cursor=pointer]:
+          - img "Slide 13" [ref=e147]
+          - generic [ref=e148]: "13"
+        - button "Slide 14 14" [ref=e149] [cursor=pointer]:
+          - img "Slide 14" [ref=e150]
+          - generic [ref=e151]: "14"
+        - button "Slide 15 15" [ref=e152] [cursor=pointer]:
+          - img "Slide 15" [ref=e153]
+          - generic [ref=e154]: "15"
+        - button "Slide 16 16" [ref=e155] [cursor=pointer]:
+          - img "Slide 16" [ref=e156]
+          - generic [ref=e157]: "16"
+        - button "Slide 17 17" [ref=e158] [cursor=pointer]:
+          - img "Slide 17" [ref=e159]
+          - generic [ref=e160]: "17"
+        - button "Slide 18 18" [ref=e161] [cursor=pointer]:
+          - img "Slide 18" [ref=e162]
+          - generic [ref=e163]: "18"
+        - button "Slide 19 19" [ref=e164] [cursor=pointer]:
+          - img "Slide 19" [ref=e165]
+          - generic [ref=e166]: "19"
+        - button "Slide 20 20" [ref=e167] [cursor=pointer]:
+          - img "Slide 20" [ref=e168]
+          - generic [ref=e169]: "20"
+        - button "Slide 21 21" [ref=e170] [cursor=pointer]:
+          - img "Slide 21" [ref=e171]
+          - generic [ref=e172]: "21"
+        - button "Slide 22 22" [ref=e173] [cursor=pointer]:
+          - img "Slide 22" [ref=e174]
+          - generic [ref=e175]: "22"
+        - button "Slide 23 23" [ref=e176] [cursor=pointer]:
+          - img "Slide 23" [ref=e177]
+          - generic [ref=e178]: "23"
+        - button "Slide 24 24" [ref=e179] [cursor=pointer]:
+          - img "Slide 24" [ref=e180]
+          - generic [ref=e181]: "24"
+        - button "Slide 25 25" [ref=e182] [cursor=pointer]:
+          - img "Slide 25" [ref=e183]
+          - generic [ref=e184]: "25"
+        - button "Slide 26 26" [ref=e185] [cursor=pointer]:
+          - img "Slide 26" [ref=e186]
+          - generic [ref=e187]: "26"
+        - button "Slide 27 27" [ref=e188] [cursor=pointer]:
+          - img "Slide 27" [ref=e189]
+          - generic [ref=e190]: "27"
+        - button "Slide 28 28" [ref=e191] [cursor=pointer]:
+          - img "Slide 28" [ref=e192]
+          - generic [ref=e193]: "28"
+        - button "Slide 29 29" [ref=e194] [cursor=pointer]:
+          - img "Slide 29" [ref=e195]
+          - generic [ref=e196]: "29"
+        - button "Slide 30 30" [ref=e197] [cursor=pointer]:
+          - img "Slide 30" [ref=e198]
+          - generic [ref=e199]: "30"
+        - button "Slide 31 31" [ref=e200] [cursor=pointer]:
+          - img "Slide 31" [ref=e201]
+          - generic [ref=e202]: "31"
+        - button "Slide 32 32" [ref=e203] [cursor=pointer]:
+          - img "Slide 32" [ref=e204]
+          - generic [ref=e205]: "32"
+        - button "Slide 33 33" [ref=e206] [cursor=pointer]:
+          - img "Slide 33" [ref=e207]
+          - generic [ref=e208]: "33"
+        - button "Slide 34 34" [ref=e209] [cursor=pointer]:
+          - img "Slide 34" [ref=e210]
+          - generic [ref=e211]: "34"
+        - button "Slide 35 35" [ref=e212] [cursor=pointer]:
+          - img "Slide 35" [ref=e213]
+          - generic [ref=e214]: "35"
+        - button "Slide 36 36" [ref=e215] [cursor=pointer]:
+          - img "Slide 36" [ref=e216]
+          - generic [ref=e217]: "36"
+        - button "Slide 37 37" [ref=e218] [cursor=pointer]:
+          - img "Slide 37" [ref=e219]
+          - generic [ref=e220]: "37"
+        - button "Slide 38 38" [ref=e221] [cursor=pointer]:
+          - img "Slide 38" [ref=e222]
+          - generic [ref=e223]: "38"
+        - button "Slide 39 39" [ref=e224] [cursor=pointer]:
+          - img "Slide 39" [ref=e225]
+          - generic [ref=e226]: "39"
+        - button "Slide 40 40" [ref=e227] [cursor=pointer]:
+          - img "Slide 40" [ref=e228]
+          - generic [ref=e229]: "40"
+        - button "Slide 41 41" [ref=e230] [cursor=pointer]:
+          - img "Slide 41" [ref=e231]
+          - generic [ref=e232]: "41"
+        - button "Slide 42 42" [ref=e233] [cursor=pointer]:
+          - img "Slide 42" [ref=e234]
+          - generic [ref=e235]: "42"
+        - button "Slide 43 43" [ref=e236] [cursor=pointer]:
+          - img "Slide 43" [ref=e237]
+          - generic [ref=e238]: "43"
+        - button "Slide 44 44" [ref=e239] [cursor=pointer]:
+          - img "Slide 44" [ref=e240]
+          - generic [ref=e241]: "44"
+        - button "Slide 45 45" [ref=e242] [cursor=pointer]:
+          - img "Slide 45" [ref=e243]
+          - generic [ref=e244]: "45"
+        - button "Slide 46 46" [ref=e245] [cursor=pointer]:
+          - img "Slide 46" [ref=e246]
+          - generic [ref=e247]: "46"
+        - button "Slide 47 47" [ref=e248] [cursor=pointer]:
+          - img "Slide 47" [ref=e249]
+          - generic [ref=e250]: "47"
+        - button "Slide 48 48" [ref=e251] [cursor=pointer]:
+          - img "Slide 48" [ref=e252]
+          - generic [ref=e253]: "48"
+        - button "Slide 49 49" [ref=e254] [cursor=pointer]:
+          - img "Slide 49" [ref=e255]
+          - generic [ref=e256]: "49"
+        - button "Slide 50 50" [ref=e257] [cursor=pointer]:
+          - img "Slide 50" [ref=e258]
+          - generic [ref=e259]: "50"
+    - generic [ref=e86]:
+      - generic [ref=e87]: Slide
+      - generic [ref=e88]:
+        - generic [ref=e89]: Slide Background
+        - generic [ref=e90]:
+          - generic [ref=e91]: BG
+          - generic [ref=e92]:
+            - textbox [ref=e93] [cursor=pointer]: "#0f0f17"
+            - textbox [ref=e94]: "#0f0f17"
+        - generic [ref=e95]:
+          - button "#0f0f17" [ref=e96] [cursor=pointer]
+          - button "#1a1a2e" [ref=e97] [cursor=pointer]
+          - button "#ffffff" [ref=e98] [cursor=pointer]
+          - button "#000000" [ref=e99] [cursor=pointer]
+          - button "#1e293b" [ref=e100] [cursor=pointer]
+          - button "#0c0a09" [ref=e101] [cursor=pointer]
+        - generic [ref=e102]: Gradient Presets
+        - generic [ref=e103]:
+          - button "Dark" [ref=e104] [cursor=pointer]
+          - button "Morado" [ref=e105] [cursor=pointer]
+          - button "Ocean" [ref=e106] [cursor=pointer]
+          - button "Sunset" [ref=e107] [cursor=pointer]
+          - button "Forest" [ref=e108] [cursor=pointer]
+          - button "Slate" [ref=e109] [cursor=pointer]
+        - generic [ref=e110]:
+          - generic [ref=e111]: Speaker Notes
+          - textbox "Add speaker notes..." [ref=e112]: COVER. Presentarte brevemente. El título es 'Recursividad Agéntica'. Talent Land 2026, Developer Land.

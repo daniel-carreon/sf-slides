@@ -1,0 +1,28 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - img [ref=e7]
+      - generic [ref=e11]: SF-Slides
+    - textbox "Search presentations..." [ref=e14]
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - heading "Start a new presentation" [level=2] [ref=e18]
+        - generic [ref=e19]:
+          - button "Blank" [ref=e20] [cursor=pointer]:
+            - img [ref=e21]
+            - generic [ref=e22]: Blank
+          - button "Open file" [ref=e23] [cursor=pointer]:
+            - img [ref=e24]
+            - generic [ref=e26]: Open file
+          - button "Import .pptx" [ref=e27] [cursor=pointer]:
+            - img [ref=e28]
+            - generic [ref=e31]: Import .pptx
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - img [ref=e34]
+          - heading "Recent presentations" [level=2] [ref=e37]
+        - generic [ref=e39]: Loading presentations...
+  - contentinfo [ref=e40]:
+    - generic [ref=e41]: SF-Slides v1.0 — The Agentic Presentation Engine
+    - generic [ref=e42]: 0 presentations

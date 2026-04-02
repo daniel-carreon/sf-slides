@@ -1,0 +1,3749 @@
+{
+  "version": 1,
+  "metadata": {
+    "title": "Mi Business OS",
+    "author": "Daniel Carreon",
+    "created": "2026-04-01"
+  },
+  "defaults": {
+    "font_family": "Helvetica Neue, Arial, sans-serif",
+    "background": {
+      "type": "solid",
+      "color": "#0D0D0D"
+    }
+  },
+  "slides": [
+    {
+      "id": 1,
+      "background": {
+        "type": "gradient",
+        "angle": 160,
+        "stops": [
+          {
+            "offset": 0,
+            "color": "#0D0D0D"
+          },
+          {
+            "offset": 1,
+            "color": "#1A1A1A"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "id": "s1_label",
+          "type": "text",
+          "content": "BUSINESS LAND | TALENT LAND 2026",
+          "x": 160,
+          "y": 120,
+          "width": 800,
+          "height": 30,
+          "font_size": 14,
+          "color": "#f69f02",
+          "bold": true,
+          "letter_spacing": 4
+        },
+        {
+          "id": "s1_title",
+          "type": "text",
+          "content": "Mi Business OS",
+          "x": 160,
+          "y": 260,
+          "width": 900,
+          "height": 200,
+          "font_size": 96,
+          "color": "#ffffff",
+          "bold": true,
+          "line_spacing": 1.1
+        },
+        {
+          "id": "s1_sub",
+          "type": "text",
+          "content": "Superinteligencia aplicada a negocios",
+          "x": 160,
+          "y": 480,
+          "width": 800,
+          "height": 50,
+          "font_size": 28,
+          "color": "#f69f02",
+          "italic": true
+        },
+        {
+          "id": "s1_line",
+          "type": "line",
+          "x": 160,
+          "y": 570,
+          "width": 300,
+          "height": 0,
+          "x1": 160,
+          "y1": 570,
+          "x2": 460,
+          "y2": 570,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s1_speaker",
+          "type": "text",
+          "content": "Daniel Carreon",
+          "x": 160,
+          "y": 600,
+          "width": 300,
+          "height": 30,
+          "font_size": 18,
+          "color": "#ffffff",
+          "bold": true
+        },
+        {
+          "id": "s1_org",
+          "type": "text",
+          "content": "SaaS Factory Community",
+          "x": 160,
+          "y": 635,
+          "width": 400,
+          "height": 30,
+          "font_size": 16,
+          "color": "#f69f02"
+        },
+        {
+          "id": "s1_arc1",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1100,
+          "y": 100,
+          "width": 700,
+          "height": 700,
+          "fill": null,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 1
+          },
+          "opacity": 0.12
+        },
+        {
+          "id": "s1_arc2",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1170,
+          "y": 170,
+          "width": 560,
+          "height": 560,
+          "fill": null,
+          "stroke": {
+            "color": "#8C27F1",
+            "width": 1
+          },
+          "opacity": 0.1
+        },
+        {
+          "id": "s1_arc3",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1240,
+          "y": 240,
+          "width": 420,
+          "height": 420,
+          "fill": null,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 1
+          },
+          "opacity": 0.07
+        },
+        {
+          "id": "s1_arc4",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1310,
+          "y": 310,
+          "width": 280,
+          "height": 280,
+          "fill": null,
+          "stroke": {
+            "color": "#8C27F1",
+            "width": 1
+          },
+          "opacity": 0.05
+        },
+        {
+          "id": "s1_node1",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1430,
+          "y": 150,
+          "width": 12,
+          "height": 12,
+          "fill": "#f69f02",
+          "opacity": 0.5
+        },
+        {
+          "id": "s1_node2",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1300,
+          "y": 280,
+          "width": 8,
+          "height": 8,
+          "fill": "#8C27F1",
+          "opacity": 0.4
+        },
+        {
+          "id": "s1_node3",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1550,
+          "y": 400,
+          "width": 10,
+          "height": 10,
+          "fill": "#f69f02",
+          "opacity": 0.45
+        },
+        {
+          "id": "s1_node4",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1200,
+          "y": 500,
+          "width": 14,
+          "height": 14,
+          "fill": "#8C27F1",
+          "opacity": 0.35
+        },
+        {
+          "id": "s1_node5",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1480,
+          "y": 600,
+          "width": 10,
+          "height": 10,
+          "fill": "#f69f02",
+          "opacity": 0.3
+        },
+        {
+          "id": "s1_bokeh1",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 400,
+          "y": 40,
+          "width": 100,
+          "height": 100,
+          "fill": "#f69f02",
+          "opacity": 0.05
+        },
+        {
+          "id": "s1_bokeh2",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 850,
+          "y": 20,
+          "width": 140,
+          "height": 140,
+          "fill": "#f69f02",
+          "opacity": 0.035
+        }
+      ],
+      "notes": "COVER. Presentarte. Mi Business OS = superinteligencia aplicada a negocios. Talent Land 2026, Business Land."
+    },
+    {
+      "id": 2,
+      "background": {
+        "type": "gradient",
+        "angle": 180,
+        "stops": [
+          {
+            "offset": 0,
+            "color": "#0D0D0D"
+          },
+          {
+            "offset": 1,
+            "color": "#141414"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "id": "s2_label",
+          "type": "text",
+          "content": "SPEAKER",
+          "x": 160,
+          "y": 60,
+          "width": 300,
+          "height": 24,
+          "font_size": 14,
+          "color": "#f69f02",
+          "bold": true,
+          "letter_spacing": 6
+        },
+        {
+          "id": "s2_title",
+          "type": "text",
+          "content": "Daniel Carreon",
+          "x": 160,
+          "y": 100,
+          "width": 800,
+          "height": 90,
+          "font_size": 72,
+          "color": "#ffffff",
+          "bold": true
+        },
+        {
+          "id": "s2_line",
+          "type": "line",
+          "x": 160,
+          "y": 200,
+          "width": 200,
+          "height": 0,
+          "x1": 160,
+          "y1": 200,
+          "x2": 360,
+          "y2": 200,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s2_c1_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 240,
+          "width": 780,
+          "height": 95,
+          "fill": "#111111",
+          "corner_radius": 14,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 1
+          }
+        },
+        {
+          "id": "s2_c1_txt",
+          "type": "text",
+          "content": "Mecatrónica → Ciencia de Datos → 3 años full time en IA",
+          "x": 192,
+          "y": 262,
+          "width": 716,
+          "height": 50,
+          "font_size": 21,
+          "color": "#DDDDDD"
+        },
+        {
+          "id": "s2_c2_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 355,
+          "width": 780,
+          "height": 95,
+          "fill": "#111111",
+          "corner_radius": 14,
+          "stroke": {
+            "color": "#8C27F1",
+            "width": 1
+          }
+        },
+        {
+          "id": "s2_c2_txt",
+          "type": "text",
+          "content": "Fundador de SaaS Factory Community",
+          "x": 192,
+          "y": 377,
+          "width": 716,
+          "height": 50,
+          "font_size": 21,
+          "color": "#DDDDDD"
+        },
+        {
+          "id": "s2_c3_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 470,
+          "width": 780,
+          "height": 95,
+          "fill": "#111111",
+          "corner_radius": 14,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 1
+          }
+        },
+        {
+          "id": "s2_c3_txt",
+          "type": "text",
+          "content": "700+ miembros pagando cada mes",
+          "x": 192,
+          "y": 492,
+          "width": 716,
+          "height": 50,
+          "font_size": 21,
+          "color": "#DDDDDD"
+        },
+        {
+          "id": "s2_c4_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 585,
+          "width": 780,
+          "height": 95,
+          "fill": "#111111",
+          "corner_radius": 14,
+          "stroke": {
+            "color": "#8C27F1",
+            "width": 1
+          }
+        },
+        {
+          "id": "s2_c4_txt",
+          "type": "text",
+          "content": "Cero publicidad. Cero equipo. Todo con IA.",
+          "x": 192,
+          "y": 607,
+          "width": 716,
+          "height": 50,
+          "font_size": 21,
+          "color": "#DDDDDD"
+        },
+        {
+          "id": "s2_photo",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 1100,
+          "y": 240,
+          "width": 660,
+          "height": 440,
+          "fill": "#2A2A2A",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s2_photo_lbl",
+          "type": "text",
+          "content": "[FOTO SPEAKER]",
+          "x": 1100,
+          "y": 425,
+          "width": 660,
+          "height": 40,
+          "font_size": 18,
+          "color": "#555555",
+          "align": "center"
+        }
+      ],
+      "notes": "Quién eres. Background técnico. SaaS Factory. 700+ miembros. Sin publicidad, sin equipo, solo IA."
+    },
+    {
+      "id": 3,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s3_big",
+          "type": "text",
+          "content": "$72,000+",
+          "x": 160,
+          "y": 140,
+          "width": 1600,
+          "height": 200,
+          "font_size": 120,
+          "color": "#f69f02",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s3_sub",
+          "type": "text",
+          "content": "Revenue en menos de 5 meses",
+          "x": 360,
+          "y": 350,
+          "width": 1200,
+          "height": 50,
+          "font_size": 28,
+          "color": "#BBBBBB",
+          "align": "center"
+        },
+        {
+          "id": "s3_line",
+          "type": "line",
+          "x": 660,
+          "y": 430,
+          "width": 600,
+          "height": 0,
+          "x1": 660,
+          "y1": 430,
+          "x2": 1260,
+          "y2": 430,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s3_c1_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 490,
+          "width": 500,
+          "height": 200,
+          "fill": "#111111",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 1
+          }
+        },
+        {
+          "id": "s3_c1_num",
+          "type": "text",
+          "content": "700+",
+          "x": 200,
+          "y": 520,
+          "width": 420,
+          "height": 60,
+          "font_size": 48,
+          "color": "#f69f02",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s3_c1_lbl",
+          "type": "text",
+          "content": "miembros",
+          "x": 200,
+          "y": 590,
+          "width": 420,
+          "height": 30,
+          "font_size": 18,
+          "color": "#888888",
+          "align": "center"
+        },
+        {
+          "id": "s3_c2_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 700,
+          "y": 490,
+          "width": 500,
+          "height": 200,
+          "fill": "#111111",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#8C27F1",
+            "width": 1
+          }
+        },
+        {
+          "id": "s3_c2_num",
+          "type": "text",
+          "content": "66",
+          "x": 740,
+          "y": 520,
+          "width": 420,
+          "height": 60,
+          "font_size": 48,
+          "color": "#8C27F1",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s3_c2_lbl",
+          "type": "text",
+          "content": "videos YouTube",
+          "x": 740,
+          "y": 590,
+          "width": 420,
+          "height": 30,
+          "font_size": 18,
+          "color": "#888888",
+          "align": "center"
+        },
+        {
+          "id": "s3_c3_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 1240,
+          "y": 490,
+          "width": 500,
+          "height": 200,
+          "fill": "#111111",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#00CC66",
+            "width": 1
+          }
+        },
+        {
+          "id": "s3_c3_num",
+          "type": "text",
+          "content": "$0",
+          "x": 1280,
+          "y": 520,
+          "width": 420,
+          "height": 60,
+          "font_size": 48,
+          "color": "#00CC66",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s3_c3_lbl",
+          "type": "text",
+          "content": "publicidad",
+          "x": 1280,
+          "y": 590,
+          "width": 420,
+          "height": 30,
+          "font_size": 18,
+          "color": "#888888",
+          "align": "center"
+        }
+      ],
+      "notes": "$72K+ en menos de 5 meses. 700+ miembros, 66 videos, $0 en ads. Dejar que los números hablen."
+    },
+    {
+      "id": 4,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s4_main",
+          "type": "text",
+          "content": "Todo esto con UN sistema\nde inteligencia artificial.",
+          "x": 160,
+          "y": 300,
+          "width": 1600,
+          "height": 180,
+          "font_size": 52,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.25
+        },
+        {
+          "id": "s4_sub",
+          "type": "text",
+          "content": "Operando 24/7 por $5 la noche.",
+          "x": 360,
+          "y": 520,
+          "width": 1200,
+          "height": 50,
+          "font_size": 32,
+          "color": "#f69f02",
+          "align": "center"
+        }
+      ],
+      "notes": "Un sistema. $5/noche. 24/7. Dejar que sink in."
+    },
+    {
+      "id": 5,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s5_main",
+          "type": "text",
+          "content": "Antes de hablar de mi negocio,",
+          "x": 160,
+          "y": 340,
+          "width": 1600,
+          "height": 80,
+          "font_size": 48,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s5_sub",
+          "type": "text",
+          "content": "necesitan entender lo que está pasando.",
+          "x": 260,
+          "y": 450,
+          "width": 1400,
+          "height": 60,
+          "font_size": 36,
+          "color": "#f69f02",
+          "align": "center"
+        }
+      ],
+      "notes": "Transición. Crear contexto antes de mostrar el negocio."
+    },
+    {
+      "id": 6,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s6_main",
+          "type": "text",
+          "content": "Porque lo que les voy a mostrar\nsolo es posible por ESTO.",
+          "x": 160,
+          "y": 340,
+          "width": 1600,
+          "height": 180,
+          "font_size": 48,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.3
+        }
+      ],
+      "notes": "Setup para la sección de METR/AI."
+    },
+    {
+      "id": 7,
+      "background": {
+        "type": "gradient",
+        "angle": 180,
+        "stops": [
+          {
+            "offset": 0,
+            "color": "#0D0D0D"
+          },
+          {
+            "offset": 1,
+            "color": "#141414"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "id": "s7_label",
+          "type": "text",
+          "content": "METR TIME HORIZON",
+          "x": 160,
+          "y": 200,
+          "width": 600,
+          "height": 28,
+          "font_size": 16,
+          "color": "#f69f02",
+          "bold": true,
+          "letter_spacing": 5
+        },
+        {
+          "id": "s7_title",
+          "type": "text",
+          "content": "La Nueva Ley de Moore\npara Agentes IA",
+          "x": 160,
+          "y": 280,
+          "width": 1200,
+          "height": 240,
+          "font_size": 64,
+          "color": "#ffffff",
+          "bold": true,
+          "line_spacing": 1.15
+        },
+        {
+          "id": "s7_line",
+          "type": "line",
+          "x": 160,
+          "y": 550,
+          "width": 400,
+          "height": 0,
+          "x1": 160,
+          "y1": 550,
+          "x2": 560,
+          "y2": 550,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s7_sub",
+          "type": "text",
+          "content": "Fuente: METR / AI Digest. Marzo 2026.",
+          "x": 160,
+          "y": 580,
+          "width": 600,
+          "height": 30,
+          "font_size": 18,
+          "color": "#888888"
+        },
+        {
+          "id": "s7_bokeh1",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1400,
+          "y": 100,
+          "width": 200,
+          "height": 200,
+          "fill": "#f69f02",
+          "opacity": 0.04
+        },
+        {
+          "id": "s7_bokeh2",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1600,
+          "y": 400,
+          "width": 150,
+          "height": 150,
+          "fill": "#8C27F1",
+          "opacity": 0.04
+        }
+      ],
+      "notes": "Sección METR. Contexto: la IA se duplica cada pocos meses."
+    },
+    {
+      "id": 8,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s8_title",
+          "type": "text",
+          "content": "Cuánto tiempo puede trabajar un agente\nsin supervisión humana",
+          "x": 120,
+          "y": 40,
+          "width": 1680,
+          "height": 80,
+          "font_size": 32,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.3
+        },
+        {
+          "id": "s8_line",
+          "type": "line",
+          "x": 760,
+          "y": 135,
+          "width": 400,
+          "height": 0,
+          "x1": 760,
+          "y1": 135,
+          "x2": 1160,
+          "y2": 135,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s8_img",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 170,
+          "width": 1600,
+          "height": 800,
+          "fill": "#1A1A1A",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s8_lbl",
+          "type": "text",
+          "content": "[INSERTAR IMAGEN]",
+          "x": 160,
+          "y": 530,
+          "width": 1600,
+          "height": 40,
+          "font_size": 20,
+          "color": "#555555",
+          "align": "center"
+        }
+      ],
+      "notes": "Gráfica METR: Time Horizon. Cuánto puede trabajar un agente autónomamente."
+    },
+    {
+      "id": 9,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s9_title",
+          "type": "text",
+          "content": "La capacidad se duplica cada 4 meses",
+          "x": 120,
+          "y": 50,
+          "width": 1680,
+          "height": 70,
+          "font_size": 36,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s9_line",
+          "type": "line",
+          "x": 760,
+          "y": 130,
+          "width": 400,
+          "height": 0,
+          "x1": 760,
+          "y1": 130,
+          "x2": 1160,
+          "y2": 130,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s9_img",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 170,
+          "width": 1600,
+          "height": 800,
+          "fill": "#1A1A1A",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s9_lbl",
+          "type": "text",
+          "content": "[INSERTAR IMAGEN]",
+          "x": 160,
+          "y": 530,
+          "width": 1600,
+          "height": 40,
+          "font_size": 20,
+          "color": "#555555",
+          "align": "center"
+        }
+      ],
+      "notes": "Doubling cada 4 meses. Se acelera."
+    },
+    {
+      "id": 10,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s10_title",
+          "type": "text",
+          "content": "No hay plateau. Se ACELERA.",
+          "x": 120,
+          "y": 50,
+          "width": 1680,
+          "height": 70,
+          "font_size": 40,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s10_line",
+          "type": "line",
+          "x": 760,
+          "y": 130,
+          "width": 400,
+          "height": 0,
+          "x1": 760,
+          "y1": 130,
+          "x2": 1160,
+          "y2": 130,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s10_img",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 170,
+          "width": 1600,
+          "height": 800,
+          "fill": "#1A1A1A",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s10_lbl",
+          "type": "text",
+          "content": "[INSERTAR IMAGEN]",
+          "x": 160,
+          "y": 530,
+          "width": 1600,
+          "height": 40,
+          "font_size": 20,
+          "color": "#555555",
+          "align": "center"
+        }
+      ],
+      "notes": "No plateau. Sigue acelerándose."
+    },
+    {
+      "id": 11,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s11_title",
+          "type": "text",
+          "content": "2027: un día. 2028: una semana. 2029: un mes.",
+          "x": 120,
+          "y": 50,
+          "width": 1680,
+          "height": 70,
+          "font_size": 34,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s11_line",
+          "type": "line",
+          "x": 760,
+          "y": 130,
+          "width": 400,
+          "height": 0,
+          "x1": 760,
+          "y1": 130,
+          "x2": 1160,
+          "y2": 130,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s11_img",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 170,
+          "width": 1600,
+          "height": 800,
+          "fill": "#1A1A1A",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s11_lbl",
+          "type": "text",
+          "content": "[INSERTAR IMAGEN]",
+          "x": 160,
+          "y": 530,
+          "width": 1600,
+          "height": 40,
+          "font_size": 20,
+          "color": "#555555",
+          "align": "center"
+        }
+      ],
+      "notes": "Extrapolación: 2027 = 1 día, 2028 = 1 semana, 2029 = 1 mes de trabajo autónomo."
+    },
+    {
+      "id": 12,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s12_t1",
+          "type": "text",
+          "content": "2022: 30 segundos",
+          "x": 300,
+          "y": 200,
+          "width": 800,
+          "height": 50,
+          "font_size": 28,
+          "color": "#666666"
+        },
+        {
+          "id": "s12_t2",
+          "type": "text",
+          "content": "2024: minutos",
+          "x": 300,
+          "y": 300,
+          "width": 800,
+          "height": 60,
+          "font_size": 36,
+          "color": "#999999"
+        },
+        {
+          "id": "s12_big",
+          "type": "text",
+          "content": "2026: 14 HORAS",
+          "x": 160,
+          "y": 420,
+          "width": 1200,
+          "height": 160,
+          "font_size": 96,
+          "color": "#f69f02",
+          "bold": true
+        },
+        {
+          "id": "s12_sub",
+          "type": "text",
+          "content": "Esto es con lo que yo opero HOY.",
+          "x": 300,
+          "y": 600,
+          "width": 600,
+          "height": 50,
+          "font_size": 24,
+          "color": "#BBBBBB"
+        },
+        {
+          "id": "s12_vline",
+          "type": "line",
+          "x": 250,
+          "y": 180,
+          "width": 1,
+          "height": 0,
+          "x1": 250,
+          "y1": 180,
+          "x2": 250,
+          "y2": 680,
+          "color": "#f69f02",
+          "line_width": 2
+        }
+      ],
+      "notes": "Progresión: 30 seg → min → 14 HORAS. Opus 4.6. Esto es lo que uso hoy."
+    },
+    {
+      "id": 13,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s13_ctx",
+          "type": "text",
+          "content": "Jensen Huang dijo en Lex Fridman:",
+          "x": 260,
+          "y": 300,
+          "width": 1400,
+          "height": 60,
+          "font_size": 28,
+          "color": "#BBBBBB",
+          "align": "center"
+        },
+        {
+          "id": "s13_quote",
+          "type": "text",
+          "content": "AGI ya llegó.",
+          "x": 160,
+          "y": 400,
+          "width": 1600,
+          "height": 160,
+          "font_size": 96,
+          "color": "#f69f02",
+          "bold": true,
+          "align": "center"
+        }
+      ],
+      "notes": "Jensen Huang, CEO NVIDIA. AGI ya llegó. No es futuro."
+    },
+    {
+      "id": 14,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s14_title",
+          "type": "text",
+          "content": "Esta semana se filtró Claude Mythos",
+          "x": 120,
+          "y": 50,
+          "width": 1680,
+          "height": 70,
+          "font_size": 36,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s14_line",
+          "type": "line",
+          "x": 760,
+          "y": 130,
+          "width": 400,
+          "height": 0,
+          "x1": 760,
+          "y1": 130,
+          "x2": 1160,
+          "y2": 130,
+          "color": "#8C27F1",
+          "line_width": 2
+        },
+        {
+          "id": "s14_img",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 170,
+          "width": 1600,
+          "height": 800,
+          "fill": "#1A1A1A",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#8C27F1",
+            "width": 2
+          }
+        },
+        {
+          "id": "s14_lbl",
+          "type": "text",
+          "content": "[INSERTAR IMAGEN]",
+          "x": 160,
+          "y": 530,
+          "width": 1600,
+          "height": 40,
+          "font_size": 20,
+          "color": "#555555",
+          "align": "center"
+        }
+      ],
+      "notes": "Claude Mythos filtrado. La siguiente generación de modelos."
+    },
+    {
+      "id": 15,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s15_main",
+          "type": "text",
+          "content": "Cada modelo nuevo es más apalancamiento\npara mi sistema.",
+          "x": 160,
+          "y": 310,
+          "width": 1600,
+          "height": 160,
+          "font_size": 44,
+          "color": "#f69f02",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.3
+        },
+        {
+          "id": "s15_sub",
+          "type": "text",
+          "content": "Sin que yo haga nada.",
+          "x": 460,
+          "y": 500,
+          "width": 1000,
+          "height": 50,
+          "font_size": 28,
+          "color": "#888888",
+          "align": "center"
+        }
+      ],
+      "notes": "Cada modelo nuevo amplifica el sistema sin esfuerzo adicional."
+    },
+    {
+      "id": 16,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s16_main",
+          "type": "text",
+          "content": "Ahora les voy a enseñar\nQUÉ hice con esto.",
+          "x": 160,
+          "y": 340,
+          "width": 1600,
+          "height": 180,
+          "font_size": 52,
+          "color": "#f69f02",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.25
+        }
+      ],
+      "notes": "Transición al bloque de negocio. Acción."
+    },
+    {
+      "id": 17,
+      "background": {
+        "type": "gradient",
+        "angle": 180,
+        "stops": [
+          {
+            "offset": 0,
+            "color": "#0D0D0D"
+          },
+          {
+            "offset": 1,
+            "color": "#141414"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "id": "s17_label",
+          "type": "text",
+          "content": "MI NEGOCIO",
+          "x": 160,
+          "y": 220,
+          "width": 400,
+          "height": 28,
+          "font_size": 16,
+          "color": "#f69f02",
+          "bold": true,
+          "letter_spacing": 5
+        },
+        {
+          "id": "s17_title",
+          "type": "text",
+          "content": "SaaS Factory\nCommunity",
+          "x": 160,
+          "y": 290,
+          "width": 1200,
+          "height": 240,
+          "font_size": 72,
+          "color": "#ffffff",
+          "bold": true,
+          "line_spacing": 1.15
+        },
+        {
+          "id": "s17_sub",
+          "type": "text",
+          "content": "700+ miembros. YouTube como ÚNICO canal.",
+          "x": 160,
+          "y": 560,
+          "width": 800,
+          "height": 40,
+          "font_size": 24,
+          "color": "#BBBBBB"
+        },
+        {
+          "id": "s17_line",
+          "type": "line",
+          "x": 160,
+          "y": 540,
+          "width": 300,
+          "height": 0,
+          "x1": 160,
+          "y1": 540,
+          "x2": 460,
+          "y2": 540,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s17_bokeh",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1400,
+          "y": 150,
+          "width": 250,
+          "height": 250,
+          "fill": "#f69f02",
+          "opacity": 0.04
+        }
+      ],
+      "notes": "Sección negocio. SaaS Factory Community. YouTube como único canal de adquisición."
+    },
+    {
+      "id": 18,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s18_title",
+          "type": "text",
+          "content": "El Pipeline Completo: Video → Venta",
+          "x": 120,
+          "y": 50,
+          "width": 1680,
+          "height": 70,
+          "font_size": 36,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s18_line",
+          "type": "line",
+          "x": 660,
+          "y": 130,
+          "width": 600,
+          "height": 0,
+          "x1": 660,
+          "y1": 130,
+          "x2": 1260,
+          "y2": 130,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s18_img",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 170,
+          "width": 1600,
+          "height": 800,
+          "fill": "#1A1A1A",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s18_lbl",
+          "type": "text",
+          "content": "[INSERTAR IMAGEN: pipeline completo]",
+          "x": 160,
+          "y": 530,
+          "width": 1600,
+          "height": 40,
+          "font_size": 18,
+          "color": "#555555",
+          "align": "center"
+        }
+      ],
+      "notes": "Pipeline completo: Video → Landing → Checkout → Miembros → Agentes."
+    },
+    {
+      "id": 19,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s19_title",
+          "type": "text",
+          "content": "Así funciona mi negocio",
+          "x": 160,
+          "y": 50,
+          "width": 1600,
+          "height": 70,
+          "font_size": 42,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s19_line",
+          "type": "line",
+          "x": 660,
+          "y": 130,
+          "width": 600,
+          "height": 0,
+          "x1": 660,
+          "y1": 130,
+          "x2": 1260,
+          "y2": 130,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s19_c1",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 60,
+          "y": 220,
+          "width": 300,
+          "height": 120,
+          "fill": "#111111",
+          "corner_radius": 14,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s19_c1t",
+          "type": "text",
+          "content": "YOUTUBE",
+          "x": 60,
+          "y": 260,
+          "width": 300,
+          "height": 40,
+          "font_size": 22,
+          "color": "#f69f02",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s19_a1",
+          "type": "line",
+          "x": 360,
+          "y": 280,
+          "width": 60,
+          "height": 0,
+          "x1": 360,
+          "y1": 280,
+          "x2": 420,
+          "y2": 280,
+          "color": "#f69f02",
+          "line_width": 2,
+          "end_arrow": true
+        },
+        {
+          "id": "s19_c2",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 420,
+          "y": 220,
+          "width": 280,
+          "height": 120,
+          "fill": "#111111",
+          "corner_radius": 14,
+          "stroke": {
+            "color": "#666666",
+            "width": 1
+          }
+        },
+        {
+          "id": "s19_c2t",
+          "type": "text",
+          "content": "LANDING",
+          "x": 420,
+          "y": 260,
+          "width": 280,
+          "height": 40,
+          "font_size": 20,
+          "color": "#BBBBBB",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s19_a2",
+          "type": "line",
+          "x": 700,
+          "y": 280,
+          "width": 60,
+          "height": 0,
+          "x1": 700,
+          "y1": 280,
+          "x2": 760,
+          "y2": 280,
+          "color": "#f69f02",
+          "line_width": 2,
+          "end_arrow": true
+        },
+        {
+          "id": "s19_c3",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 760,
+          "y": 220,
+          "width": 280,
+          "height": 120,
+          "fill": "#111111",
+          "corner_radius": 14,
+          "stroke": {
+            "color": "#666666",
+            "width": 1
+          }
+        },
+        {
+          "id": "s19_c3t",
+          "type": "text",
+          "content": "CHECKOUT",
+          "x": 760,
+          "y": 260,
+          "width": 280,
+          "height": 40,
+          "font_size": 20,
+          "color": "#BBBBBB",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s19_a3",
+          "type": "line",
+          "x": 1040,
+          "y": 280,
+          "width": 60,
+          "height": 0,
+          "x1": 1040,
+          "y1": 280,
+          "x2": 1100,
+          "y2": 280,
+          "color": "#f69f02",
+          "line_width": 2,
+          "end_arrow": true
+        },
+        {
+          "id": "s19_c4",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 1100,
+          "y": 220,
+          "width": 300,
+          "height": 120,
+          "fill": "#111111",
+          "corner_radius": 14,
+          "stroke": {
+            "color": "#00CC66",
+            "width": 2
+          }
+        },
+        {
+          "id": "s19_c4t",
+          "type": "text",
+          "content": "MIEMBROS",
+          "x": 1100,
+          "y": 260,
+          "width": 300,
+          "height": 40,
+          "font_size": 22,
+          "color": "#00CC66",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s19_a4",
+          "type": "line",
+          "x": 1400,
+          "y": 280,
+          "width": 60,
+          "height": 0,
+          "x1": 1400,
+          "y1": 280,
+          "x2": 1460,
+          "y2": 280,
+          "color": "#f69f02",
+          "line_width": 2,
+          "end_arrow": true
+        },
+        {
+          "id": "s19_c5",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 1460,
+          "y": 220,
+          "width": 340,
+          "height": 120,
+          "fill": "#111111",
+          "corner_radius": 14,
+          "stroke": {
+            "color": "#8C27F1",
+            "width": 2
+          }
+        },
+        {
+          "id": "s19_c5t",
+          "type": "text",
+          "content": "AGENTES IA",
+          "x": 1460,
+          "y": 260,
+          "width": 340,
+          "height": 40,
+          "font_size": 22,
+          "color": "#8C27F1",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s19_footer",
+          "type": "text",
+          "content": "Y todos esos datos alimentan la máquina.",
+          "x": 160,
+          "y": 420,
+          "width": 1600,
+          "height": 40,
+          "font_size": 20,
+          "color": "#888888",
+          "align": "center"
+        }
+      ],
+      "notes": "Pipeline: YouTube → Landing → Checkout → Miembros → Agentes IA. Los datos alimentan todo."
+    },
+    {
+      "id": 20,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s20_main",
+          "type": "text",
+          "content": "Relativamente simple.",
+          "x": 160,
+          "y": 340,
+          "width": 1600,
+          "height": 80,
+          "font_size": 48,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s20_sub",
+          "type": "text",
+          "content": "Lo que lo hace extraordinario es lo que pasa POR DETRÁS.",
+          "x": 200,
+          "y": 460,
+          "width": 1520,
+          "height": 60,
+          "font_size": 30,
+          "color": "#f69f02",
+          "align": "center"
+        }
+      ],
+      "notes": "Simple por fuera. La magia está en lo que no se ve."
+    },
+    {
+      "id": 21,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s21_t1",
+          "type": "text",
+          "content": "Todos esos datos van a un sistema.",
+          "x": 160,
+          "y": 320,
+          "width": 1600,
+          "height": 80,
+          "font_size": 44,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s21_t2",
+          "type": "text",
+          "content": "Un sistema donde la IA tiene acceso a TODAS las variables.",
+          "x": 200,
+          "y": 430,
+          "width": 1520,
+          "height": 60,
+          "font_size": 30,
+          "color": "#BBBBBB",
+          "align": "center"
+        }
+      ],
+      "notes": "Todos los datos → un sistema con acceso total a las variables del negocio."
+    },
+    {
+      "id": 22,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s22_main",
+          "type": "text",
+          "content": "Eso es mi\nBusiness OS.",
+          "x": 160,
+          "y": 300,
+          "width": 1600,
+          "height": 260,
+          "font_size": 80,
+          "color": "#f69f02",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.2
+        }
+      ],
+      "notes": "Reveal: Business OS. Pausa dramática."
+    },
+    {
+      "id": 23,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s23_title",
+          "type": "text",
+          "content": "Mi Business OS",
+          "x": 160,
+          "y": 40,
+          "width": 1600,
+          "height": 70,
+          "font_size": 42,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s23_line",
+          "type": "line",
+          "x": 760,
+          "y": 120,
+          "width": 400,
+          "height": 0,
+          "x1": 760,
+          "y1": 120,
+          "x2": 1160,
+          "y2": 120,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s23_c1_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 170,
+          "width": 1600,
+          "height": 130,
+          "fill": "#111111",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 1
+          }
+        },
+        {
+          "id": "s23_c1_num",
+          "type": "text",
+          "content": "01",
+          "x": 200,
+          "y": 200,
+          "width": 60,
+          "height": 40,
+          "font_size": 28,
+          "color": "#f69f02",
+          "bold": true
+        },
+        {
+          "id": "s23_c1_title",
+          "type": "text",
+          "content": "CLAUDE.md",
+          "x": 280,
+          "y": 195,
+          "width": 400,
+          "height": 35,
+          "font_size": 24,
+          "color": "#ffffff",
+          "bold": true
+        },
+        {
+          "id": "s23_c1_desc",
+          "type": "text",
+          "content": "1,300+ líneas de contexto, reglas, y sistema de decisiones",
+          "x": 280,
+          "y": 235,
+          "width": 1400,
+          "height": 30,
+          "font_size": 16,
+          "color": "#888888"
+        },
+        {
+          "id": "s23_c2_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 320,
+          "width": 1600,
+          "height": 130,
+          "fill": "#111111",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#8C27F1",
+            "width": 1
+          }
+        },
+        {
+          "id": "s23_c2_num",
+          "type": "text",
+          "content": "02",
+          "x": 200,
+          "y": 350,
+          "width": 60,
+          "height": 40,
+          "font_size": 28,
+          "color": "#8C27F1",
+          "bold": true
+        },
+        {
+          "id": "s23_c2_title",
+          "type": "text",
+          "content": "18 Skills",
+          "x": 280,
+          "y": 345,
+          "width": 400,
+          "height": 35,
+          "font_size": 24,
+          "color": "#ffffff",
+          "bold": true
+        },
+        {
+          "id": "s23_c2_desc",
+          "type": "text",
+          "content": "Dominios especializados: video, slides, research, deploy, analytics...",
+          "x": 280,
+          "y": 385,
+          "width": 1400,
+          "height": 30,
+          "font_size": 16,
+          "color": "#888888"
+        },
+        {
+          "id": "s23_c3_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 470,
+          "width": 1600,
+          "height": 130,
+          "fill": "#111111",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 1
+          }
+        },
+        {
+          "id": "s23_c3_num",
+          "type": "text",
+          "content": "03",
+          "x": 200,
+          "y": 500,
+          "width": 60,
+          "height": 40,
+          "font_size": 28,
+          "color": "#f69f02",
+          "bold": true
+        },
+        {
+          "id": "s23_c3_title",
+          "type": "text",
+          "content": "Memoria Persistente",
+          "x": 280,
+          "y": 495,
+          "width": 500,
+          "height": 35,
+          "font_size": 24,
+          "color": "#ffffff",
+          "bold": true
+        },
+        {
+          "id": "s23_c3_desc",
+          "type": "text",
+          "content": "Correcciones permanentes. Nunca repite el mismo error.",
+          "x": 280,
+          "y": 535,
+          "width": 1400,
+          "height": 30,
+          "font_size": 16,
+          "color": "#888888"
+        },
+        {
+          "id": "s23_c4_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 620,
+          "width": 1600,
+          "height": 130,
+          "fill": "#111111",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#8C27F1",
+            "width": 1
+          }
+        },
+        {
+          "id": "s23_c4_num",
+          "type": "text",
+          "content": "04",
+          "x": 200,
+          "y": 650,
+          "width": 60,
+          "height": 40,
+          "font_size": 28,
+          "color": "#8C27F1",
+          "bold": true
+        },
+        {
+          "id": "s23_c4_title",
+          "type": "text",
+          "content": "20 Cron Jobs",
+          "x": 280,
+          "y": 645,
+          "width": 400,
+          "height": 35,
+          "font_size": 24,
+          "color": "#ffffff",
+          "bold": true
+        },
+        {
+          "id": "s23_c4_desc",
+          "type": "text",
+          "content": "$5/noche. Scraping, análisis, reportes, auto-mejora.",
+          "x": 280,
+          "y": 685,
+          "width": 1400,
+          "height": 30,
+          "font_size": 16,
+          "color": "#888888"
+        },
+        {
+          "id": "s23_c5_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 770,
+          "width": 1600,
+          "height": 130,
+          "fill": "#111111",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s23_c5_num",
+          "type": "text",
+          "content": "05",
+          "x": 200,
+          "y": 800,
+          "width": 60,
+          "height": 40,
+          "font_size": 28,
+          "color": "#f69f02",
+          "bold": true
+        },
+        {
+          "id": "s23_c5_title",
+          "type": "text",
+          "content": "Machine Learning",
+          "x": 280,
+          "y": 795,
+          "width": 400,
+          "height": 35,
+          "font_size": 24,
+          "color": "#ffffff",
+          "bold": true
+        },
+        {
+          "id": "s23_c5_desc",
+          "type": "text",
+          "content": "Predice churn, recomienda contenido, optimiza agentes.",
+          "x": 280,
+          "y": 835,
+          "width": 1400,
+          "height": 30,
+          "font_size": 16,
+          "color": "#888888"
+        }
+      ],
+      "notes": "5 componentes del Business OS: CLAUDE.md, Skills, Memoria, Cron Jobs, ML."
+    },
+    {
+      "id": 24,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s24_label",
+          "type": "text",
+          "content": "EL CEREBRO",
+          "x": 120,
+          "y": 60,
+          "width": 300,
+          "height": 24,
+          "font_size": 14,
+          "color": "#8C27F1",
+          "bold": true,
+          "letter_spacing": 4
+        },
+        {
+          "id": "s24_title",
+          "type": "text",
+          "content": "CLAUDE.md\n1,300+ líneas",
+          "x": 120,
+          "y": 100,
+          "width": 900,
+          "height": 120,
+          "font_size": 48,
+          "color": "#ffffff",
+          "bold": true,
+          "line_spacing": 1.15
+        },
+        {
+          "id": "s24_line",
+          "type": "line",
+          "x": 120,
+          "y": 240,
+          "width": 200,
+          "height": 0,
+          "x1": 120,
+          "y1": 240,
+          "x2": 320,
+          "y2": 240,
+          "color": "#8C27F1",
+          "line_width": 2
+        },
+        {
+          "id": "s24_body",
+          "type": "text",
+          "content": "Define quién soy, qué hago, cómo trabajo.\nReglas de negocio, arquitectura, convenciones.\nEl agente sabe TODO de mi empresa.",
+          "x": 120,
+          "y": 280,
+          "width": 900,
+          "height": 200,
+          "font_size": 22,
+          "color": "#BBBBBB",
+          "line_spacing": 1.6
+        },
+        {
+          "id": "s24_term_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 1080,
+          "y": 100,
+          "width": 720,
+          "height": 600,
+          "fill": "#111111",
+          "corner_radius": 12,
+          "stroke": {
+            "color": "#333333",
+            "width": 1
+          }
+        },
+        {
+          "id": "s24_term_bar",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 1080,
+          "y": 100,
+          "width": 720,
+          "height": 32,
+          "fill": "#1a1a1a",
+          "corner_radius": 0
+        },
+        {
+          "id": "s24_dot1",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1096,
+          "y": 110,
+          "width": 12,
+          "height": 12,
+          "fill": "#FF3333"
+        },
+        {
+          "id": "s24_dot2",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1116,
+          "y": 110,
+          "width": 12,
+          "height": 12,
+          "fill": "#FFB800"
+        },
+        {
+          "id": "s24_dot3",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1136,
+          "y": 110,
+          "width": 12,
+          "height": 12,
+          "fill": "#00CC66"
+        },
+        {
+          "id": "s24_code1",
+          "type": "text",
+          "content": "# CLAUDE.md",
+          "x": 1100,
+          "y": 150,
+          "width": 680,
+          "height": 28,
+          "font_size": 15,
+          "color": "#f69f02",
+          "font_family": "Menlo, monospace",
+          "bold": true
+        },
+        {
+          "id": "s24_code2",
+          "type": "text",
+          "content": "## Quién soy",
+          "x": 1100,
+          "y": 180,
+          "width": 680,
+          "height": 28,
+          "font_size": 15,
+          "color": "#8C27F1",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s24_code3",
+          "type": "text",
+          "content": "Daniel Carreon, founder...",
+          "x": 1100,
+          "y": 210,
+          "width": 680,
+          "height": 28,
+          "font_size": 15,
+          "color": "#BBBBBB",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s24_code4",
+          "type": "text",
+          "content": "## Stack",
+          "x": 1100,
+          "y": 260,
+          "width": 680,
+          "height": 28,
+          "font_size": 15,
+          "color": "#8C27F1",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s24_code5",
+          "type": "text",
+          "content": "Next.js 16, Supabase, Stripe",
+          "x": 1100,
+          "y": 290,
+          "width": 680,
+          "height": 28,
+          "font_size": 15,
+          "color": "#00CC66",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s24_code6",
+          "type": "text",
+          "content": "## Reglas de Negocio",
+          "x": 1100,
+          "y": 340,
+          "width": 680,
+          "height": 28,
+          "font_size": 15,
+          "color": "#8C27F1",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s24_code7",
+          "type": "text",
+          "content": "- nunca_borrar_datos",
+          "x": 1100,
+          "y": 370,
+          "width": 680,
+          "height": 28,
+          "font_size": 15,
+          "color": "#f69f02",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s24_code8",
+          "type": "text",
+          "content": "- siempre_verificar_e2e",
+          "x": 1100,
+          "y": 400,
+          "width": 680,
+          "height": 28,
+          "font_size": 15,
+          "color": "#f69f02",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s24_code9",
+          "type": "text",
+          "content": "- commit_con_contexto",
+          "x": 1100,
+          "y": 430,
+          "width": 680,
+          "height": 28,
+          "font_size": 15,
+          "color": "#f69f02",
+          "font_family": "Menlo, monospace"
+        }
+      ],
+      "notes": "CLAUDE.md = el cerebro. 1,300 líneas. Define identidad, stack, reglas de negocio. El agente sabe todo."
+    },
+    {
+      "id": 25,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s25_title",
+          "type": "text",
+          "content": "La Máquina Nocturna",
+          "x": 160,
+          "y": 40,
+          "width": 1600,
+          "height": 60,
+          "font_size": 42,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s25_line",
+          "type": "line",
+          "x": 660,
+          "y": 110,
+          "width": 600,
+          "height": 0,
+          "x1": 660,
+          "y1": 110,
+          "x2": 1260,
+          "y2": 110,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s25_tl",
+          "type": "line",
+          "x": 400,
+          "y": 170,
+          "width": 1,
+          "height": 0,
+          "x1": 400,
+          "y1": 170,
+          "x2": 400,
+          "y2": 890,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s25_n1",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 376,
+          "y": 170,
+          "width": 48,
+          "height": 48,
+          "fill": "#111111",
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s25_n1t",
+          "type": "text",
+          "content": "11:55 PM — Scraping empieza",
+          "x": 450,
+          "y": 178,
+          "width": 800,
+          "height": 30,
+          "font_size": 20,
+          "color": "#DDDDDD"
+        },
+        {
+          "id": "s25_n2",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 376,
+          "y": 290,
+          "width": 48,
+          "height": 48,
+          "fill": "#111111",
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s25_n2t",
+          "type": "text",
+          "content": "12:15 AM — Análisis de competencia",
+          "x": 450,
+          "y": 298,
+          "width": 800,
+          "height": 30,
+          "font_size": 20,
+          "color": "#DDDDDD"
+        },
+        {
+          "id": "s25_n3",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 376,
+          "y": 410,
+          "width": 48,
+          "height": 48,
+          "fill": "#111111",
+          "stroke": {
+            "color": "#8C27F1",
+            "width": 2
+          }
+        },
+        {
+          "id": "s25_n3t",
+          "type": "text",
+          "content": "1-3 AM — ML predictions: churn, contenido, métricas",
+          "x": 450,
+          "y": 418,
+          "width": 1000,
+          "height": 30,
+          "font_size": 20,
+          "color": "#DDDDDD"
+        },
+        {
+          "id": "s25_n4",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 376,
+          "y": 530,
+          "width": 48,
+          "height": 48,
+          "fill": "#111111",
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s25_n4t",
+          "type": "text",
+          "content": "3:37 AM — Auto-research: agentes mejoran prompts",
+          "x": 450,
+          "y": 538,
+          "width": 1000,
+          "height": 30,
+          "font_size": 20,
+          "color": "#DDDDDD"
+        },
+        {
+          "id": "s25_n5",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 376,
+          "y": 650,
+          "width": 48,
+          "height": 48,
+          "fill": "#111111",
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s25_n5t",
+          "type": "text",
+          "content": "4-6 AM — Reportes generados, emails listos",
+          "x": 450,
+          "y": 658,
+          "width": 1000,
+          "height": 30,
+          "font_size": 20,
+          "color": "#DDDDDD"
+        },
+        {
+          "id": "s25_n6",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 376,
+          "y": 770,
+          "width": 48,
+          "height": 48,
+          "fill": "#0a3d1a",
+          "stroke": {
+            "color": "#00CC66",
+            "width": 3
+          }
+        },
+        {
+          "id": "s25_n6t",
+          "type": "text",
+          "content": "6:00 AM — Dashboard actualizado. Listo para mí.",
+          "x": 450,
+          "y": 778,
+          "width": 1000,
+          "height": 30,
+          "font_size": 20,
+          "color": "#00CC66",
+          "bold": true
+        },
+        {
+          "id": "s25_footer",
+          "type": "text",
+          "content": "$5-7 USD / noche",
+          "x": 160,
+          "y": 890,
+          "width": 400,
+          "height": 30,
+          "font_size": 20,
+          "color": "#f69f02",
+          "bold": true
+        }
+      ],
+      "notes": "La Máquina Nocturna. Todo sucede mientras duermo. $5-7/noche."
+    },
+    {
+      "id": 26,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s26_main",
+          "type": "text",
+          "content": "Me despierto. Leo 60 segundos.",
+          "x": 160,
+          "y": 340,
+          "width": 1600,
+          "height": 80,
+          "font_size": 48,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s26_sub",
+          "type": "text",
+          "content": "Ya sé todo lo que pasó en mi negocio.",
+          "x": 260,
+          "y": 460,
+          "width": 1400,
+          "height": 60,
+          "font_size": 36,
+          "color": "#f69f02",
+          "align": "center"
+        }
+      ],
+      "notes": "60 segundos al despertar. Todo el contexto del negocio al instante."
+    },
+    {
+      "id": 27,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s27_title",
+          "type": "text",
+          "content": "Machine Learning aplicado al negocio",
+          "x": 160,
+          "y": 50,
+          "width": 1600,
+          "height": 70,
+          "font_size": 40,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s27_line",
+          "type": "line",
+          "x": 560,
+          "y": 130,
+          "width": 800,
+          "height": 0,
+          "x1": 560,
+          "y1": 130,
+          "x2": 1360,
+          "y2": 130,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s27_c1_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 80,
+          "y": 200,
+          "width": 560,
+          "height": 500,
+          "fill": "#111111",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#00CC66",
+            "width": 2
+          }
+        },
+        {
+          "id": "s27_c1_icon",
+          "type": "text",
+          "content": "PREDICE",
+          "x": 120,
+          "y": 240,
+          "width": 480,
+          "height": 40,
+          "font_size": 16,
+          "color": "#00CC66",
+          "bold": true,
+          "letter_spacing": 4
+        },
+        {
+          "id": "s27_c1_title",
+          "type": "text",
+          "content": "Quién va a cancelar",
+          "x": 120,
+          "y": 300,
+          "width": 480,
+          "height": 50,
+          "font_size": 32,
+          "color": "#ffffff",
+          "bold": true
+        },
+        {
+          "id": "s27_c1_desc",
+          "type": "text",
+          "content": "2 semanas antes de que\nsuceda. Basado en patrones\nde engagement.",
+          "x": 120,
+          "y": 370,
+          "width": 480,
+          "height": 120,
+          "font_size": 18,
+          "color": "#BBBBBB",
+          "line_spacing": 1.5
+        },
+        {
+          "id": "s27_c2_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 680,
+          "y": 200,
+          "width": 560,
+          "height": 500,
+          "fill": "#111111",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s27_c2_icon",
+          "type": "text",
+          "content": "RECOMIENDA",
+          "x": 720,
+          "y": 240,
+          "width": 480,
+          "height": 40,
+          "font_size": 16,
+          "color": "#f69f02",
+          "bold": true,
+          "letter_spacing": 4
+        },
+        {
+          "id": "s27_c2_title",
+          "type": "text",
+          "content": "Qué video grabar",
+          "x": 720,
+          "y": 300,
+          "width": 480,
+          "height": 50,
+          "font_size": 32,
+          "color": "#ffffff",
+          "bold": true
+        },
+        {
+          "id": "s27_c2_desc",
+          "type": "text",
+          "content": "Analiza tendencias, gaps de\ncontenido, y lo que convierte.\nNo views. Revenue.",
+          "x": 720,
+          "y": 370,
+          "width": 480,
+          "height": 120,
+          "font_size": 18,
+          "color": "#BBBBBB",
+          "line_spacing": 1.5
+        },
+        {
+          "id": "s27_c3_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 1280,
+          "y": 200,
+          "width": 560,
+          "height": 500,
+          "fill": "#111111",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#8C27F1",
+            "width": 2
+          }
+        },
+        {
+          "id": "s27_c3_icon",
+          "type": "text",
+          "content": "AUTO-MEJORA",
+          "x": 1320,
+          "y": 240,
+          "width": 480,
+          "height": 40,
+          "font_size": 16,
+          "color": "#8C27F1",
+          "bold": true,
+          "letter_spacing": 4
+        },
+        {
+          "id": "s27_c3_title",
+          "type": "text",
+          "content": "Agentes se mejoran SOLOS",
+          "x": 1320,
+          "y": 300,
+          "width": 480,
+          "height": 50,
+          "font_size": 28,
+          "color": "#ffffff",
+          "bold": true
+        },
+        {
+          "id": "s27_c3_desc",
+          "type": "text",
+          "content": "Cada noche evalúan su\npropio rendimiento y\noptimiza sus prompts.",
+          "x": 1320,
+          "y": 370,
+          "width": 480,
+          "height": 120,
+          "font_size": 18,
+          "color": "#BBBBBB",
+          "line_spacing": 1.5
+        }
+      ],
+      "notes": "3 aplicaciones de ML: predecir churn, recomendar contenido, auto-mejorar agentes."
+    },
+    {
+      "id": 28,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s28_main",
+          "type": "text",
+          "content": "El dato más importante\nque descubrió mi sistema.",
+          "x": 160,
+          "y": 340,
+          "width": 1600,
+          "height": 180,
+          "font_size": 48,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.3
+        }
+      ],
+      "notes": "Crear tensión antes del dato de churn."
+    },
+    {
+      "id": 29,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s29_title",
+          "type": "text",
+          "content": "El churn es SILENCIOSO",
+          "x": 160,
+          "y": 50,
+          "width": 1600,
+          "height": 70,
+          "font_size": 42,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s29_line",
+          "type": "line",
+          "x": 660,
+          "y": 130,
+          "width": 600,
+          "height": 0,
+          "x1": 660,
+          "y1": 130,
+          "x2": 1260,
+          "y2": 130,
+          "color": "#FF3333",
+          "line_width": 2
+        },
+        {
+          "id": "s29_left_num",
+          "type": "text",
+          "content": "2.9%",
+          "x": 120,
+          "y": 250,
+          "width": 700,
+          "height": 180,
+          "font_size": 120,
+          "color": "#4488FF",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s29_left_lbl",
+          "type": "text",
+          "content": "Los que CANCELAN",
+          "x": 120,
+          "y": 440,
+          "width": 700,
+          "height": 40,
+          "font_size": 22,
+          "color": "#4488FF",
+          "align": "center"
+        },
+        {
+          "id": "s29_vs",
+          "type": "text",
+          "content": "vs",
+          "x": 860,
+          "y": 310,
+          "width": 200,
+          "height": 60,
+          "font_size": 36,
+          "color": "#666666",
+          "align": "center"
+        },
+        {
+          "id": "s29_right_num",
+          "type": "text",
+          "content": "10.7%",
+          "x": 1100,
+          "y": 250,
+          "width": 700,
+          "height": 180,
+          "font_size": 120,
+          "color": "#f69f02",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s29_right_lbl",
+          "type": "text",
+          "content": "Los que se QUEDAN",
+          "x": 1100,
+          "y": 440,
+          "width": 700,
+          "height": 40,
+          "font_size": 22,
+          "color": "#f69f02",
+          "align": "center"
+        },
+        {
+          "id": "s29_footer",
+          "type": "text",
+          "content": "Los que se van no se quejan. Desaparecen.",
+          "x": 260,
+          "y": 550,
+          "width": 1400,
+          "height": 40,
+          "font_size": 22,
+          "color": "#FF3333",
+          "italic": true,
+          "align": "center"
+        }
+      ],
+      "notes": "Churn silencioso. 2.9% cancelan vs 10.7% se quedan activos. Los que se van desaparecen sin aviso."
+    },
+    {
+      "id": 30,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s30_main",
+          "type": "text",
+          "content": "Mi sistema los detecta\n2 semanas antes.",
+          "x": 160,
+          "y": 300,
+          "width": 1600,
+          "height": 160,
+          "font_size": 48,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.3
+        },
+        {
+          "id": "s30_sub",
+          "type": "text",
+          "content": "Y les envía un mensaje personalizado automáticamente.",
+          "x": 200,
+          "y": 500,
+          "width": 1520,
+          "height": 50,
+          "font_size": 28,
+          "color": "#f69f02",
+          "align": "center"
+        }
+      ],
+      "notes": "Detección temprana + acción automática. Sin intervención humana."
+    },
+    {
+      "id": 31,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s31_title",
+          "type": "text",
+          "content": "Views no son ventas.\nMi modelo descubrió qué SÍ convierte.",
+          "x": 120,
+          "y": 40,
+          "width": 1680,
+          "height": 90,
+          "font_size": 32,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.3
+        },
+        {
+          "id": "s31_line",
+          "type": "line",
+          "x": 660,
+          "y": 140,
+          "width": 600,
+          "height": 0,
+          "x1": 660,
+          "y1": 140,
+          "x2": 1260,
+          "y2": 140,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s31_img",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 175,
+          "width": 1600,
+          "height": 790,
+          "fill": "#1A1A1A",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s31_lbl",
+          "type": "text",
+          "content": "[INSERTAR IMAGEN]",
+          "x": 160,
+          "y": 530,
+          "width": 1600,
+          "height": 40,
+          "font_size": 20,
+          "color": "#555555",
+          "align": "center"
+        }
+      ],
+      "notes": "Views ≠ ventas. El modelo ML descubrió qué tipo de contenido realmente convierte."
+    },
+    {
+      "id": 32,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s32_label",
+          "type": "text",
+          "content": "EL FLYWHEEL",
+          "x": 120,
+          "y": 60,
+          "width": 400,
+          "height": 24,
+          "font_size": 14,
+          "color": "#f69f02",
+          "bold": true,
+          "letter_spacing": 4
+        },
+        {
+          "id": "s32_title",
+          "type": "text",
+          "content": "Todo se conecta,\ntodo se compone",
+          "x": 120,
+          "y": 100,
+          "width": 900,
+          "height": 120,
+          "font_size": 44,
+          "color": "#ffffff",
+          "bold": true,
+          "line_spacing": 1.2
+        },
+        {
+          "id": "s32_line",
+          "type": "line",
+          "x": 120,
+          "y": 240,
+          "width": 200,
+          "height": 0,
+          "x1": 120,
+          "y1": 240,
+          "x2": 320,
+          "y2": 240,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s32_body",
+          "type": "text",
+          "content": "YouTube → Pagos → Miembros\n→ Agentes → ML → Mejores Videos\n\nInterés compuesto de datos.",
+          "x": 120,
+          "y": 280,
+          "width": 900,
+          "height": 250,
+          "font_size": 24,
+          "color": "#BBBBBB",
+          "line_spacing": 1.6
+        },
+        {
+          "id": "s32_callout",
+          "type": "text",
+          "content": "Cada vuelta del flywheel alimenta la siguiente.",
+          "x": 120,
+          "y": 540,
+          "width": 900,
+          "height": 40,
+          "font_size": 20,
+          "color": "#f69f02",
+          "italic": true
+        },
+        {
+          "id": "s32_img",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 1080,
+          "y": 100,
+          "width": 720,
+          "height": 700,
+          "fill": "#1A1A1A",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s32_img_lbl",
+          "type": "text",
+          "content": "[INSERTAR IMAGEN:\nflywheel]",
+          "x": 1080,
+          "y": 400,
+          "width": 720,
+          "height": 60,
+          "font_size": 18,
+          "color": "#555555",
+          "align": "center",
+          "line_spacing": 1.4
+        }
+      ],
+      "notes": "Flywheel: YouTube → Pagos → Miembros → Agentes → ML → Mejores Videos. Compound interest."
+    },
+    {
+      "id": 33,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s33_main",
+          "type": "text",
+          "content": "Cada modelo nuevo hace que\nTODO esto sea más poderoso.\nSin que yo haga nada.",
+          "x": 160,
+          "y": 280,
+          "width": 1600,
+          "height": 300,
+          "font_size": 42,
+          "color": "#f69f02",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.35
+        }
+      ],
+      "notes": "Cada nuevo modelo amplifica todo el sistema. Zero effort compound."
+    },
+    {
+      "id": 34,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s34_t1",
+          "type": "text",
+          "content": "Todo lo que les mostré funciona\ncon el modelo de HOY.",
+          "x": 160,
+          "y": 300,
+          "width": 1600,
+          "height": 150,
+          "font_size": 44,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.3
+        },
+        {
+          "id": "s34_t2",
+          "type": "text",
+          "content": "El más débil que jamás volveremos a usar.",
+          "x": 260,
+          "y": 490,
+          "width": 1400,
+          "height": 50,
+          "font_size": 28,
+          "color": "#888888",
+          "align": "center"
+        }
+      ],
+      "notes": "El modelo de hoy = el más débil del futuro. Todo mejora desde aquí."
+    },
+    {
+      "id": 35,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s35_title",
+          "type": "text",
+          "content": "La ventana se cierra. 18-24 meses de ventaja.",
+          "x": 120,
+          "y": 50,
+          "width": 1680,
+          "height": 70,
+          "font_size": 34,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s35_line",
+          "type": "line",
+          "x": 760,
+          "y": 130,
+          "width": 400,
+          "height": 0,
+          "x1": 760,
+          "y1": 130,
+          "x2": 1160,
+          "y2": 130,
+          "color": "#FF3333",
+          "line_width": 2
+        },
+        {
+          "id": "s35_img",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 170,
+          "width": 1600,
+          "height": 800,
+          "fill": "#1A1A1A",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#FF3333",
+            "width": 2
+          }
+        },
+        {
+          "id": "s35_lbl",
+          "type": "text",
+          "content": "[INSERTAR IMAGEN]",
+          "x": 160,
+          "y": 530,
+          "width": 1600,
+          "height": 40,
+          "font_size": 20,
+          "color": "#555555",
+          "align": "center"
+        }
+      ],
+      "notes": "Urgencia. 18-24 meses de ventaja para quienes actúen ahora."
+    },
+    {
+      "id": 36,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s36_title",
+          "type": "text",
+          "content": "No son secuenciales. Son paralelos.\nEs una reacción en cadena.",
+          "x": 120,
+          "y": 40,
+          "width": 1680,
+          "height": 90,
+          "font_size": 32,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.3
+        },
+        {
+          "id": "s36_line",
+          "type": "line",
+          "x": 660,
+          "y": 140,
+          "width": 600,
+          "height": 0,
+          "x1": 660,
+          "y1": 140,
+          "x2": 1260,
+          "y2": 140,
+          "color": "#f69f02",
+          "line_width": 2
+        },
+        {
+          "id": "s36_img",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 160,
+          "y": 175,
+          "width": 1600,
+          "height": 790,
+          "fill": "#1A1A1A",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s36_lbl",
+          "type": "text",
+          "content": "[INSERTAR IMAGEN]",
+          "x": 160,
+          "y": 530,
+          "width": 1600,
+          "height": 40,
+          "font_size": 20,
+          "color": "#555555",
+          "align": "center"
+        }
+      ],
+      "notes": "Paralelos, no secuenciales. Reacción en cadena de mejora."
+    },
+    {
+      "id": 37,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s37_label",
+          "type": "text",
+          "content": "ALEX HORMOZI",
+          "x": 160,
+          "y": 280,
+          "width": 400,
+          "height": 24,
+          "font_size": 14,
+          "color": "#8C27F1",
+          "bold": true,
+          "letter_spacing": 4
+        },
+        {
+          "id": "s37_main",
+          "type": "text",
+          "content": "Trabajo = Volumen\n× Apalancamiento",
+          "x": 160,
+          "y": 340,
+          "width": 1600,
+          "height": 240,
+          "font_size": 64,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.2
+        }
+      ],
+      "notes": "Alex Hormozi: Trabajo = Volumen × Apalancamiento. La IA es apalancamiento infinito."
+    },
+    {
+      "id": 38,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s38_main",
+          "type": "text",
+          "content": "No trabajo más horas.",
+          "x": 160,
+          "y": 340,
+          "width": 1600,
+          "height": 80,
+          "font_size": 48,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s38_sub",
+          "type": "text",
+          "content": "Las MISMAS horas con 1,000x más apalancamiento.",
+          "x": 200,
+          "y": 460,
+          "width": 1520,
+          "height": 60,
+          "font_size": 32,
+          "color": "#f69f02",
+          "bold": true,
+          "align": "center"
+        }
+      ],
+      "notes": "No más horas. Mismo tiempo, 1000x más apalancamiento."
+    },
+    {
+      "id": 39,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s39_main",
+          "type": "text",
+          "content": "La pregunta es\nCUÁNDO empiezas.",
+          "x": 160,
+          "y": 300,
+          "width": 1600,
+          "height": 260,
+          "font_size": 72,
+          "color": "#f69f02",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.2
+        }
+      ],
+      "notes": "Call to action. No si, sino cuándo. Pausa."
+    },
+    {
+      "id": 40,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s40_title",
+          "type": "text",
+          "content": "Un regalo.",
+          "x": 160,
+          "y": 50,
+          "width": 800,
+          "height": 60,
+          "font_size": 42,
+          "color": "#ffffff",
+          "bold": true
+        },
+        {
+          "id": "s40_sub",
+          "type": "text",
+          "content": "Mi CLAUDE.md original. 1,300+ líneas. Gratis.",
+          "x": 160,
+          "y": 120,
+          "width": 800,
+          "height": 40,
+          "font_size": 22,
+          "color": "#BBBBBB"
+        },
+        {
+          "id": "s40_term_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 100,
+          "y": 200,
+          "width": 860,
+          "height": 600,
+          "fill": "#111111",
+          "corner_radius": 12,
+          "stroke": {
+            "color": "#333333",
+            "width": 1
+          }
+        },
+        {
+          "id": "s40_term_bar",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 100,
+          "y": 200,
+          "width": 860,
+          "height": 32,
+          "fill": "#1a1a1a",
+          "corner_radius": 0
+        },
+        {
+          "id": "s40_t1",
+          "type": "text",
+          "content": "# CLAUDE.md — SaaS Factory",
+          "x": 130,
+          "y": 250,
+          "width": 800,
+          "height": 28,
+          "font_size": 16,
+          "color": "#f69f02",
+          "font_family": "Menlo, monospace",
+          "bold": true
+        },
+        {
+          "id": "s40_t2",
+          "type": "text",
+          "content": "## Identidad",
+          "x": 130,
+          "y": 290,
+          "width": 800,
+          "height": 28,
+          "font_size": 15,
+          "color": "#8C27F1",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s40_t3",
+          "type": "text",
+          "content": "## Stack de producción",
+          "x": 130,
+          "y": 320,
+          "width": 800,
+          "height": 28,
+          "font_size": 15,
+          "color": "#8C27F1",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s40_t4",
+          "type": "text",
+          "content": "## Reglas de negocio",
+          "x": 130,
+          "y": 350,
+          "width": 800,
+          "height": 28,
+          "font_size": 15,
+          "color": "#8C27F1",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s40_t5",
+          "type": "text",
+          "content": "## Skills (18 dominios)",
+          "x": 130,
+          "y": 380,
+          "width": 800,
+          "height": 28,
+          "font_size": 15,
+          "color": "#8C27F1",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s40_t6",
+          "type": "text",
+          "content": "## Memoria persistente",
+          "x": 130,
+          "y": 410,
+          "width": 800,
+          "height": 28,
+          "font_size": 15,
+          "color": "#8C27F1",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s40_t7",
+          "type": "text",
+          "content": "## Machine Learning pipeline",
+          "x": 130,
+          "y": 440,
+          "width": 800,
+          "height": 28,
+          "font_size": 15,
+          "color": "#00CC66",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s40_t8",
+          "type": "text",
+          "content": "## Cron jobs nocturnos",
+          "x": 130,
+          "y": 470,
+          "width": 800,
+          "height": 28,
+          "font_size": 15,
+          "color": "#00CC66",
+          "font_family": "Menlo, monospace"
+        },
+        {
+          "id": "s40_qr_bg",
+          "type": "shape",
+          "shape": "rounded_rect",
+          "x": 1040,
+          "y": 200,
+          "width": 780,
+          "height": 600,
+          "fill": "#111111",
+          "corner_radius": 16,
+          "stroke": {
+            "color": "#f69f02",
+            "width": 2
+          }
+        },
+        {
+          "id": "s40_qr_lbl",
+          "type": "text",
+          "content": "[QR CODE]",
+          "x": 1040,
+          "y": 400,
+          "width": 780,
+          "height": 60,
+          "font_size": 36,
+          "color": "#555555",
+          "align": "center"
+        },
+        {
+          "id": "s40_qr_cta",
+          "type": "text",
+          "content": "Escanea → Descarga mi CLAUDE.md",
+          "x": 1040,
+          "y": 480,
+          "width": 780,
+          "height": 40,
+          "font_size": 20,
+          "color": "#f69f02",
+          "align": "center"
+        }
+      ],
+      "notes": "Regalo: CLAUDE.md original. QR para descargar. CTA fuerte."
+    },
+    {
+      "id": 41,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s41_handle",
+          "type": "text",
+          "content": "@danielcarreong",
+          "x": 160,
+          "y": 340,
+          "width": 1600,
+          "height": 80,
+          "font_size": 56,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s41_url",
+          "type": "text",
+          "content": "saasfactory.so",
+          "x": 360,
+          "y": 440,
+          "width": 1200,
+          "height": 50,
+          "font_size": 32,
+          "color": "#f69f02",
+          "align": "center"
+        },
+        {
+          "id": "s41_cta",
+          "type": "text",
+          "content": "700+ Arquitectos",
+          "x": 460,
+          "y": 510,
+          "width": 1000,
+          "height": 40,
+          "font_size": 24,
+          "color": "#888888",
+          "align": "center"
+        },
+        {
+          "id": "s41_line1",
+          "type": "line",
+          "x": 600,
+          "y": 320,
+          "width": 720,
+          "height": 0,
+          "x1": 600,
+          "y1": 320,
+          "x2": 1320,
+          "y2": 320,
+          "color": "#f69f02",
+          "line_width": 1
+        },
+        {
+          "id": "s41_line2",
+          "type": "line",
+          "x": 600,
+          "y": 580,
+          "width": 720,
+          "height": 0,
+          "x1": 600,
+          "y1": 580,
+          "x2": 1320,
+          "y2": 580,
+          "color": "#f69f02",
+          "line_width": 1
+        }
+      ],
+      "notes": "Redes. Follow en X/Twitter. saasfactory.so"
+    },
+    {
+      "id": 42,
+      "background": {
+        "type": "solid",
+        "color": "#0D0D0D"
+      },
+      "elements": [
+        {
+          "id": "s42_t1",
+          "type": "text",
+          "content": "Superinteligencia aplicada a negocios.",
+          "x": 160,
+          "y": 340,
+          "width": 1600,
+          "height": 80,
+          "font_size": 44,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center"
+        },
+        {
+          "id": "s42_t2",
+          "type": "text",
+          "content": "Ya no es el futuro. Es hoy.",
+          "x": 360,
+          "y": 460,
+          "width": 1200,
+          "height": 60,
+          "font_size": 32,
+          "color": "#f69f02",
+          "align": "center"
+        }
+      ],
+      "notes": "Callback al título. Ya no es futuro. Es hoy."
+    },
+    {
+      "id": 43,
+      "background": {
+        "type": "gradient",
+        "angle": 180,
+        "stops": [
+          {
+            "offset": 0,
+            "color": "#0D0D0D"
+          },
+          {
+            "offset": 1,
+            "color": "#1A1A1A"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "id": "s43_thanks",
+          "type": "text",
+          "content": "Soy Daniel Carreon.\nGracias.",
+          "x": 160,
+          "y": 320,
+          "width": 1600,
+          "height": 200,
+          "font_size": 64,
+          "color": "#ffffff",
+          "bold": true,
+          "align": "center",
+          "line_spacing": 1.3
+        },
+        {
+          "id": "s43_event",
+          "type": "text",
+          "content": "Talent Land 2026 | Business Land",
+          "x": 460,
+          "y": 560,
+          "width": 1000,
+          "height": 40,
+          "font_size": 22,
+          "color": "#666666",
+          "align": "center"
+        },
+        {
+          "id": "s43_line",
+          "type": "line",
+          "x": 660,
+          "y": 540,
+          "width": 600,
+          "height": 0,
+          "x1": 660,
+          "y1": 540,
+          "x2": 1260,
+          "y2": 540,
+          "color": "#f69f02",
+          "line_width": 1
+        },
+        {
+          "id": "s43_bokeh1",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 200,
+          "y": 50,
+          "width": 150,
+          "height": 150,
+          "fill": "#f69f02",
+          "opacity": 0.05
+        },
+        {
+          "id": "s43_bokeh2",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 1500,
+          "y": 100,
+          "width": 200,
+          "height": 200,
+          "fill": "#8C27F1",
+          "opacity": 0.04
+        },
+        {
+          "id": "s43_bokeh3",
+          "type": "shape",
+          "shape": "ellipse",
+          "x": 800,
+          "y": 800,
+          "width": 180,
+          "height": 180,
+          "fill": "#f69f02",
+          "opacity": 0.03
+        }
+      ],
+      "notes": "Slide final. Gracias. Pausa. Aplausos."
+    }
+  ]
+}

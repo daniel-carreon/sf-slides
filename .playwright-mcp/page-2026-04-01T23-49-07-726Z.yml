@@ -1,0 +1,43 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - progressbar [ref=e6]
+      - main [ref=e14]:
+        - generic [ref=e15]:
+          - img [ref=e18]
+          - generic [ref=e23]:
+            - heading "Accede a tu cuenta" [level=1] [ref=e24]
+            - generic [ref=e25]: con tu Cuenta de Google para continuar a Presentaciones de Google. Esta cuenta estará disponible para otras apps de Google en el navegador.
+        - generic [ref=e28]:
+          - generic [ref=e33]:
+            - generic [ref=e38]:
+              - textbox "Correo electrónico o teléfono" [active] [ref=e39]
+              - generic: Correo electrónico o teléfono
+            - button "¿Olvidaste el correo electrónico?" [ref=e43] [cursor=pointer]
+          - generic [ref=e46]:
+            - text: ¿Esta no es tu computadora? Usa el modo de invitado para navegar de forma privada.
+            - link "Más información para usar el modo de invitado" [ref=e47] [cursor=pointer]:
+              - /url: https://support.google.com/chrome/answer/6130773?hl=es-419
+        - generic [ref=e49]:
+          - button "Siguiente" [ref=e53]:
+            - generic [ref=e56]: Siguiente
+          - button "Crear cuenta" [ref=e62]:
+            - generic [ref=e65]: Crear cuenta
+    - contentinfo [ref=e69]:
+      - combobox "Cambiar de idioma Español (Latinoamérica)" [ref=e73] [cursor=pointer]:
+        - generic:
+          - generic: Español (Latinoamérica)
+        - generic:
+          - img
+      - list [ref=e75]:
+        - listitem [ref=e76]:
+          - link "Ayuda" [ref=e77] [cursor=pointer]:
+            - /url: https://support.google.com/accounts?hl=es-419&p=account_iph
+        - listitem [ref=e78]:
+          - link "Privacidad" [ref=e79] [cursor=pointer]:
+            - /url: https://accounts.google.com/TOS?loc=MX&hl=es-419&privacy=true
+        - listitem [ref=e80]:
+          - link "Condiciones" [ref=e81] [cursor=pointer]:
+            - /url: https://accounts.google.com/TOS?loc=MX&hl=es-419
+  - iframe [ref=e82]:
+    

@@ -1,0 +1,59 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - button "New presentation" [ref=e6] [cursor=pointer]:
+        - img [ref=e7]
+      - button "Open (Cmd+O)" [ref=e10] [cursor=pointer]:
+        - img [ref=e11]
+      - button "Save (Cmd+S)" [ref=e13] [cursor=pointer]:
+        - img [ref=e14]
+    - generic [ref=e19]:
+      - button "Select (V)" [ref=e20] [cursor=pointer]:
+        - img [ref=e21]
+      - button "Text (T)" [ref=e23] [cursor=pointer]:
+        - img [ref=e24]
+      - button "Shape (S)" [ref=e26] [cursor=pointer]:
+        - img [ref=e27]
+      - button "Image (I)" [ref=e29] [cursor=pointer]:
+        - img [ref=e30]
+      - button "Line (L)" [ref=e34] [cursor=pointer]:
+        - img [ref=e35]
+    - generic [ref=e37]:
+      - button "Undo (Cmd+Z)" [ref=e38] [cursor=pointer]:
+        - img [ref=e39]
+      - button "Redo (Cmd+Shift+Z)" [ref=e42] [cursor=pointer]:
+        - img [ref=e43]
+    - generic [ref=e46]:
+      - button "Zoom out" [ref=e47] [cursor=pointer]:
+        - img [ref=e48]
+      - generic [ref=e51]: 100%
+      - button "Zoom in" [ref=e52] [cursor=pointer]:
+        - img [ref=e53]
+      - button "Add slide" [ref=e57] [cursor=pointer]:
+        - img [ref=e58]
+      - button "Export PPTX" [ref=e60] [cursor=pointer]:
+        - img [ref=e61]
+      - button "Present" [ref=e64] [cursor=pointer]:
+        - img [ref=e65]
+        - text: Present
+  - generic [ref=e67]:
+    - generic [ref=e69]:
+      - generic [ref=e70]:
+        - generic [ref=e71]: Slides
+        - button "Add slide" [ref=e72] [cursor=pointer]:
+          - img [ref=e73]
+      - button "Slide 1 1" [ref=e75] [cursor=pointer]:
+        - img "Slide 1" [ref=e76]
+        - generic [ref=e77]: "1"
+    - generic [ref=e85]:
+      - generic [ref=e86]: Slide
+      - generic [ref=e87]:
+        - generic [ref=e88]: Slide Background
+        - generic [ref=e89]:
+          - generic [ref=e90]: BG
+          - generic [ref=e91]:
+            - textbox [ref=e92] [cursor=pointer]: "#0f0f17"
+            - textbox [ref=e93]: "#0f0f17"
+        - generic [ref=e94]:
+          - generic [ref=e95]: Speaker Notes
+          - textbox "Add speaker notes..." [ref=e96]

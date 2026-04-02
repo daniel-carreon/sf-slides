@@ -1,0 +1,10 @@
+node_modules/
+dist/
+target/
+.DS_Store
+*.log
+presentations/
+src-tauri/target/
+src-tauri/WixTools/
+src-tauri/icons/*.png
+src-tauri/icons/*.ico

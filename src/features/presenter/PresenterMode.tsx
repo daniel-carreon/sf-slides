@@ -1,0 +1,228 @@
+import { useEffect, useRef, useState, useCallback } from "react";
+import * as fabric from "fabric";
+import { useStore } from "@/shared/store";
+import { createFabricObject } from "@/features/canvas/element-renderers";
+import { SLIDE_WIDTH, SLIDE_HEIGHT } from "@/features/canvas/types";
+import { X } from "lucide-react";
+
+export default function PresenterMode() {
+  const presenterActive = useStore((s) => s.presenterActive);
+  const setPresenterActive = useStore((s) => s.setPresenterActive);
+  const presentation = useStore((s) => s.presentation);
+  const [slideIndex, setSlideIndex] = useState(
+    useStore.getState().currentSlideIndex
+  );
+  const [showNotes, setShowNotes] = useState(false);
+  const [blackScreen, setBlackScreen] = useState(false);
+  const [elapsed, setElapsed] = useState(0);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const fabricRef = useRef<fabric.StaticCanvas | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const startTimeRef = useRef(Date.now());
+
+  const slideIndexRef = useRef(slideIndex);
+  useEffect(() => { slideIndexRef.current = slideIndex; }, [slideIndex]);
+
+  const slide = presentation.slides[slideIndex];
+  const totalSlides = presentation.slides.length;
+
+  // Timer
+  useEffect(() => {
+    if (!presenterActive) return;
+    startTimeRef.current = Date.now();
+    const timer = setInterval(() => {
+      setElapsed(Math.floor((Date.now() - startTimeRef.current) / 1000));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [presenterActive]);
+
+  // Render slide
+  useEffect(() => {
+    if (!presenterActive || !canvasRef.current || !slide) return;
+
+    if (!fabricRef.current) {
+      fabricRef.current = new fabric.StaticCanvas(canvasRef.current, {
+        width: SLIDE_WIDTH,
+        height: SLIDE_HEIGHT,
+      });
+    }
+
+    const canvas = fabricRef.current;
+    let cancelled = false;
+
+    const renderSlide = async () => {
+      canvas.clear();
+      const bg = slide.background;
+      if (bg?.type === "solid") {
+        canvas.backgroundColor = bg.color;
+      } else if (bg?.type === "gradient" && bg.stops) {
+        const gradient = new fabric.Gradient({
+          type: "linear",
+          coords: {
+            x1: 0,
+            y1: 0,
+            x2: SLIDE_WIDTH * Math.cos(((bg.angle ?? 0) * Math.PI) / 180),
+            y2: SLIDE_HEIGHT * Math.sin(((bg.angle ?? 0) * Math.PI) / 180),
+          },
+          colorStops: bg.stops.map((s) => ({ offset: s.offset, color: s.color })),
+        });
+        canvas.backgroundColor = gradient as unknown as string;
+      } else {
+        canvas.backgroundColor = "#0f0f17";
+      }
+
+      const sorted = [...slide.elements].sort(
+        (a, b) => (a.z_index ?? 0) - (b.z_index ?? 0)
+      );
+      for (const el of sorted) {
+        if (cancelled) return;
+        const obj = await createFabricObject(el);
+        if (cancelled) return;
+        if (obj) {
+          obj.selectable = false;
+          obj.evented = false;
+          canvas.add(obj);
+        }
+      }
+      if (!cancelled) canvas.renderAll();
+    };
+
+    renderSlide();
+
+    return () => { cancelled = true; };
+  }, [presenterActive, slideIndex, slide]);
+
+  // Resize
+  const resizeCanvas = useCallback(() => {
+    if (!fabricRef.current || !containerRef.current) return;
+    const canvas = fabricRef.current;
+    const rect = containerRef.current.getBoundingClientRect();
+    const scale = Math.min(
+      rect.width / SLIDE_WIDTH,
+      rect.height / SLIDE_HEIGHT
+    );
+    canvas.setZoom(scale);
+    canvas.setDimensions({
+      width: SLIDE_WIDTH * scale,
+      height: SLIDE_HEIGHT * scale,
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!presenterActive || !fabricRef.current || !containerRef.current) return;
+    resizeCanvas();
+  }, [presenterActive, slideIndex, resizeCanvas]);
+
+  useEffect(() => {
+    if (!presenterActive || !containerRef.current) return;
+    const container = containerRef.current;
+    const ro = new ResizeObserver(() => resizeCanvas());
+    ro.observe(container);
+    return () => ro.disconnect();
+  }, [presenterActive, resizeCanvas]);
+
+  // Keyboard
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      switch (e.key) {
+        case "ArrowRight":
+        case " ":
+        case "Enter":
+          e.preventDefault();
+          setSlideIndex((i) => Math.min(i + 1, totalSlides - 1));
+          break;
+        case "ArrowLeft":
+        case "Backspace":
+          e.preventDefault();
+          setSlideIndex((i) => Math.max(i - 1, 0));
+          break;
+        case "Escape":
+          setPresenterActive(false);
+          break;
+        case "n":
+        case "N":
+          setShowNotes((n) => !n);
+          break;
+        case "b":
+        case "B":
+          setBlackScreen((b) => !b);
+          break;
+      }
+    },
+    [totalSlides, setPresenterActive]
+  );
+
+  useEffect(() => {
+    if (!presenterActive) return;
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [presenterActive, handleKeyDown]);
+
+  // Cleanup
+  useEffect(() => {
+    if (!presenterActive && fabricRef.current) {
+      fabricRef.current.dispose();
+      fabricRef.current = null;
+    }
+  }, [presenterActive]);
+
+  // Sync back to main view when exiting
+  useEffect(() => {
+    if (!presenterActive) {
+      useStore.getState().setCurrentSlide(slideIndexRef.current);
+    }
+  }, [presenterActive]);
+
+  if (!presenterActive) return null;
+
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${m}:${sec.toString().padStart(2, "0")}`;
+  };
+
+  return (
+    <div className="fixed inset-0 z-[9999] bg-black flex flex-col">
+      {/* Slide */}
+      <div
+        ref={containerRef}
+        className="flex-1 flex items-center justify-center"
+      >
+        {blackScreen ? (
+          <div className="text-white/20 text-lg">Screen blacked out (B)</div>
+        ) : (
+          <canvas ref={canvasRef} />
+        )}
+      </div>
+
+      {/* Notes overlay */}
+      {showNotes && slide?.notes && (
+        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 max-w-2xl w-full bg-black/80 backdrop-blur-sm text-white/80 px-6 py-4 rounded-t-xl text-sm leading-relaxed">
+          {slide.notes}
+        </div>
+      )}
+
+      {/* Bottom bar */}
+      <div className="flex items-center justify-between px-6 py-2 bg-black/60 text-white/60 text-sm">
+        <div className="flex items-center gap-4">
+          <span>
+            {slideIndex + 1} / {totalSlides}
+          </span>
+          <span>{formatTime(elapsed)}</span>
+        </div>
+        <div className="flex items-center gap-3 text-xs text-white/30">
+          <span>← → Navigate</span>
+          <span>N Notes</span>
+          <span>B Black</span>
+          <span>Esc Exit</span>
+        </div>
+        <button
+          onClick={() => setPresenterActive(false)}
+          className="p-1 rounded hover:bg-white/10 text-white/50"
+        >
+          <X size={18} />
+        </button>
+      </div>
+    </div>
+  );
+}

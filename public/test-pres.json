@@ -1,0 +1,627 @@
+{
+  "version": 1,
+  "metadata": {
+    "title": "Recursividad Agéntica",
+    "author": "Daniel Carreon",
+    "created": "2026-04-01"
+  },
+  "defaults": {
+    "font_family": "Helvetica Neue, Arial, sans-serif",
+    "background": { "type": "solid", "color": "#0D0D0D" }
+  },
+  "slides": [
+    {
+      "id": 1,
+      "background": { "type": "gradient", "angle": 160, "stops": [{"offset": 0, "color": "#0D0D0D"}, {"offset": 1, "color": "#1A1A1A"}] },
+      "elements": [
+        {"id": "s1_label", "type": "text", "content": "DEVELOPER LAND | TALENT LAND 2026", "x": 160, "y": 120, "width": 800, "height": 30, "font_size": 14, "color": "#f69f02", "bold": true, "letter_spacing": 4, "align": "left"},
+        {"id": "s1_title", "type": "text", "content": "Recursividad\nAgéntica", "x": 160, "y": 220, "width": 900, "height": 320, "font_size": 96, "color": "#ffffff", "bold": true, "align": "left", "line_spacing": 1.1},
+        {"id": "s1_sub", "type": "text", "content": "Intelligence Explosion: El mecanismo detrás de la\nsingularidad en producción.", "x": 160, "y": 560, "width": 800, "height": 80, "font_size": 22, "color": "#BBBBBB", "line_spacing": 1.5},
+        {"id": "s1_line", "type": "line", "x": 160, "y": 680, "width": 300, "height": 0, "x1": 160, "y1": 680, "x2": 460, "y2": 680, "color": "#f69f02", "line_width": 2},
+        {"id": "s1_speaker", "type": "text", "content": "Daniel Carreon", "x": 160, "y": 700, "width": 300, "height": 30, "font_size": 18, "color": "#ffffff", "bold": true},
+        {"id": "s1_org", "type": "text", "content": "SaaS Factory", "x": 160, "y": 735, "width": 300, "height": 30, "font_size": 16, "color": "#f69f02"},
+        {"id": "s1_deco_circle", "type": "shape", "shape": "ellipse", "x": 1200, "y": 150, "width": 600, "height": 600, "fill": null, "stroke": {"color": "#f69f02", "width": 1}, "opacity": 0.15},
+        {"id": "s1_deco_circle2", "type": "shape", "shape": "ellipse", "x": 1250, "y": 200, "width": 500, "height": 500, "fill": null, "stroke": {"color": "#8C27F1", "width": 1}, "opacity": 0.12},
+        {"id": "s1_deco_circle3", "type": "shape", "shape": "ellipse", "x": 1300, "y": 250, "width": 400, "height": 400, "fill": null, "stroke": {"color": "#f69f02", "width": 1}, "opacity": 0.08},
+        {"id": "s1_term_bg", "type": "shape", "shape": "rounded_rect", "x": 1150, "y": 500, "width": 650, "height": 380, "fill": "#111111", "corner_radius": 12, "stroke": {"color": "#333333", "width": 1}},
+        {"id": "s1_term_bar", "type": "shape", "shape": "rounded_rect", "x": 1150, "y": 500, "width": 650, "height": 32, "fill": "#1a1a1a", "corner_radius": 0},
+        {"id": "s1_term_dot1", "type": "shape", "shape": "ellipse", "x": 1166, "y": 510, "width": 12, "height": 12, "fill": "#FF3333"},
+        {"id": "s1_term_dot2", "type": "shape", "shape": "ellipse", "x": 1186, "y": 510, "width": 12, "height": 12, "fill": "#FFB800"},
+        {"id": "s1_term_dot3", "type": "shape", "shape": "ellipse", "x": 1206, "y": 510, "width": 12, "height": 12, "fill": "#00CC66"},
+        {"id": "s1_code1", "type": "text", "content": "def recursive_agent(context):", "x": 1170, "y": 548, "width": 600, "height": 28, "font_size": 15, "color": "#f69f02", "font_family": "Menlo, monospace"},
+        {"id": "s1_code2", "type": "text", "content": "    result = execute(context)", "x": 1170, "y": 576, "width": 600, "height": 28, "font_size": 15, "color": "#DDDDDD", "font_family": "Menlo, monospace"},
+        {"id": "s1_code3", "type": "text", "content": "    verified = auto_shield(result)", "x": 1170, "y": 604, "width": 600, "height": 28, "font_size": 15, "color": "#DDDDDD", "font_family": "Menlo, monospace"},
+        {"id": "s1_code4", "type": "text", "content": "    if not verified.passed:", "x": 1170, "y": 632, "width": 600, "height": 28, "font_size": 15, "color": "#8C27F1", "font_family": "Menlo, monospace"},
+        {"id": "s1_code5", "type": "text", "content": "        return recursive_agent(", "x": 1170, "y": 660, "width": 600, "height": 28, "font_size": 15, "color": "#00CC66", "font_family": "Menlo, monospace"},
+        {"id": "s1_code6", "type": "text", "content": "            context.evolve(result))", "x": 1170, "y": 688, "width": 600, "height": 28, "font_size": 15, "color": "#00CC66", "font_family": "Menlo, monospace"},
+        {"id": "s1_code7", "type": "text", "content": "    return result  # convergence", "x": 1170, "y": 716, "width": 600, "height": 28, "font_size": 15, "color": "#666666", "font_family": "Menlo, monospace"},
+        {"id": "s1_bokeh1", "type": "shape", "shape": "ellipse", "x": 300, "y": 50, "width": 80, "height": 80, "fill": "#f69f02", "opacity": 0.06},
+        {"id": "s1_bokeh2", "type": "shape", "shape": "ellipse", "x": 900, "y": 30, "width": 120, "height": 120, "fill": "#f69f02", "opacity": 0.04},
+        {"id": "s1_bokeh3", "type": "shape", "shape": "ellipse", "x": 1600, "y": 80, "width": 60, "height": 60, "fill": "#8C27F1", "opacity": 0.05}
+      ],
+      "notes": "COVER. Presentarte brevemente. El título es 'Recursividad Agéntica'. Talent Land 2026, Developer Land."
+    },
+    {
+      "id": 2,
+      "background": { "type": "gradient", "angle": 180, "stops": [{"offset": 0, "color": "#0D0D0D"}, {"offset": 1, "color": "#141414"}] },
+      "elements": [
+        {"id": "s2_label", "type": "text", "content": "SPEAKER", "x": 160, "y": 60, "width": 300, "height": 24, "font_size": 14, "color": "#f69f02", "bold": true, "letter_spacing": 6},
+        {"id": "s2_title", "type": "text", "content": "Daniel Carreon", "x": 160, "y": 100, "width": 800, "height": 90, "font_size": 72, "color": "#ffffff", "bold": true},
+        {"id": "s2_line", "type": "line", "x": 160, "y": 200, "width": 200, "height": 0, "x1": 160, "y1": 200, "x2": 360, "y2": 200, "color": "#f69f02", "line_width": 2},
+        {"id": "s2_card1_bg", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 240, "width": 780, "height": 100, "fill": "#111111", "corner_radius": 14, "stroke": {"color": "#f69f02", "width": 1}},
+        {"id": "s2_card1_txt", "type": "text", "content": "Mecatrónica → Ciencia de Datos → 3 años full time en IA", "x": 192, "y": 265, "width": 716, "height": 50, "font_size": 22, "color": "#DDDDDD"},
+        {"id": "s2_card2_bg", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 360, "width": 780, "height": 100, "fill": "#111111", "corner_radius": 14, "stroke": {"color": "#8C27F1", "width": 1}},
+        {"id": "s2_card2_txt", "type": "text", "content": "SaaS Factory Community: 700+ miembros pagando", "x": 192, "y": 385, "width": 716, "height": 50, "font_size": 22, "color": "#DDDDDD"},
+        {"id": "s2_card3_bg", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 480, "width": 780, "height": 100, "fill": "#111111", "corner_radius": 14, "stroke": {"color": "#f69f02", "width": 1}},
+        {"id": "s2_card3_txt", "type": "text", "content": "Stack: Next.js 16, React 19, Supabase, Claude Code", "x": 192, "y": 505, "width": 716, "height": 50, "font_size": 22, "color": "#DDDDDD"},
+        {"id": "s2_card4_bg", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 600, "width": 780, "height": 100, "fill": "#111111", "corner_radius": 14, "stroke": {"color": "#8C27F1", "width": 1}},
+        {"id": "s2_card4_txt", "type": "text", "content": "3 agentes IA 24/7, pipeline ML, 20 cron jobs en producción", "x": 192, "y": 625, "width": 716, "height": 50, "font_size": 22, "color": "#DDDDDD"},
+        {"id": "s2_footer", "type": "text", "content": "Todo lo que les enseño hoy corre en mi producción ahora mismo.", "x": 160, "y": 760, "width": 800, "height": 40, "font_size": 18, "color": "#f69f02", "italic": true},
+        {"id": "s2_photo_placeholder", "type": "shape", "shape": "rounded_rect", "x": 1100, "y": 240, "width": 660, "height": 460, "fill": "#2A2A2A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s2_photo_label", "type": "text", "content": "[FOTO SPEAKER]", "x": 1100, "y": 430, "width": 660, "height": 40, "font_size": 18, "color": "#666666", "align": "center"}
+      ],
+      "notes": "Quién eres. 3 años full time IA. 700+ miembros pagando. Todo lo que enseñas hoy corre en producción."
+    },
+    {
+      "id": 3,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s3_q", "type": "text", "content": "¿Quién de aquí\nha usado ChatGPT?", "x": 160, "y": 300, "width": 1600, "height": 300, "font_size": 80, "color": "#ffffff", "bold": true, "align": "center", "line_spacing": 1.15},
+        {"id": "s3_bokeh", "type": "shape", "shape": "ellipse", "x": 200, "y": 60, "width": 100, "height": 100, "fill": "#f69f02", "opacity": 0.05}
+      ],
+      "notes": "Levantar manos. Casi todos. Transición a la siguiente pregunta."
+    },
+    {
+      "id": 4,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s4_q", "type": "text", "content": "¿Quién ha usado\nOpus 4.6?", "x": 160, "y": 260, "width": 1600, "height": 280, "font_size": 80, "color": "#ffffff", "bold": true, "align": "center", "line_spacing": 1.15},
+        {"id": "s4_sub", "type": "text", "content": "El modelo más avanzado a día de hoy.", "x": 360, "y": 580, "width": 1200, "height": 50, "font_size": 28, "color": "#f69f02", "align": "center"}
+      ],
+      "notes": "Pocas manos. Ese gap es la oportunidad."
+    },
+    {
+      "id": 5,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s5_main", "type": "text", "content": "Lo que les voy a mostrar", "x": 160, "y": 340, "width": 1600, "height": 100, "font_size": 64, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s5_sub", "type": "text", "content": "es por qué ese modelo es solo el principio.", "x": 260, "y": 470, "width": 1400, "height": 60, "font_size": 36, "color": "#f69f02", "align": "center"}
+      ],
+      "notes": "Transición. Crear expectativa para METR."
+    },
+    {
+      "id": 6,
+      "background": { "type": "gradient", "angle": 180, "stops": [{"offset": 0, "color": "#0D0D0D"}, {"offset": 1, "color": "#141414"}] },
+      "elements": [
+        {"id": "s6_label", "type": "text", "content": "METR TIME HORIZON", "x": 160, "y": 200, "width": 600, "height": 28, "font_size": 16, "color": "#f69f02", "bold": true, "letter_spacing": 5},
+        {"id": "s6_title", "type": "text", "content": "La Nueva Ley de Moore\npara Agentes IA", "x": 160, "y": 280, "width": 1200, "height": 240, "font_size": 64, "color": "#ffffff", "bold": true, "line_spacing": 1.15},
+        {"id": "s6_line", "type": "line", "x": 160, "y": 550, "width": 400, "height": 0, "x1": 160, "y1": 550, "x2": 560, "y2": 550, "color": "#f69f02", "line_width": 2},
+        {"id": "s6_sub", "type": "text", "content": "Fuente: METR / AI Digest. Marzo 2026.", "x": 160, "y": 580, "width": 600, "height": 30, "font_size": 18, "color": "#888888"},
+        {"id": "s6_bokeh1", "type": "shape", "shape": "ellipse", "x": 1400, "y": 100, "width": 200, "height": 200, "fill": "#f69f02", "opacity": 0.04},
+        {"id": "s6_bokeh2", "type": "shape", "shape": "ellipse", "x": 1600, "y": 400, "width": 150, "height": 150, "fill": "#8C27F1", "opacity": 0.04}
+      ],
+      "notes": "Sección METR. La curva de AI capability doubling. Explicar Time Horizon."
+    },
+    {
+      "id": 7,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s7_title", "type": "text", "content": "2019-2026: La curva que nadie te está mostrando", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 36, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s7_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s7_img_bg", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s7_img_label", "type": "text", "content": "[INSERTAR IMAGEN]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 20, "color": "#555555", "align": "center"}
+      ],
+      "notes": "Mostrar gráfica METR: Time Horizon 2019-2026. La curva exponencial."
+    },
+    {
+      "id": 8,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s8_title", "type": "text", "content": "Se duplica cada 7 meses. Recientemente cada 4.", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 36, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s8_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s8_img_bg", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s8_img_label", "type": "text", "content": "[INSERTAR IMAGEN]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 20, "color": "#555555", "align": "center"}
+      ],
+      "notes": "Doubling time. Cada 7 meses → ahora cada 4. Aceleración."
+    },
+    {
+      "id": 9,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s9_title", "type": "text", "content": "230 tareas de coding medidas. R² = 0.83", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 36, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s9_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s9_img_bg", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s9_img_label", "type": "text", "content": "[INSERTAR IMAGEN]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 20, "color": "#555555", "align": "center"}
+      ],
+      "notes": "Metodología METR. 230 tareas reales de coding. R² = 0.83 muestra correlación fuerte."
+    },
+    {
+      "id": 10,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s10_title", "type": "text", "content": "2027: un día. 2028: una semana. 2029: un mes.", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 36, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s10_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s10_img_bg", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s10_img_label", "type": "text", "content": "[INSERTAR IMAGEN]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 20, "color": "#555555", "align": "center"}
+      ],
+      "notes": "Extrapolación. Si la tendencia se mantiene: 2027 tareas de 1 día, 2028 de 1 semana, 2029 de 1 mes."
+    },
+    {
+      "id": 11,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s11_title", "type": "text", "content": "La tendencia se ACELERA. No hay plateau.", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 36, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s11_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s11_img_bg", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s11_img_label", "type": "text", "content": "[INSERTAR IMAGEN]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 20, "color": "#555555", "align": "center"}
+      ],
+      "notes": "No hay señal de plateau. Cada punto de la curva supera las expectativas."
+    },
+    {
+      "id": 12,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s12_title", "type": "text", "content": "Podría ser SUPEREXPONENCIAL.", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 40, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s12_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s12_img_bg", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s12_img_label", "type": "text", "content": "[INSERTAR IMAGEN]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 20, "color": "#555555", "align": "center"}
+      ],
+      "notes": "Datos recientes sugieren super-exponencial. No solo exponencial. Se acelera la aceleración."
+    },
+    {
+      "id": 13,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s13_title", "type": "text", "content": "Una reacción en cadena de agentes mejorando agentes.", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 34, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s13_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s13_img_bg", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s13_img_label", "type": "text", "content": "[INSERTAR IMAGEN]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 20, "color": "#555555", "align": "center"}
+      ],
+      "notes": "Concepto clave: agentes que mejoran a otros agentes. Recursividad. Chain reaction."
+    },
+    {
+      "id": 14,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s14_t1", "type": "text", "content": "2022: 30 segundos", "x": 300, "y": 200, "width": 800, "height": 50, "font_size": 28, "color": "#666666"},
+        {"id": "s14_t2", "type": "text", "content": "2024: minutos", "x": 300, "y": 300, "width": 800, "height": 60, "font_size": 36, "color": "#999999"},
+        {"id": "s14_big", "type": "text", "content": "2026: 14 HORAS", "x": 160, "y": 420, "width": 1200, "height": 160, "font_size": 96, "color": "#f69f02", "bold": true},
+        {"id": "s14_sub", "type": "text", "content": "Opus 4.6.", "x": 300, "y": 600, "width": 400, "height": 50, "font_size": 32, "color": "#BBBBBB"},
+        {"id": "s14_line", "type": "line", "x": 250, "y": 410, "width": 1, "height": 0, "x1": 250, "y1": 180, "x2": 250, "y2": 680, "color": "#f69f02", "line_width": 2}
+      ],
+      "notes": "Progresión dramática. 30 seg → minutos → 14 HORAS. Opus 4.6 resuelve tareas de 14 horas de coding autónomo."
+    },
+    {
+      "id": 15,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s15_main", "type": "text", "content": "El agente que usas HOY", "x": 160, "y": 320, "width": 1600, "height": 100, "font_size": 56, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s15_sub", "type": "text", "content": "es el más débil que jamás vas a volver a usar.", "x": 260, "y": 450, "width": 1400, "height": 70, "font_size": 36, "color": "#f69f02", "bold": true, "italic": true, "align": "center"}
+      ],
+      "notes": "Momento de impacto. Dejar que la frase aterrice. Pausa."
+    },
+    {
+      "id": 16,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s16_main", "type": "text", "content": "Eso es lo que mide METR.", "x": 160, "y": 350, "width": 1600, "height": 80, "font_size": 48, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s16_sub", "type": "text", "content": "Pero hay algo más grande pasando.", "x": 360, "y": 470, "width": 1200, "height": 60, "font_size": 32, "color": "#f69f02", "align": "center"}
+      ],
+      "notes": "Transición de METR a Intelligence Explosion."
+    },
+    {
+      "id": 17,
+      "background": { "type": "gradient", "angle": 180, "stops": [{"offset": 0, "color": "#0D0D0D"}, {"offset": 1, "color": "#141414"}] },
+      "elements": [
+        {"id": "s17_label", "type": "text", "content": "INTELLIGENCE EXPLOSION", "x": 160, "y": 250, "width": 800, "height": 28, "font_size": 16, "color": "#f69f02", "bold": true, "letter_spacing": 5},
+        {"id": "s17_title", "type": "text", "content": "Ya no es teoría.\nYa está aquí.", "x": 160, "y": 330, "width": 1200, "height": 240, "font_size": 72, "color": "#ffffff", "bold": true, "line_spacing": 1.15},
+        {"id": "s17_line", "type": "line", "x": 160, "y": 600, "width": 400, "height": 0, "x1": 160, "y1": 600, "x2": 560, "y2": 600, "color": "#f69f02", "line_width": 2},
+        {"id": "s17_bokeh1", "type": "shape", "shape": "ellipse", "x": 1300, "y": 80, "width": 250, "height": 250, "fill": "#f69f02", "opacity": 0.05},
+        {"id": "s17_bokeh2", "type": "shape", "shape": "ellipse", "x": 1500, "y": 500, "width": 180, "height": 180, "fill": "#8C27F1", "opacity": 0.04},
+        {"id": "s17_bokeh3", "type": "shape", "shape": "ellipse", "x": 100, "y": 50, "width": 120, "height": 120, "fill": "#f69f02", "opacity": 0.03}
+      ],
+      "notes": "Sección Intelligence Explosion. Leopold Aschenbrenner. Labs confirmando. Pruebas reales."
+    },
+    {
+      "id": 18, "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s18_title", "type": "text", "content": "Situational Awareness: Leopold Aschenbrenner lo predijo en 2024", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 32, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s18_line", "type": "line", "x": 660, "y": 130, "width": 600, "height": 0, "x1": 660, "y1": 130, "x2": 1260, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s18_img", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s18_lbl", "type": "text", "content": "[INSERTAR IMAGEN: 01-situational-awareness.png]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 18, "color": "#555555", "align": "center"}
+      ], "notes": "Situational Awareness paper. Leopold lo predijo antes de que pasara."
+    },
+    {
+      "id": 19, "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s19_title", "type": "text", "content": "Los 3 grandes labs ya lo confirmaron", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 36, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s19_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s19_img", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#8C27F1", "width": 2}},
+        {"id": "s19_lbl", "type": "text", "content": "[INSERTAR IMAGEN: 02-los-labs-confirmaron.png]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 18, "color": "#555555", "align": "center"}
+      ], "notes": "OpenAI, Anthropic, Google. Todos confirmaron inversiones masivas en AGI."
+    },
+    {
+      "id": 20, "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s20_title", "type": "text", "content": "El changelog como prueba: Anthropic 45x más rápido que Apple", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 32, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s20_line", "type": "line", "x": 660, "y": 130, "width": 600, "height": 0, "x1": 660, "y1": 130, "x2": 1260, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s20_img", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s20_lbl", "type": "text", "content": "[INSERTAR IMAGEN: 03-changelog-como-prueba.png]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 18, "color": "#555555", "align": "center"}
+      ], "notes": "Comparar cadencia de releases. Anthropic lanza features cada semana. Apple tarda años."
+    },
+    {
+      "id": 21, "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s21_title", "type": "text", "content": "Las 3 capas que Anthropic construye", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 36, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s21_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#8C27F1", "line_width": 2},
+        {"id": "s21_img", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#8C27F1", "width": 2}},
+        {"id": "s21_lbl", "type": "text", "content": "[INSERTAR IMAGEN: 04-tres-capas-anthropic.png]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 18, "color": "#555555", "align": "center"}
+      ], "notes": "Modelo base, herramientas, agentes. Las 3 capas del stack de Anthropic."
+    },
+    {
+      "id": 22, "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s22_title", "type": "text", "content": "TurboQuant: 10x más eficiente. Mismo hardware.", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 34, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s22_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s22_img", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s22_lbl", "type": "text", "content": "[INSERTAR IMAGEN: 05-turboquant.png]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 18, "color": "#555555", "align": "center"}
+      ], "notes": "TurboQuant: 10x más eficiente, mismo hardware. Algorithmic efficiency unlocked."
+    },
+    {
+      "id": 23, "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s23_title", "type": "text", "content": "Jevons dentro de Jevons: la eficiencia genera más eficiencia", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 32, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s23_line", "type": "line", "x": 660, "y": 130, "width": 600, "height": 0, "x1": 660, "y1": 130, "x2": 1260, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s23_img", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s23_lbl", "type": "text", "content": "[INSERTAR IMAGEN: 06-jevons-dentro-de-jevons.png]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 18, "color": "#555555", "align": "center"}
+      ], "notes": "Paradoja de Jevons anidada. Más eficiente → más uso → más inversión → MÁS eficiente."
+    },
+    {
+      "id": 24, "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s24_title", "type": "text", "content": "Los 6 pasos de la auto-mejora", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 36, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s24_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#8C27F1", "line_width": 2},
+        {"id": "s24_img", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#8C27F1", "width": 2}},
+        {"id": "s24_lbl", "type": "text", "content": "[INSERTAR IMAGEN: 07-seis-pasos.png]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 18, "color": "#555555", "align": "center"}
+      ], "notes": "Los 6 pasos: pre-training, post-training, scaffolding, tools, compute, test-time compute."
+    },
+    {
+      "id": 25, "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s25_title", "type": "text", "content": "No son secuenciales. Son PARALELOS.\nEs una reacción en cadena.", "x": 120, "y": 40, "width": 1680, "height": 90, "font_size": 32, "color": "#ffffff", "bold": true, "align": "center", "line_spacing": 1.3},
+        {"id": "s25_line", "type": "line", "x": 660, "y": 140, "width": 600, "height": 0, "x1": 660, "y1": 140, "x2": 1260, "y2": 140, "color": "#f69f02", "line_width": 2},
+        {"id": "s25_img", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 175, "width": 1600, "height": 790, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s25_lbl", "type": "text", "content": "[INSERTAR IMAGEN: 08-pasos-paralelos.png]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 18, "color": "#555555", "align": "center"}
+      ], "notes": "Los 6 pasos TODOS avanzan en paralelo. Cada uno alimenta a los demás."
+    },
+    {
+      "id": 26,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s26_ctx", "type": "text", "content": "Jensen Huang dijo en Lex Fridman:", "x": 260, "y": 300, "width": 1400, "height": 60, "font_size": 28, "color": "#BBBBBB", "align": "center"},
+        {"id": "s26_quote", "type": "text", "content": "AGI ya llegó.", "x": 160, "y": 400, "width": 1600, "height": 160, "font_size": 96, "color": "#f69f02", "bold": true, "align": "center"}
+      ],
+      "notes": "Jensen Huang, CEO de NVIDIA, dijo en Lex Fridman podcast: AGI ya llegó. No es futuro."
+    },
+    {
+      "id": 27, "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s27_title", "type": "text", "content": "Esta semana se filtró Claude Mythos", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 36, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s27_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#8C27F1", "line_width": 2},
+        {"id": "s27_img", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#8C27F1", "width": 2}},
+        {"id": "s27_lbl", "type": "text", "content": "[INSERTAR IMAGEN: jerarquía Claude / timeline]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 18, "color": "#555555", "align": "center"}
+      ], "notes": "Claude Mythos filtrado. La jerarquía: Haiku → Sonnet → Opus → Mythos."
+    },
+    {
+      "id": 28, "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s28_title", "type": "text", "content": "El Momento Trinity: 1945 vs 2026", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 36, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s28_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s28_img", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s28_lbl", "type": "text", "content": "[INSERTAR IMAGEN: 10-momento-trinity.png]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 18, "color": "#555555", "align": "center"}
+      ], "notes": "Analogía Trinity Test. El punto de no retorno. 1945 para nuclear, 2026 para IA."
+    },
+    {
+      "id": 29, "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s29_title", "type": "text", "content": "La ventana se cierra. 18-24 meses de ventaja.", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 34, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s29_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#FF3333", "line_width": 2},
+        {"id": "s29_img", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#FF3333", "width": 2}},
+        {"id": "s29_lbl", "type": "text", "content": "[INSERTAR IMAGEN: 12-ventana-se-cierra.png]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 18, "color": "#555555", "align": "center"}
+      ], "notes": "Urgencia. 18-24 meses de ventaja para quienes actúen AHORA."
+    },
+    {
+      "id": 30,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s30_main", "type": "text", "content": "Esto no es una presentación de noticias.\nEs una llamada a la acción.", "x": 160, "y": 340, "width": 1600, "height": 200, "font_size": 42, "color": "#f69f02", "bold": true, "italic": true, "align": "center", "line_spacing": 1.4}
+      ],
+      "notes": "Transición al bloque práctico. Ya no solo datos, ahora acción."
+    },
+    {
+      "id": 31,
+      "background": { "type": "gradient", "angle": 180, "stops": [{"offset": 0, "color": "#0D0D0D"}, {"offset": 1, "color": "#12081e"}] },
+      "elements": [
+        {"id": "s31_label", "type": "text", "content": "EL PATRÓN", "x": 160, "y": 250, "width": 400, "height": 28, "font_size": 16, "color": "#8C27F1", "bold": true, "letter_spacing": 5},
+        {"id": "s31_title", "type": "text", "content": "Recursividad\nAgéntica", "x": 160, "y": 320, "width": 1200, "height": 240, "font_size": 72, "color": "#ffffff", "bold": true, "line_spacing": 1.15},
+        {"id": "s31_sub", "type": "text", "content": "El mecanismo detrás de la Intelligence Explosion.", "x": 160, "y": 590, "width": 800, "height": 40, "font_size": 24, "color": "#BBBBBB"},
+        {"id": "s31_line", "type": "line", "x": 160, "y": 570, "width": 300, "height": 0, "x1": 160, "y1": 570, "x2": 460, "y2": 570, "color": "#8C27F1", "line_width": 2},
+        {"id": "s31_bokeh", "type": "shape", "shape": "ellipse", "x": 1400, "y": 200, "width": 300, "height": 300, "fill": "#8C27F1", "opacity": 0.05}
+      ],
+      "notes": "Sección central. El patrón: Recursividad Agéntica. Definición + principios + implementación."
+    },
+    {
+      "id": 32,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s32_card_bg", "type": "shape", "shape": "rounded_rect", "x": 200, "y": 200, "width": 1520, "height": 500, "fill": "#111111", "corner_radius": 20, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s32_label", "type": "text", "content": "DEFINICIÓN", "x": 260, "y": 240, "width": 300, "height": 24, "font_size": 14, "color": "#f69f02", "bold": true, "letter_spacing": 4},
+        {"id": "s32_def", "type": "text", "content": "La capacidad de un agente de IA en un sistema cerrado para utilizar el resultado de su propia ejecución como input para la siguiente iteración, sin intervención humana.", "x": 260, "y": 310, "width": 1400, "height": 280, "font_size": 32, "color": "#DDDDDD", "line_spacing": 1.5},
+        {"id": "s32_line", "type": "line", "x": 260, "y": 280, "width": 200, "height": 0, "x1": 260, "y1": 280, "x2": 460, "y2": 280, "color": "#f69f02", "line_width": 2}
+      ],
+      "notes": "Definición formal de Recursividad Agéntica. Leer lentamente. Dejar que sink in."
+    },
+    {
+      "id": 33,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s33_label", "type": "text", "content": "PRINCIPIO 1", "x": 120, "y": 60, "width": 300, "height": 24, "font_size": 14, "color": "#f69f02", "bold": true, "letter_spacing": 4},
+        {"id": "s33_title", "type": "text", "content": "La Velocidad del Silicio", "x": 120, "y": 100, "width": 900, "height": 70, "font_size": 48, "color": "#ffffff", "bold": true},
+        {"id": "s33_line", "type": "line", "x": 120, "y": 180, "width": 200, "height": 0, "x1": 120, "y1": 180, "x2": 320, "y2": 180, "color": "#f69f02", "line_width": 2},
+        {"id": "s33_body", "type": "text", "content": "15 minutos para un humano.\nMillisegundos para el agente.\n\nTú dejas de arreglar.\nEmpiezas a DEFINIR.", "x": 120, "y": 220, "width": 900, "height": 350, "font_size": 26, "color": "#BBBBBB", "line_spacing": 1.6},
+        {"id": "s33_img", "type": "shape", "shape": "rounded_rect", "x": 1080, "y": 100, "width": 720, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s33_img_lbl", "type": "text", "content": "[INSERTAR IMAGEN:\nPrincipio 1]", "x": 1080, "y": 450, "width": 720, "height": 60, "font_size": 18, "color": "#555555", "align": "center", "line_spacing": 1.4}
+      ],
+      "notes": "Principio 1: Velocidad del Silicio. Ya no codificas, defines. El agente ejecuta."
+    },
+    {
+      "id": 34,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s34_label", "type": "text", "content": "PRINCIPIO 2", "x": 120, "y": 60, "width": 300, "height": 24, "font_size": 14, "color": "#8C27F1", "bold": true, "letter_spacing": 4},
+        {"id": "s34_title", "type": "text", "content": "Iteración Convergente", "x": 120, "y": 100, "width": 900, "height": 70, "font_size": 48, "color": "#ffffff", "bold": true},
+        {"id": "s34_line", "type": "line", "x": 120, "y": 180, "width": 200, "height": 0, "x1": 120, "y1": 180, "x2": 320, "y2": 180, "color": "#8C27F1", "line_width": 2},
+        {"id": "s34_body", "type": "text", "content": "La pregunta deja de ser\n'¿es posible?'\ny se convierte en\n'¿cuándo?'\n\nInevitabilidad matemática.", "x": 120, "y": 220, "width": 900, "height": 380, "font_size": 26, "color": "#BBBBBB", "line_spacing": 1.6},
+        {"id": "s34_img", "type": "shape", "shape": "rounded_rect", "x": 1080, "y": 100, "width": 720, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#8C27F1", "width": 2}},
+        {"id": "s34_img_lbl", "type": "text", "content": "[INSERTAR IMAGEN:\nPrincipio 2]", "x": 1080, "y": 450, "width": 720, "height": 60, "font_size": 18, "color": "#555555", "align": "center", "line_spacing": 1.4}
+      ],
+      "notes": "Principio 2: Iteración Convergente. Con suficientes iteraciones, converge al resultado correcto."
+    },
+    {
+      "id": 35,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s35_label", "type": "text", "content": "PRINCIPIO 3", "x": 120, "y": 60, "width": 300, "height": 24, "font_size": 14, "color": "#f69f02", "bold": true, "letter_spacing": 4},
+        {"id": "s35_title", "type": "text", "content": "Antifragilidad", "x": 120, "y": 100, "width": 900, "height": 70, "font_size": 48, "color": "#ffffff", "bold": true},
+        {"id": "s35_line", "type": "line", "x": 120, "y": 180, "width": 200, "height": 0, "x1": 120, "y1": 180, "x2": 320, "y2": 180, "color": "#f69f02", "line_width": 2},
+        {"id": "s35_body", "type": "text", "content": "Cada error alimenta la\nsiguiente iteración.\n\nEl sistema se FORTALECE\ncon el caos.", "x": 120, "y": 220, "width": 900, "height": 350, "font_size": 26, "color": "#BBBBBB", "line_spacing": 1.6},
+        {"id": "s35_img", "type": "shape", "shape": "rounded_rect", "x": 1080, "y": 100, "width": 720, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s35_img_lbl", "type": "text", "content": "[INSERTAR IMAGEN:\nPrincipio 3]", "x": 1080, "y": 450, "width": 720, "height": 60, "font_size": 18, "color": "#555555", "align": "center", "line_spacing": 1.4}
+      ],
+      "notes": "Principio 3: Antifragilidad. Nassim Taleb. Los errores son features, no bugs."
+    },
+    {
+      "id": 36,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s36_label", "type": "text", "content": "EL ERROR DEL 99%", "x": 160, "y": 60, "width": 600, "height": 28, "font_size": 16, "color": "#FF3333", "bold": true, "letter_spacing": 4},
+        {"id": "s36_title", "type": "text", "content": "Mismo prompt para TODO.", "x": 160, "y": 110, "width": 1000, "height": 80, "font_size": 56, "color": "#ffffff", "bold": true},
+        {"id": "s36_line", "type": "line", "x": 160, "y": 200, "width": 300, "height": 0, "x1": 160, "y1": 200, "x2": 460, "y2": 200, "color": "#FF3333", "line_width": 2},
+        {"id": "s36_card1_bg", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 260, "width": 520, "height": 280, "fill": "#111111", "corner_radius": 16, "stroke": {"color": "#00CC66", "width": 2}},
+        {"id": "s36_card1_title", "type": "text", "content": "\"Cambia el color\"", "x": 200, "y": 300, "width": 440, "height": 40, "font_size": 24, "color": "#ffffff", "bold": true},
+        {"id": "s36_card1_result", "type": "text", "content": "Perfecto", "x": 200, "y": 380, "width": 440, "height": 40, "font_size": 36, "color": "#00CC66", "bold": true},
+        {"id": "s36_card2_bg", "type": "shape", "shape": "rounded_rect", "x": 700, "y": 260, "width": 520, "height": 280, "fill": "#111111", "corner_radius": 16, "stroke": {"color": "#FFB800", "width": 2}},
+        {"id": "s36_card2_title", "type": "text", "content": "\"Hazme un formulario\"", "x": 740, "y": 300, "width": 440, "height": 40, "font_size": 24, "color": "#ffffff", "bold": true},
+        {"id": "s36_card2_result", "type": "text", "content": "A veces", "x": 740, "y": 380, "width": 440, "height": 40, "font_size": 36, "color": "#FFB800", "bold": true},
+        {"id": "s36_card3_bg", "type": "shape", "shape": "rounded_rect", "x": 1240, "y": 260, "width": 520, "height": 280, "fill": "#111111", "corner_radius": 16, "stroke": {"color": "#FF3333", "width": 2}},
+        {"id": "s36_card3_title", "type": "text", "content": "\"Sistema de pagos\"", "x": 1280, "y": 300, "width": 440, "height": 40, "font_size": 24, "color": "#ffffff", "bold": true},
+        {"id": "s36_card3_result", "type": "text", "content": "Explota", "x": 1280, "y": 380, "width": 440, "height": 40, "font_size": 36, "color": "#FF3333", "bold": true},
+        {"id": "s36_bar_bg", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 620, "width": 1600, "height": 16, "fill": "#1a1a1a", "corner_radius": 8},
+        {"id": "s36_bar_fill", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 620, "width": 1600, "height": 16, "fill": {"type": "linear", "angle": 0, "stops": [{"offset": 0, "color": "#00CC66"}, {"offset": 0.5, "color": "#FFB800"}, {"offset": 1, "color": "#FF3333"}]}, "corner_radius": 8},
+        {"id": "s36_bar_label", "type": "text", "content": "COMPLEJIDAD →", "x": 160, "y": 648, "width": 1600, "height": 24, "font_size": 12, "color": "#666666", "align": "center", "letter_spacing": 4}
+      ],
+      "notes": "El error del 99%: usar el mismo prompt para todo nivel de complejidad. Verde = trivial, rojo = explota."
+    },
+    {
+      "id": 37,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s37_main", "type": "text", "content": "No planificas lo que\nno entiendes.", "x": 160, "y": 300, "width": 1600, "height": 180, "font_size": 56, "color": "#ffffff", "bold": true, "align": "center", "line_spacing": 1.2},
+        {"id": "s37_sub", "type": "text", "content": "Mapeas JUSTO antes de ejecutar.", "x": 260, "y": 520, "width": 1400, "height": 60, "font_size": 36, "color": "#f69f02", "bold": true, "align": "center"}
+      ],
+      "notes": "No over-plan. Just-in-time planning. Mapear contexto real, no hipotético."
+    },
+    {
+      "id": 38,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s38_label", "type": "text", "content": "EL BUCLE AGÉNTICO", "x": 120, "y": 60, "width": 600, "height": 24, "font_size": 14, "color": "#f69f02", "bold": true, "letter_spacing": 4},
+        {"id": "s38_title", "type": "text", "content": "El Bucle Agéntico", "x": 120, "y": 100, "width": 900, "height": 70, "font_size": 48, "color": "#ffffff", "bold": true},
+        {"id": "s38_line", "type": "line", "x": 120, "y": 180, "width": 200, "height": 0, "x1": 120, "y1": 180, "x2": 320, "y2": 180, "color": "#f69f02", "line_width": 2},
+        {"id": "s38_body", "type": "text", "content": "No generas subtareas.\nGeneras FASES.\n\nAl entrar a cada fase,\nmapeas contexto real.", "x": 120, "y": 220, "width": 900, "height": 300, "font_size": 26, "color": "#BBBBBB", "line_spacing": 1.6},
+        {"id": "s38_callout", "type": "text", "content": "GPS que recalcula en cada esquina.", "x": 120, "y": 560, "width": 900, "height": 40, "font_size": 22, "color": "#f69f02", "bold": true, "italic": true},
+        {"id": "s38_img", "type": "shape", "shape": "rounded_rect", "x": 1080, "y": 100, "width": 720, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s38_img_lbl", "type": "text", "content": "[INSERTAR IMAGEN:\nLoop Karpathy]", "x": 1080, "y": 450, "width": 720, "height": 60, "font_size": 18, "color": "#555555", "align": "center", "line_spacing": 1.4}
+      ],
+      "notes": "Bucle agéntico. Fases, no subtareas. Karpathy's loop pattern. GPS recalculando."
+    },
+    {
+      "id": 39,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s39_title", "type": "text", "content": "5 Pasos por Fase", "x": 160, "y": 50, "width": 1600, "height": 70, "font_size": 48, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s39_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s39_n1_circle", "type": "shape", "shape": "ellipse", "x": 196, "y": 220, "width": 120, "height": 120, "fill": "#111111", "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s39_n1_num", "type": "text", "content": "01", "x": 196, "y": 245, "width": 120, "height": 50, "font_size": 32, "color": "#f69f02", "bold": true, "align": "center"},
+        {"id": "s39_n1_label", "type": "text", "content": "DELIMITAR", "x": 150, "y": 360, "width": 210, "height": 30, "font_size": 16, "color": "#DDDDDD", "bold": true, "align": "center"},
+        {"id": "s39_n2_circle", "type": "shape", "shape": "ellipse", "x": 516, "y": 220, "width": 120, "height": 120, "fill": "#111111", "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s39_n2_num", "type": "text", "content": "02", "x": 516, "y": 245, "width": 120, "height": 50, "font_size": 32, "color": "#f69f02", "bold": true, "align": "center"},
+        {"id": "s39_n2_label", "type": "text", "content": "MAPEAR", "x": 470, "y": 360, "width": 210, "height": 30, "font_size": 16, "color": "#DDDDDD", "bold": true, "align": "center"},
+        {"id": "s39_n3_circle", "type": "shape", "shape": "ellipse", "x": 836, "y": 220, "width": 120, "height": 120, "fill": "#111111", "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s39_n3_num", "type": "text", "content": "03", "x": 836, "y": 245, "width": 120, "height": 50, "font_size": 32, "color": "#f69f02", "bold": true, "align": "center"},
+        {"id": "s39_n3_label", "type": "text", "content": "EJECUTAR", "x": 790, "y": 360, "width": 210, "height": 30, "font_size": 16, "color": "#DDDDDD", "bold": true, "align": "center"},
+        {"id": "s39_n4_circle", "type": "shape", "shape": "ellipse", "x": 1156, "y": 220, "width": 120, "height": 120, "fill": "#111111", "stroke": {"color": "#8C27F1", "width": 3}},
+        {"id": "s39_n4_num", "type": "text", "content": "04", "x": 1156, "y": 245, "width": 120, "height": 50, "font_size": 32, "color": "#8C27F1", "bold": true, "align": "center"},
+        {"id": "s39_n4_label", "type": "text", "content": "AUTO-BLINDAJE", "x": 1100, "y": 360, "width": 230, "height": 30, "font_size": 16, "color": "#8C27F1", "bold": true, "align": "center"},
+        {"id": "s39_n4_badge", "type": "shape", "shape": "rounded_rect", "x": 1170, "y": 395, "width": 90, "height": 24, "fill": "#8C27F1", "corner_radius": 12},
+        {"id": "s39_n4_badge_txt", "type": "text", "content": "CRÍTICO", "x": 1170, "y": 397, "width": 90, "height": 20, "font_size": 10, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s39_n5_circle", "type": "shape", "shape": "ellipse", "x": 1476, "y": 220, "width": 120, "height": 120, "fill": "#111111", "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s39_n5_num", "type": "text", "content": "05", "x": 1476, "y": 245, "width": 120, "height": 50, "font_size": 32, "color": "#f69f02", "bold": true, "align": "center"},
+        {"id": "s39_n5_label", "type": "text", "content": "VERIFICAR", "x": 1430, "y": 360, "width": 210, "height": 30, "font_size": 16, "color": "#DDDDDD", "bold": true, "align": "center"},
+        {"id": "s39_connect", "type": "line", "x": 316, "y": 280, "width": 1160, "height": 0, "x1": 316, "y1": 280, "x2": 1476, "y2": 280, "color": "#f69f02", "line_width": 1, "dash": [8, 4]}
+      ],
+      "notes": "5 pasos: Delimitar, Mapear, Ejecutar, Auto-Blindaje (CRÍTICO), Verificar. Paso 4 es morado."
+    },
+    {
+      "id": 40,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s40_label", "type": "text", "content": "AUTORESEARCH — PATRÓN KARPATHY", "x": 160, "y": 50, "width": 1000, "height": 28, "font_size": 14, "color": "#f69f02", "bold": true, "letter_spacing": 4},
+        {"id": "s40_sub", "type": "text", "content": "60,000 stars. Yo lo implementé en mi negocio.", "x": 160, "y": 85, "width": 800, "height": 30, "font_size": 18, "color": "#888888"},
+        {"id": "s40_n1", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 180, "width": 280, "height": 80, "fill": "#111111", "corner_radius": 12, "stroke": {"color": "#666666", "width": 1}},
+        {"id": "s40_n1_txt", "type": "text", "content": "FETCH", "x": 160, "y": 200, "width": 280, "height": 40, "font_size": 22, "color": "#BBBBBB", "bold": true, "align": "center"},
+        {"id": "s40_n2", "type": "shape", "shape": "rounded_rect", "x": 500, "y": 180, "width": 280, "height": 80, "fill": "#111111", "corner_radius": 12, "stroke": {"color": "#8C27F1", "width": 1}},
+        {"id": "s40_n2_txt", "type": "text", "content": "MUTATE", "x": 500, "y": 200, "width": 280, "height": 40, "font_size": 22, "color": "#8C27F1", "bold": true, "align": "center"},
+        {"id": "s40_n3", "type": "shape", "shape": "rounded_rect", "x": 840, "y": 180, "width": 280, "height": 80, "fill": "#111111", "corner_radius": 12, "stroke": {"color": "#f69f02", "width": 1}},
+        {"id": "s40_n3_txt", "type": "text", "content": "EVALUATE", "x": 840, "y": 200, "width": 280, "height": 40, "font_size": 22, "color": "#f69f02", "bold": true, "align": "center"},
+        {"id": "s40_n4", "type": "shape", "shape": "rounded_rect", "x": 1180, "y": 180, "width": 280, "height": 80, "fill": "#111111", "corner_radius": 12, "stroke": {"color": "#00CC66", "width": 1}},
+        {"id": "s40_n4_txt", "type": "text", "content": "KEEP / DISCARD", "x": 1180, "y": 200, "width": 280, "height": 40, "font_size": 18, "color": "#00CC66", "bold": true, "align": "center"},
+        {"id": "s40_n5", "type": "shape", "shape": "rounded_rect", "x": 1520, "y": 180, "width": 240, "height": 80, "fill": "#111111", "corner_radius": 12, "stroke": {"color": "#f69f02", "width": 1}},
+        {"id": "s40_n5_txt", "type": "text", "content": "REPEAT", "x": 1520, "y": 200, "width": 240, "height": 40, "font_size": 22, "color": "#f69f02", "bold": true, "align": "center"},
+        {"id": "s40_arrow1", "type": "line", "x": 440, "y": 220, "width": 60, "height": 0, "x1": 440, "y1": 220, "x2": 500, "y2": 220, "color": "#f69f02", "line_width": 2, "end_arrow": true},
+        {"id": "s40_arrow2", "type": "line", "x": 780, "y": 220, "width": 60, "height": 0, "x1": 780, "y1": 220, "x2": 840, "y2": 220, "color": "#f69f02", "line_width": 2, "end_arrow": true},
+        {"id": "s40_arrow3", "type": "line", "x": 1120, "y": 220, "width": 60, "height": 0, "x1": 1120, "y1": 220, "x2": 1180, "y2": 220, "color": "#f69f02", "line_width": 2, "end_arrow": true},
+        {"id": "s40_arrow4", "type": "line", "x": 1460, "y": 220, "width": 60, "height": 0, "x1": 1460, "y1": 220, "x2": 1520, "y2": 220, "color": "#f69f02", "line_width": 2, "end_arrow": true},
+        {"id": "s40_center_circle", "type": "shape", "shape": "ellipse", "x": 560, "y": 400, "width": 800, "height": 500, "fill": "#111111", "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s40_center_txt", "type": "text", "content": "CADA NOCHE\n3 agentes\nse mejoran SOLOS", "x": 660, "y": 550, "width": 600, "height": 200, "font_size": 36, "color": "#f69f02", "bold": true, "align": "center", "line_spacing": 1.4},
+        {"id": "s40_footer", "type": "text", "content": "$1.50 por agente. 30 iteraciones.", "x": 160, "y": 940, "width": 800, "height": 30, "font_size": 18, "color": "#888888"}
+      ],
+      "notes": "AutoResearch = Karpathy pattern. FETCH→MUTATE→EVALUATE→KEEP/DISCARD→REPEAT. $1.50 por agente por noche."
+    },
+    {
+      "id": 41,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s41_title", "type": "text", "content": "Esto no es teoría. Es mi producción.", "x": 160, "y": 50, "width": 1600, "height": 70, "font_size": 42, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s41_line", "type": "line", "x": 660, "y": 130, "width": 600, "height": 0, "x1": 660, "y1": 130, "x2": 1260, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s41_c1", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 200, "width": 520, "height": 240, "fill": "#111111", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 1}},
+        {"id": "s41_c1_num", "type": "text", "content": "11", "x": 200, "y": 230, "width": 100, "height": 60, "font_size": 48, "color": "#f69f02", "bold": true},
+        {"id": "s41_c1_txt", "type": "text", "content": "Scripts Python", "x": 200, "y": 310, "width": 440, "height": 30, "font_size": 20, "color": "#BBBBBB"},
+        {"id": "s41_c2", "type": "shape", "shape": "rounded_rect", "x": 700, "y": 200, "width": 520, "height": 240, "fill": "#111111", "corner_radius": 16, "stroke": {"color": "#8C27F1", "width": 1}},
+        {"id": "s41_c2_num", "type": "text", "content": "2", "x": 740, "y": 230, "width": 100, "height": 60, "font_size": 48, "color": "#8C27F1", "bold": true},
+        {"id": "s41_c2_txt", "type": "text", "content": "Modelos ML", "x": 740, "y": 310, "width": 440, "height": 30, "font_size": 20, "color": "#BBBBBB"},
+        {"id": "s41_c3", "type": "shape", "shape": "rounded_rect", "x": 1240, "y": 200, "width": 520, "height": 240, "fill": "#111111", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 1}},
+        {"id": "s41_c3_num", "type": "text", "content": "3", "x": 1280, "y": 230, "width": 100, "height": 60, "font_size": 48, "color": "#f69f02", "bold": true},
+        {"id": "s41_c3_txt", "type": "text", "content": "Agentes auto-optimizándose", "x": 1280, "y": 310, "width": 440, "height": 30, "font_size": 20, "color": "#BBBBBB"},
+        {"id": "s41_c4", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 480, "width": 520, "height": 240, "fill": "#111111", "corner_radius": 16, "stroke": {"color": "#8C27F1", "width": 1}},
+        {"id": "s41_c4_num", "type": "text", "content": "29", "x": 200, "y": 510, "width": 120, "height": 60, "font_size": 48, "color": "#8C27F1", "bold": true},
+        {"id": "s41_c4_txt", "type": "text", "content": "Canales monitoreados", "x": 200, "y": 590, "width": 440, "height": 30, "font_size": 20, "color": "#BBBBBB"},
+        {"id": "s41_c5", "type": "shape", "shape": "rounded_rect", "x": 700, "y": 480, "width": 520, "height": 240, "fill": "#111111", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 1}},
+        {"id": "s41_c5_num", "type": "text", "content": "20", "x": 740, "y": 510, "width": 120, "height": 60, "font_size": 48, "color": "#f69f02", "bold": true},
+        {"id": "s41_c5_txt", "type": "text", "content": "Cron jobs 24/7", "x": 740, "y": 590, "width": 440, "height": 30, "font_size": 20, "color": "#BBBBBB"},
+        {"id": "s41_c6", "type": "shape", "shape": "rounded_rect", "x": 1240, "y": 480, "width": 520, "height": 240, "fill": "#111111", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 3}},
+        {"id": "s41_c6_num", "type": "text", "content": "$5-7", "x": 1280, "y": 510, "width": 200, "height": 60, "font_size": 48, "color": "#f69f02", "bold": true},
+        {"id": "s41_c6_txt", "type": "text", "content": "USD / noche", "x": 1280, "y": 590, "width": 440, "height": 30, "font_size": 20, "color": "#BBBBBB"}
+      ],
+      "notes": "Mi producción real. 11 scripts, 2 modelos ML, 3 agentes, 29 canales, 20 cron jobs, $5-7/noche."
+    },
+    {
+      "id": 42,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s42_main", "type": "text", "content": "La Intelligence Explosion\nno es algo que viene.", "x": 160, "y": 300, "width": 1600, "height": 160, "font_size": 48, "color": "#ffffff", "bold": true, "align": "center", "line_spacing": 1.3},
+        {"id": "s42_sub", "type": "text", "content": "Es el changelog de Anthropic de Marzo.", "x": 260, "y": 500, "width": 1400, "height": 60, "font_size": 32, "color": "#f69f02", "italic": true, "align": "center"}
+      ],
+      "notes": "No es ciencia ficción. Es el changelog real de Anthropic. Ya está pasando."
+    },
+    {
+      "id": 43,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s43_main", "type": "text", "content": "Y yo la uso cada noche\npor $5.", "x": 160, "y": 320, "width": 1600, "height": 240, "font_size": 72, "color": "#f69f02", "bold": true, "align": "center", "line_spacing": 1.2}
+      ],
+      "notes": "Drop the mic. $5 por noche. Pausa larga."
+    },
+    {
+      "id": 44,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s44_title", "type": "text", "content": "El Megaprompt", "x": 160, "y": 50, "width": 800, "height": 70, "font_size": 48, "color": "#ffffff", "bold": true},
+        {"id": "s44_sub", "type": "text", "content": "Todo lo que les enseñé cabe en UN prompt.", "x": 160, "y": 130, "width": 800, "height": 40, "font_size": 22, "color": "#BBBBBB"},
+        {"id": "s44_term_bg", "type": "shape", "shape": "rounded_rect", "x": 100, "y": 220, "width": 860, "height": 680, "fill": "#111111", "corner_radius": 12, "stroke": {"color": "#333333", "width": 1}},
+        {"id": "s44_term_bar", "type": "shape", "shape": "rounded_rect", "x": 100, "y": 220, "width": 860, "height": 32, "fill": "#1a1a1a", "corner_radius": 0},
+        {"id": "s44_t1", "type": "text", "content": "# PROTOCOLO DE CONTEXTO", "x": 130, "y": 270, "width": 800, "height": 28, "font_size": 16, "color": "#f69f02", "font_family": "Menlo, monospace", "bold": true},
+        {"id": "s44_t2", "type": "text", "content": "investigar → mapear → delimitar", "x": 130, "y": 300, "width": 800, "height": 28, "font_size": 15, "color": "#BBBBBB", "font_family": "Menlo, monospace"},
+        {"id": "s44_t3", "type": "text", "content": "", "x": 130, "y": 340, "width": 800, "height": 10, "font_size": 10, "color": "#333333"},
+        {"id": "s44_t4", "type": "text", "content": "# AUTO-BLINDAJE", "x": 130, "y": 360, "width": 800, "height": 28, "font_size": 16, "color": "#FFB800", "font_family": "Menlo, monospace", "bold": true},
+        {"id": "s44_t5", "type": "text", "content": "verificar → rollback → loop", "x": 130, "y": 390, "width": 800, "height": 28, "font_size": 15, "color": "#BBBBBB", "font_family": "Menlo, monospace"},
+        {"id": "s44_t6", "type": "text", "content": "", "x": 130, "y": 430, "width": 800, "height": 10, "font_size": 10, "color": "#333333"},
+        {"id": "s44_t7", "type": "text", "content": "# FASES DE EJECUCIÓN", "x": 130, "y": 450, "width": 800, "height": 28, "font_size": 16, "color": "#00CC66", "font_family": "Menlo, monospace", "bold": true},
+        {"id": "s44_t8", "type": "text", "content": "fase_1: scaffold\nfase_2: core_logic\nfase_3: integration\nfase_4: testing\nfase_5: deploy", "x": 130, "y": 480, "width": 800, "height": 160, "font_size": 15, "color": "#BBBBBB", "font_family": "Menlo, monospace", "line_spacing": 1.5},
+        {"id": "s44_qr_bg", "type": "shape", "shape": "rounded_rect", "x": 1040, "y": 220, "width": 780, "height": 680, "fill": "#111111", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s44_qr_label", "type": "text", "content": "[QR CODE]", "x": 1040, "y": 440, "width": 780, "height": 60, "font_size": 36, "color": "#555555", "align": "center"},
+        {"id": "s44_qr_cta", "type": "text", "content": "Escanea → Descarga el Megaprompt", "x": 1040, "y": 520, "width": 780, "height": 40, "font_size": 20, "color": "#f69f02", "align": "center"}
+      ],
+      "notes": "Slide del Megaprompt. Terminal izquierda, QR derecha. CTA: escanea y descarga."
+    },
+    {
+      "id": 45, "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s45_title", "type": "text", "content": "La asimetría se amplía", "x": 120, "y": 50, "width": 1680, "height": 70, "font_size": 42, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s45_line", "type": "line", "x": 760, "y": 130, "width": 400, "height": 0, "x1": 760, "y1": 130, "x2": 1160, "y2": 130, "color": "#f69f02", "line_width": 2},
+        {"id": "s45_img", "type": "shape", "shape": "rounded_rect", "x": 160, "y": 170, "width": 1600, "height": 800, "fill": "#1A1A1A", "corner_radius": 16, "stroke": {"color": "#f69f02", "width": 2}},
+        {"id": "s45_lbl", "type": "text", "content": "[INSERTAR IMAGEN: asimetría vibe coder vs arquitecto]", "x": 160, "y": 530, "width": 1600, "height": 40, "font_size": 18, "color": "#555555", "align": "center"}
+      ], "notes": "Vibe coder vs arquitecto. La asimetría se amplía exponencialmente."
+    },
+    {
+      "id": 46,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s46_main", "type": "text", "content": "Cada herramienta que les\nenseñé hoy se multiplica\ncon cada modelo nuevo.", "x": 160, "y": 280, "width": 1600, "height": 300, "font_size": 48, "color": "#ffffff", "bold": true, "align": "center", "line_spacing": 1.3}
+      ],
+      "notes": "Las técnicas que enseñaste escalan con cada modelo nuevo. No se deprecian."
+    },
+    {
+      "id": 47,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s47_main", "type": "text", "content": "El sistema que construyan\nesta semana será\nexponencialmente más poderoso\nen 4 meses.", "x": 160, "y": 240, "width": 1600, "height": 400, "font_size": 44, "color": "#f69f02", "bold": true, "align": "center", "line_spacing": 1.3}
+      ],
+      "notes": "Urgencia constructiva. Lo que construyan HOY se multiplica. 4 meses."
+    },
+    {
+      "id": 48,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s48_title", "type": "text", "content": "El vibe coding sin infraestructura\nes un hobby caro.", "x": 160, "y": 260, "width": 1600, "height": 200, "font_size": 52, "color": "#ffffff", "bold": true, "align": "center", "line_spacing": 1.2},
+        {"id": "s48_sub", "type": "text", "content": "Cursor es la mesa. Claude Code es el agente.\nSaaS Factory es la fábrica.", "x": 260, "y": 510, "width": 1400, "height": 100, "font_size": 28, "color": "#f69f02", "italic": true, "align": "center", "line_spacing": 1.4}
+      ],
+      "notes": "Cierre filosófico. Vibe coding sin estructura = hobby. Con estructura = fábrica."
+    },
+    {
+      "id": 49,
+      "background": { "type": "solid", "color": "#0D0D0D" },
+      "elements": [
+        {"id": "s49_handle", "type": "text", "content": "@danielcarreong", "x": 160, "y": 340, "width": 1600, "height": 80, "font_size": 56, "color": "#ffffff", "bold": true, "align": "center"},
+        {"id": "s49_url", "type": "text", "content": "saasfactory.so", "x": 360, "y": 440, "width": 1200, "height": 50, "font_size": 32, "color": "#f69f02", "align": "center"},
+        {"id": "s49_cta", "type": "text", "content": "700+ Arquitectos", "x": 460, "y": 510, "width": 1000, "height": 40, "font_size": 24, "color": "#888888", "align": "center"},
+        {"id": "s49_line1", "type": "line", "x": 600, "y": 320, "width": 720, "height": 0, "x1": 600, "y1": 320, "x2": 1320, "y2": 320, "color": "#f69f02", "line_width": 1},
+        {"id": "s49_line2", "type": "line", "x": 600, "y": 580, "width": 720, "height": 0, "x1": 600, "y1": 580, "x2": 1320, "y2": 580, "color": "#f69f02", "line_width": 1}
+      ],
+      "notes": "Redes. CTA: seguir en Twitter/X, visitar saasfactory.so"
+    },
+    {
+      "id": 50,
+      "background": { "type": "gradient", "angle": 180, "stops": [{"offset": 0, "color": "#0D0D0D"}, {"offset": 1, "color": "#1A1A1A"}] },
+      "elements": [
+        {"id": "s50_thanks", "type": "text", "content": "Soy Daniel Carreon.\nGracias.", "x": 160, "y": 320, "width": 1600, "height": 200, "font_size": 64, "color": "#ffffff", "bold": true, "align": "center", "line_spacing": 1.3},
+        {"id": "s50_event", "type": "text", "content": "Talent Land 2026 | Developer Land", "x": 460, "y": 560, "width": 1000, "height": 40, "font_size": 22, "color": "#666666", "align": "center"},
+        {"id": "s50_bokeh1", "type": "shape", "shape": "ellipse", "x": 200, "y": 50, "width": 150, "height": 150, "fill": "#f69f02", "opacity": 0.05},
+        {"id": "s50_bokeh2", "type": "shape", "shape": "ellipse", "x": 1500, "y": 100, "width": 200, "height": 200, "fill": "#8C27F1", "opacity": 0.04},
+        {"id": "s50_bokeh3", "type": "shape", "shape": "ellipse", "x": 800, "y": 800, "width": 180, "height": 180, "fill": "#f69f02", "opacity": 0.03},
+        {"id": "s50_line", "type": "line", "x": 660, "y": 540, "width": 600, "height": 0, "x1": 660, "y1": 540, "x2": 1260, "y2": 540, "color": "#f69f02", "line_width": 1}
+      ],
+      "notes": "Slide final. Gracias. Pausa. Aplausos."
+    }
+  ]
+}
