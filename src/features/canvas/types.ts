@@ -109,6 +109,8 @@ export interface TextRun {
   underline?: boolean;
   font_size?: number;
   color?: string;
+  font_family?: string;
+  letter_spacing?: number;
 }
 
 export interface RichTextElement extends BaseElement {

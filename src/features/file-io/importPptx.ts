@@ -4,6 +4,8 @@ import type {
   Slide,
   SlideElement,
   TextElement,
+  RichTextElement,
+  TextRun,
   ShapeElement,
   ImageElement,
   SlideBackground,
@@ -46,6 +48,19 @@ function ooxmlBool(val: string | null): boolean {
   return val !== "0" && val !== "false" && val !== "off";
 }
 
+// Theme color map — populated from ppt/theme/theme1.xml at import time.
+// tx1=dk1, tx2=dk2, bg1=lt1, bg2=lt2 are aliases.
+let themeColorMap: Record<string, string> = {};
+
+function initThemeColors(defaults: Record<string, string>) {
+  themeColorMap = { ...defaults };
+  // Aliases used in slide XML
+  if (themeColorMap.dk1) themeColorMap.tx1 = themeColorMap.dk1;
+  if (themeColorMap.dk2) themeColorMap.tx2 = themeColorMap.dk2;
+  if (themeColorMap.lt1) themeColorMap.bg1 = themeColorMap.lt1;
+  if (themeColorMap.lt2) themeColorMap.bg2 = themeColorMap.lt2;
+}
+
 // Parse hex color from OOXML (e.g., "FF6B00" → "#FF6B00")
 function parseColor(node: Element | null, fallback = "#ffffff"): string {
   if (!node) return fallback;
@@ -53,18 +68,8 @@ function parseColor(node: Element | null, fallback = "#ffffff"): string {
   if (srgb) return "#" + srgb.getAttribute("val");
   const scheme = qs(node, "schemeClr");
   if (scheme) {
-    // Map common scheme colors
-    const schemeMap: Record<string, string> = {
-      tx1: "#ffffff",
-      tx2: "#BBBBBB",
-      bg1: "#0D0D0D",
-      bg2: "#1A1A1A",
-      accent1: "#8B5CF6",
-      accent2: "#f69f02",
-      lt1: "#ffffff",
-      dk1: "#000000",
-    };
-    return schemeMap[scheme.getAttribute("val") || ""] || fallback;
+    const val = scheme.getAttribute("val") || "";
+    return themeColorMap[val] || fallback;
   }
   return fallback;
 }
@@ -220,37 +225,33 @@ function parseShape(
     const marginR = emuToPx(body.rIns);
     const marginB = emuToPx(body.bIns);
 
-    // Adjust text element position/size to account for internal margins.
-    // In PPTX the shape box has margins inside; text renders within the inner area.
-    // Our TextElement x/y IS where text starts, so we offset by the margins.
     const textX = roundPx(rawX + marginL);
     const textY = roundPx(rawY + marginT);
     const textW = roundPx(rawW - marginL - marginR);
     const textH = roundPx(rawH - marginT - marginB);
 
-    const paragraphs = qsa(txBody, "p");
-    let fullText = "";
-    let fontSize = 32;
-    let color = "#ffffff";
-    let bold = false;
-    let italic = false;
-    let underline = false;
+    const defaultFont = mapFont(themeFonts?.minor ?? "Arial");
+
+    // Collect per-run styles
+    const allRuns: TextRun[] = [];
     let align: "left" | "center" | "right" = "left";
-    let fontFamily = "";
     let lineSpacing: number | undefined;
-    let letterSpacing: number | undefined;
 
+    const paragraphs = qsa(txBody, "p");
     paragraphs.forEach((p, pi) => {
-      if (pi > 0) fullText += "\n";
+      if (pi > 0) allRuns.push({ text: "\n" });
 
-      // Get paragraph alignment
+      // Paragraph alignment & spacing
       const pPr = qs(p, "pPr");
+      let defFontSize = 0;
+      let defBold = false;
+      let defColor = "";
+      let defFont = "";
       if (pPr) {
         const algn = pPr.getAttribute("algn");
         if (algn === "ctr") align = "center";
         else if (algn === "r") align = "right";
 
-        // Line spacing
         const lnSpc = qs(pPr, "lnSpc");
         if (lnSpc) {
           const spcPct = qs(lnSpc, "spcPct");
@@ -259,80 +260,130 @@ function parseShape(
             if (val) lineSpacing = parseInt(val) / 100000;
           }
         }
+
+        // Paragraph default run properties
+        const defRPr = qs(pPr, "defRPr");
+        if (defRPr) {
+          const sz = defRPr.getAttribute("sz");
+          if (sz) defFontSize = Math.round((parseFloat(sz) / 100) * PT_TO_CANVAS_PX);
+          defBold = ooxmlBool(defRPr.getAttribute("b"));
+          const sf = qs(defRPr, "solidFill");
+          if (sf) defColor = parseColor(sf);
+          const lat = qs(defRPr, "latin");
+          if (lat) {
+            const tf = lat.getAttribute("typeface") || "";
+            if (tf && !tf.startsWith("+")) defFont = tf;
+          }
+        }
       }
 
       const runs = qsa(p, "r");
       runs.forEach((r) => {
         const t = qs(r, "t");
-        if (t) fullText += t.textContent || "";
+        const text = t?.textContent || "";
+        if (!text) return;
 
-        // Extract run properties
+        // Start with paragraph defaults
+        let fontSize = defFontSize || 64; // fallback for imported text
+        let color = defColor || "#ffffff";
+        let bold = defBold;
+        let italic = false;
+        let underline = false;
+        let fontFamily = defFont;
+        let letterSpacing: number | undefined;
+
         const rPr = qs(r, "rPr");
         if (rPr) {
           const sz = rPr.getAttribute("sz");
-          // PPTX stores font size in hundredths of a point (e.g. 3200 = 32pt)
-          // Convert: hundredths → points → canvas pixels (×PT_TO_CANVAS_PX)
-          if (sz) {
-            const points = parseFloat(sz) / 100;
-            fontSize = Math.round(points * PT_TO_CANVAS_PX);
-          }
+          if (sz) fontSize = Math.round((parseFloat(sz) / 100) * PT_TO_CANVAS_PX);
 
-          // OOXML booleans: "1", "true", "on", or present = true
-          bold = ooxmlBool(rPr.getAttribute("b"));
+          bold = ooxmlBool(rPr.getAttribute("b")) || defBold;
           italic = ooxmlBool(rPr.getAttribute("i"));
           const uAttr = rPr.getAttribute("u");
           underline = uAttr !== null && uAttr !== "none";
 
-          // Character spacing: spc is in hundredths of a point
           const spc = rPr.getAttribute("spc");
-          if (spc) {
-            // Convert to canvas pixels: hundredths-of-pt / 100 → pt, then × PT_TO_CANVAS_PX
-            letterSpacing = (parseFloat(spc) / 100) * PT_TO_CANVAS_PX;
-          }
+          if (spc) letterSpacing = (parseFloat(spc) / 100) * PT_TO_CANVAS_PX;
 
-          // Color
           const solidFill = qs(rPr, "solidFill");
-          if (solidFill) {
-            color = parseColor(solidFill);
-          }
+          if (solidFill) color = parseColor(solidFill);
 
-          // Font — resolve theme references
           const latin = qs(rPr, "latin");
           if (latin) {
             const typeface = latin.getAttribute("typeface") || "";
-            // Skip theme font references (+mj-lt, +mn-lt) — resolved later from theme
-            if (typeface && !typeface.startsWith("+")) {
-              fontFamily = typeface;
-            }
+            if (typeface && !typeface.startsWith("+")) fontFamily = typeface;
           }
         }
+
+        allRuns.push({
+          text,
+          font_size: fontSize,
+          color,
+          bold,
+          italic,
+          underline,
+          font_family: mapFont(fontFamily || themeFonts?.minor || "Arial"),
+          letter_spacing: letterSpacing,
+        });
       });
     });
 
+    // Filter out empty
+    const fullText = allRuns.map((r) => r.text).join("");
     if (!fullText.trim()) return null;
 
-    const el: TextElement = {
+    // Check if all runs have the same style → use simple TextElement
+    const styledRuns = allRuns.filter((r) => r.text !== "\n");
+    const first = styledRuns[0];
+    const allSame = styledRuns.every(
+      (r) =>
+        r.font_size === first?.font_size &&
+        r.color === first?.color &&
+        r.bold === first?.bold &&
+        r.italic === first?.italic &&
+        r.font_family === first?.font_family
+    );
+
+    if (allSame && first) {
+      // Simple TextElement
+      const el: TextElement = {
+        id: nextId(),
+        type: "text",
+        content: fullText.trim(),
+        x: Math.round(textX),
+        y: Math.round(textY),
+        width: Math.round(textW),
+        height: Math.round(textH),
+        font_size: first.font_size,
+        color: first.color,
+        bold: first.bold,
+        italic: first.italic,
+        underline: first.underline,
+        align,
+        valign: body.anchor,
+        rotation,
+        font_family: first.font_family,
+        letter_spacing: first.letter_spacing,
+      };
+      if (lineSpacing !== undefined) el.line_spacing = lineSpacing;
+      return el;
+    }
+
+    // Rich text — preserve per-run styles
+    const el: RichTextElement = {
       id: nextId(),
-      type: "text",
-      content: fullText.trim(),
+      type: "rich_text",
+      runs: allRuns,
       x: Math.round(textX),
       y: Math.round(textY),
       width: Math.round(textW),
       height: Math.round(textH),
-      font_size: fontSize,
-      color,
-      bold,
-      italic,
-      underline,
+      font_family: first?.font_family || defaultFont,
       align,
       valign: body.anchor,
       rotation,
     };
-    // Resolve font: explicit font > theme font > default
-    const resolvedFont = fontFamily || (themeFonts?.minor ?? "Arial");
-    el.font_family = mapFont(resolvedFont);
     if (lineSpacing !== undefined) el.line_spacing = lineSpacing;
-    if (letterSpacing !== undefined) el.letter_spacing = letterSpacing;
     return el;
   }
 
@@ -578,6 +629,32 @@ export async function importPptx(file: File): Promise<Presentation> {
       if (minorFont) {
         const latin = qs(minorFont, "latin");
         if (latin) themeMinorFont = latin.getAttribute("typeface") || "Arial";
+      }
+    }
+    // Parse theme colors from <a:clrScheme>
+    const themeFile2 = zip.file("ppt/theme/theme1.xml");
+    if (themeFile2) {
+      const themeXml2 = await themeFile2.async("text");
+      const themeDoc2 = parser.parseFromString(themeXml2, "text/xml");
+      const clrScheme = qs(themeDoc2, "clrScheme");
+      if (clrScheme) {
+        const colorNames = ["dk1", "lt1", "dk2", "lt2", "accent1", "accent2", "accent3", "accent4", "accent5", "accent6", "hlink", "folHlink"];
+        const colors: Record<string, string> = {};
+        for (const name of colorNames) {
+          const el = qs(clrScheme, name);
+          if (el) {
+            const srgb = qs(el, "srgbClr");
+            if (srgb) {
+              colors[name] = "#" + srgb.getAttribute("val");
+            } else {
+              const sys = qs(el, "sysClr");
+              if (sys) {
+                colors[name] = "#" + (sys.getAttribute("lastClr") || sys.getAttribute("val") || "000000");
+              }
+            }
+          }
+        }
+        initThemeColors(colors);
       }
     }
   } catch { /* use defaults */ }

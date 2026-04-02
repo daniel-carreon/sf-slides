@@ -385,16 +385,45 @@ function createLine(el: LineElement): fabric.Line {
   return obj;
 }
 
-// --- Rich Text (fallback: concatenate runs into a single Textbox) ---
+// --- Rich Text: per-character styles via Fabric.js styles object ---
 function createRichText(el: RichTextElement): fabric.Textbox {
   const content = el.runs.map((r) => r.text).join("") || " ";
   const firstRun = el.runs[0];
+
+  // Build Fabric.js per-character styles: styles[lineIndex][charIndex] = {...}
+  const styles: Record<number, Record<number, Record<string, unknown>>> = {};
+  let lineIdx = 0;
+  let charIdx = 0;
+
+  for (const run of el.runs) {
+    const runStyle: Record<string, unknown> = {};
+    if (run.color) runStyle.fill = run.color;
+    if (run.font_size) runStyle.fontSize = run.font_size;
+    if (run.bold !== undefined) runStyle.fontWeight = run.bold ? "bold" : "normal";
+    if (run.italic !== undefined) runStyle.fontStyle = run.italic ? "italic" : "normal";
+    if (run.underline !== undefined) runStyle.underline = run.underline;
+    if (run.font_family) runStyle.fontFamily = run.font_family;
+    if (run.letter_spacing) runStyle.charSpacing = run.letter_spacing * 10;
+
+    for (let i = 0; i < run.text.length; i++) {
+      const ch = run.text[i];
+      if (ch === "\n") {
+        lineIdx++;
+        charIdx = 0;
+        continue;
+      }
+      if (!styles[lineIdx]) styles[lineIdx] = {};
+      styles[lineIdx][charIdx] = { ...runStyle };
+      charIdx++;
+    }
+  }
+
   const obj = new fabric.Textbox(content, {
     left: el.x,
     top: el.y,
     width: el.width,
     height: el.height,
-    fontFamily: el.font_family || "Inter, system-ui, sans-serif",
+    fontFamily: el.font_family || firstRun?.font_family || "Arial, sans-serif",
     fontSize: firstRun?.font_size ?? 32,
     fill: firstRun?.color ?? "#ffffff",
     fontWeight: firstRun?.bold ? "bold" : "normal",
@@ -406,6 +435,7 @@ function createRichText(el: RichTextElement): fabric.Textbox {
     padding: el.padding ?? 0,
     splitByGrapheme: false,
     editable: true,
+    styles,
   });
   applyCommon(obj, el);
   return obj;
