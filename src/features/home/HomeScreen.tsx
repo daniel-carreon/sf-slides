@@ -43,6 +43,7 @@ interface ProjectInfo {
   slideCount: number;
   modified: number; // timestamp
   thumbnailColor: string; // bg color of first slide for preview
+  coverImageDataUrl: string | null; // base64 data URL for cover image
 }
 
 // Brand logo
@@ -86,26 +87,42 @@ function ProjectCard({
         className="w-full aspect-video rounded-xl overflow-hidden border border-white/8 hover:border-morado-500/50 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg hover:shadow-morado-500/10 focus:outline-none focus:ring-2 focus:ring-morado-500/50"
         style={{ backgroundColor: project.thumbnailColor || "#0f0f17" }}
       >
-        <div className="w-full h-full flex flex-col items-center justify-center p-4 relative">
-          {/* Decorative accent line */}
-          <div
-            className="absolute top-3 left-3 w-8 h-1 rounded-full"
-            style={{ backgroundColor: accent }}
-          />
-          {/* Slide count badge */}
-          <div className="absolute top-2.5 right-3 text-[10px] text-white/30 bg-black/40 px-1.5 py-0.5 rounded">
-            {project.slideCount} slides
+        {project.coverImageDataUrl ? (
+          <div className="w-full h-full relative">
+            <img
+              src={project.coverImageDataUrl}
+              alt={project.title}
+              className="w-full h-full object-cover"
+              draggable={false}
+              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+            />
+            {/* Slide count badge */}
+            <div className="absolute top-2.5 right-3 text-[10px] text-white/80 bg-black/60 px-1.5 py-0.5 rounded backdrop-blur-sm">
+              {project.slideCount} slides
+            </div>
           </div>
-          {/* Title preview */}
-          <span className="text-white/80 font-bold text-sm text-center line-clamp-2 mt-2">
-            {project.title}
-          </span>
-          {project.author && (
-            <span className="text-white/30 text-[10px] mt-1">
-              {project.author}
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center p-4 relative">
+            {/* Decorative accent line */}
+            <div
+              className="absolute top-3 left-3 w-8 h-1 rounded-full"
+              style={{ backgroundColor: accent }}
+            />
+            {/* Slide count badge */}
+            <div className="absolute top-2.5 right-3 text-[10px] text-white/30 bg-black/40 px-1.5 py-0.5 rounded">
+              {project.slideCount} slides
+            </div>
+            {/* Title preview */}
+            <span className="text-white/80 font-bold text-sm text-center line-clamp-2 mt-2">
+              {project.title}
             </span>
-          )}
-        </div>
+            {project.author && (
+              <span className="text-white/30 text-[10px] mt-1">
+                {project.author}
+              </span>
+            )}
+          </div>
+        )}
       </button>
 
       {/* Info bar */}
@@ -213,6 +230,7 @@ export default function HomeScreen() {
               slideCount: data.slides?.length || 0,
               modified: Date.now(),
               thumbnailColor: bgColor,
+              coverImageDataUrl: (data.metadata as any)?.cover_image_data || null,
             });
           } catch {
             // Skip invalid files
@@ -224,9 +242,40 @@ export default function HomeScreen() {
       projectList.sort((a, b) => b.created.localeCompare(a.created));
       setProjects(projectList);
     } catch (err) {
-      console.error("[HomeScreen] Failed to load presentations:", err);
-      // Not in Tauri / no presentations dir — show empty state
-      setProjects([]);
+      console.error("[HomeScreen] Tauri FS failed, trying dev fallback:", err);
+      // Dev mode fallback: load from public/ via HTTP
+      try {
+        const devFiles = ["Mi-Business-OS-v4.sfslides", "recursividad-agentica.sfslides"];
+        const projectList: ProjectInfo[] = [];
+        for (const name of devFiles) {
+          try {
+            const res = await fetch(`/${name}`);
+            if (!res.ok) continue;
+            const data = JSON.parse(await res.text()) as Presentation;
+            const firstSlideBg = data.slides?.[0]?.background;
+            const bgColor =
+              firstSlideBg?.type === "solid"
+                ? firstSlideBg.color
+                : firstSlideBg?.type === "gradient"
+                  ? firstSlideBg.stops?.[0]?.color || "#0f0f17"
+                  : "#0f0f17";
+            projectList.push({
+              path: name,
+              name,
+              title: data.metadata?.title || name.replace(/\.(sfslides|json)$/, ""),
+              author: data.metadata?.author || "",
+              created: data.metadata?.created || "",
+              slideCount: data.slides?.length || 0,
+              modified: Date.now(),
+              thumbnailColor: bgColor,
+              coverImageDataUrl: (data.metadata as any)?.cover_image_data || null,
+            });
+          } catch { /* skip */ }
+        }
+        setProjects(projectList);
+      } catch {
+        setProjects([]);
+      }
     }
     setLoading(false);
   }, []);

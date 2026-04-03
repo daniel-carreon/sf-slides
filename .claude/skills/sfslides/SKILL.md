@@ -395,11 +395,67 @@ Then reference with absolute path:
 
 ---
 
+## QUALITY STANDARDS (Learned from Skywork comparison, Apr 2026)
+
+### Typography Must Feel Heavy
+Skywork presentations use thick, impactful typography. Our defaults were too light.
+- **Big numbers** (revenue, stats): font_size 120-144, bold, with text glow shadow
+- **Titles**: font_size 56-72, bold. Use `"font_family": "Impact, Helvetica Neue, Arial, sans-serif"` for extra weight on hero numbers
+- **Subtitles with mixed color**: Use `rich_text` type with runs[] to color key words differently (e.g., "Revenue en menos de " white + "3 MESES" amber)
+
+### Cards Must Have Visual Richness
+Plain cards with just text look flat. Every card needs:
+- **Icon at top**: Colored circle (48px) with ASCII character or generated PNG icon
+- **Big number** in accent color (36-48px, bold)
+- **Label** below in gray (16-18px, ALL CAPS)
+- **Border glow** matching the accent color (shadow blur 15-20)
+- **Consistent card sizing** across the row (all same width/height)
+
+### Slides Need Background Depth
+Skywork uses layered backgrounds (gradient + texture + decorative elements). Our solid #0D0D0D is too flat.
+- **Use gradient backgrounds** on section openers and key slides (angle 135-160, from #0D0D0D to #1A1A1A or subtle purple/amber tint)
+- **Add 2-3 decorative arcs** (large ellipses 400-700px, stroke-only, opacity 0.05-0.12, accent colors)
+- **Subtle noise/texture** can be simulated with multiple tiny bokeh elements at very low opacity
+
+### Images Must Be Embedded as Base64
+Tauri WebView cannot resolve local file paths reliably. ALL images in sfslides files MUST be embedded as data URLs:
+```bash
+python3 -c "import base64; data=open('image.png','rb').read(); print(f'data:image/png;base64,{base64.b64encode(data).decode()}')"
+```
+This makes files larger but guarantees rendering in both dev and production.
+
+### Statement Slides Need Atmosphere
+A slide with just one big phrase looks bare. Always add:
+- Gradient background (not flat solid)
+- 2-3 bokeh elements (0.03-0.05 opacity)
+- Horizontal separator line below the statement
+- Generous vertical centering (y: 280-350)
+- Optional callout bar at bottom with key insight
+
+### Use Sketchnote Images for Complex Concepts
+For slides explaining systems, pipelines, or architectures:
+- Generate sketchnote-style images using video-visuals skill
+- Place them near-fullscreen (60x40 to 1800x900) with corner_radius 16-20
+- Add a callout bar below with the key takeaway
+- The image IS the slide content, text elements are minimal (just the section label)
+
+### Cover Image in Metadata
+Add `cover_image_data` (base64 thumbnail, max 400px wide) to metadata for Home Screen preview:
+```json
+"metadata": {
+  "title": "Presentation Title",
+  "cover_image_data": "data:image/png;base64,..."
+}
+```
+
+---
+
 ## Workflow Checklist
 
 1. `mkdir -p presentations/assets/`
-2. Generate any needed images (image-generation skill) → save to `presentations/assets/`
-3. Write `.sfslides` JSON with absolute image paths
+2. Generate any needed images (video-visuals or image-generation skill) → save to `presentations/assets/`
+3. Write `.sfslides` JSON — embed images as base64 data URLs
 4. Validate: `node -e "JSON.parse(require('fs').readFileSync('file.sfslides','utf8'))"`
 5. Copy to `~/Documents/SF-Slides/presentations/`
 6. Tell user to open in SF-Slides (or it appears in Recent)
+7. **Verify with Playwright** on localhost:1420 — check fonts, images, layout

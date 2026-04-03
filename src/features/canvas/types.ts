@@ -257,6 +257,7 @@ export interface Presentation {
     title: string;
     author?: string;
     created?: string;
+    cover_image?: string; // absolute path to cover image shown in Home Screen
   };
   defaults?: PresentationDefaults;
   slides: Slide[];
