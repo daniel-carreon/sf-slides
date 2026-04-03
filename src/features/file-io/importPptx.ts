@@ -250,7 +250,12 @@ function parseShape(
     const textX = roundPx(rawX + marginL);
     const textY = roundPx(rawY + marginT);
     const textW = roundPx(rawW - marginL - marginR);
-    const textH = roundPx(rawH - marginT - marginB);
+    let textH = roundPx(rawH - marginT - marginB);
+
+    // Ensure text box height is at least 1.3x the font size to prevent clipping.
+    // PPTX sometimes creates text boxes that are exactly the font height,
+    // but Fabric.js needs extra space for line-height and descenders.
+    // We calculate this after parsing runs (below) and adjust if needed.
 
     const defaultFont = mapFont(themeFonts?.minor ?? "Arial");
 
@@ -365,6 +370,12 @@ function parseShape(
         r.italic === first?.italic &&
         r.font_family === first?.font_family
     );
+
+    // Adjust height: ensure text box can fit the largest font with line-height
+    const maxFontSize = Math.max(...styledRuns.map(r => r.font_size || 64));
+    const lineCount = fullText.split("\n").length;
+    const minHeight = maxFontSize * 1.25 * lineCount;
+    if (textH < minHeight) textH = roundPx(minHeight);
 
     if (allSame && first) {
       // Simple TextElement
