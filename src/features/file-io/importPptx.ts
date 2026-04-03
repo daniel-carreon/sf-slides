@@ -117,6 +117,9 @@ function mapFont(pptxFont: string): string {
   };
   if (remapFonts[pptxFont]) return remapFonts[pptxFont];
 
+  // Inter — modern font used by Skywork and many tech presentations
+  if (pptxFont === "Inter") return "Inter, Helvetica Neue, Arial, sans-serif";
+
   // Unknown font: pass through with generic fallback
   return `${pptxFont}, sans-serif`;
 }
@@ -202,6 +205,24 @@ function parseShape(
     );
     const imgSrc = rEmbed ? slideImages.get(rEmbed) || "" : "";
 
+    // Check for opacity (alpha modulation)
+    let imgOpacity = 1.0;
+    const alphaModFix = blip ? qs(blip, "alphaModFix") : null;
+    if (alphaModFix) {
+      const amt = alphaModFix.getAttribute("amt");
+      if (amt) imgOpacity = parseInt(amt) / 100000;
+    }
+    // Also check spPr for overall element opacity
+    if (spPr) {
+      const noFillCheck = qs(spPr, "noFill");
+      // Some PPTX use alpha on the blip fill itself
+      const alphaEl = blipFill ? qs(blipFill, "alphaModFix") : null;
+      if (alphaEl) {
+        const amt = alphaEl.getAttribute("amt");
+        if (amt) imgOpacity = parseInt(amt) / 100000;
+      }
+    }
+
     return {
       id: nextId(),
       type: "image",
@@ -212,6 +233,7 @@ function parseShape(
       height: Math.round(rawH),
       corner_radius: 0,
       rotation,
+      opacity: imgOpacity < 0.99 ? roundPx(imgOpacity) : undefined,
     } as ImageElement;
   }
 
@@ -405,11 +427,29 @@ function parseShape(
   };
   const shape = (shapeMap[geomType] || "rect") as ShapeElement["shape"];
 
-  // Fill color
-  let fill: string | null = null;
-  const solidFill = spPr ? qs(spPr, "solidFill") : null;
-  if (solidFill) {
-    fill = parseColor(solidFill, "#8B5CF6");
+  // Fill color (solid or gradient)
+  let fill: string | { type: "linear" | "radial"; angle?: number; stops: { offset: number; color: string }[] } | null = null;
+  const shapeSolidFill = spPr ? qs(spPr, "solidFill") : null;
+  if (shapeSolidFill) {
+    fill = parseColor(shapeSolidFill, "#8B5CF6");
+  }
+  // Gradient fill for shapes
+  const shapeGradFill = spPr ? qs(spPr, "gradFill") : null;
+  if (shapeGradFill && !shapeSolidFill) {
+    const gStops = qsa(shapeGradFill, "gs");
+    if (gStops.length >= 2) {
+      const gradStops = gStops.map((gs) => ({
+        offset: parseInt(gs.getAttribute("pos") || "0") / 100000,
+        color: parseColor(gs, "#0D0D0D"),
+      }));
+      const lin = qs(shapeGradFill, "lin");
+      let angle = 135;
+      if (lin) {
+        const angAttr = lin.getAttribute("ang");
+        if (angAttr) angle = Math.round(parseInt(angAttr) / 60000);
+      }
+      fill = { type: "linear" as const, angle, stops: gradStops };
+    }
   }
   const noFill = spPr ? qs(spPr, "noFill") : null;
   if (noFill) fill = null;
@@ -454,7 +494,35 @@ function parseShape(
     if (cornerRadius === 0) cornerRadius = 12; // default
   }
 
-  return {
+  // Parse shadow/glow effect
+  let shadow: { color: string; blur: number; offset_x: number; offset_y: number } | undefined;
+  const effectLst = spPr ? qs(spPr, "effectLst") : null;
+  if (effectLst) {
+    // Outer glow
+    const outerShdw = qs(effectLst, "outerShdw");
+    if (outerShdw) {
+      const blurRad = outerShdw.getAttribute("blurRad");
+      const dist = outerShdw.getAttribute("dist");
+      const dir = outerShdw.getAttribute("dir");
+      const shdwColor = parseColor(outerShdw, "#000000");
+      const blur = blurRad ? Math.round(parseInt(blurRad) / 12700) : 10;
+      const distance = dist ? parseInt(dist) / 12700 : 0;
+      const angle = dir ? parseInt(dir) / 60000 : 270;
+      const offsetX = Math.round(distance * Math.cos((angle * Math.PI) / 180));
+      const offsetY = Math.round(distance * Math.sin((angle * Math.PI) / 180));
+      shadow = { color: shdwColor, blur, offset_x: offsetX, offset_y: offsetY };
+    }
+    // Glow effect (colored glow around element)
+    const glow = qs(effectLst, "glow");
+    if (glow && !shadow) {
+      const glowRad = glow.getAttribute("rad");
+      const glowColor = parseColor(glow, "#f69f02");
+      const blur = glowRad ? Math.round(parseInt(glowRad) / 12700) : 15;
+      shadow = { color: glowColor, blur, offset_x: 0, offset_y: 0 };
+    }
+  }
+
+  const shapeEl: ShapeElement = {
     id: nextId(),
     type: "shape",
     shape,
@@ -466,20 +534,84 @@ function parseShape(
     stroke: stroke || undefined,
     corner_radius: cornerRadius,
     rotation,
-  } as ShapeElement;
+  };
+  if (shadow) (shapeEl as any).shadow = shadow;
+  return shapeEl;
 }
 
-// Parse slide background
+// Parse slide background — handles solid, gradient, and picture backgrounds
 function parseBackground(
   slideDoc: Document,
-  _zip: JSZip
-): SlideBackground | undefined {
+  slideImages: Map<string, string>
+): { bg: SlideBackground | undefined; bgImageElement: ImageElement | null } {
   const bg = qs(slideDoc, "bg");
-  if (!bg) return undefined;
+  if (!bg) return { bg: undefined, bgImageElement: null };
 
+  // Check for background picture (blipFill)
+  const bgPr = qs(bg, "bgPr");
+  if (bgPr) {
+    const blipFill = qs(bgPr, "blipFill");
+    if (blipFill) {
+      const blip = qs(blipFill, "blip");
+      if (blip) {
+        const rEmbed = blip.getAttribute("r:embed") || blip.getAttributeNS(
+          "http://schemas.openxmlformats.org/officeDocument/2006/relationships",
+          "embed"
+        );
+        const imgSrc = rEmbed ? slideImages.get(rEmbed) || "" : "";
+        if (imgSrc) {
+          // Return the background image as a fullscreen element at z_index -1
+          return {
+            bg: { type: "solid", color: "#0D0D0D" },
+            bgImageElement: {
+              id: "bg_img",
+              type: "image",
+              src: imgSrc,
+              x: 0,
+              y: 0,
+              width: 1920,
+              height: 1080,
+              corner_radius: 0,
+              opacity: 1.0,
+              z_index: -100,
+            } as ImageElement,
+          };
+        }
+      }
+    }
+
+    const solidFill = qs(bgPr, "solidFill");
+    if (solidFill) {
+      return { bg: { type: "solid", color: parseColor(solidFill, "#0D0D0D") }, bgImageElement: null };
+    }
+
+    const gradFill = qs(bgPr, "gradFill");
+    if (gradFill) {
+      const stops = qsa(gradFill, "gs");
+      if (stops.length >= 2) {
+        const gradStops = Array.from(stops).map((gs) => ({
+          offset: parseInt(gs.getAttribute("pos") || "0") / 100000,
+          color: parseColor(gs, "#0D0D0D"),
+        }));
+        // Parse gradient angle from lin element
+        const lin = qs(gradFill, "lin");
+        let angle = 180;
+        if (lin) {
+          const angAttr = lin.getAttribute("ang");
+          if (angAttr) angle = Math.round(parseInt(angAttr) / 60000);
+        }
+        return {
+          bg: { type: "gradient", angle, stops: gradStops },
+          bgImageElement: null,
+        };
+      }
+    }
+  }
+
+  // Fallback: check directly under bg (some PPTXs structure it differently)
   const solidFill = qs(bg, "solidFill");
   if (solidFill) {
-    return { type: "solid", color: parseColor(solidFill, "#0D0D0D") };
+    return { bg: { type: "solid", color: parseColor(solidFill, "#0D0D0D") }, bgImageElement: null };
   }
 
   const gradFill = qs(bg, "gradFill");
@@ -490,15 +622,20 @@ function parseBackground(
         offset: parseInt(gs.getAttribute("pos") || "0") / 100000,
         color: parseColor(gs, "#0D0D0D"),
       }));
+      const lin = qs(gradFill, "lin");
+      let angle = 180;
+      if (lin) {
+        const angAttr = lin.getAttribute("ang");
+        if (angAttr) angle = Math.round(parseInt(angAttr) / 60000);
+      }
       return {
-        type: "gradient",
-        angle: 180,
-        stops: gradStops,
+        bg: { type: "gradient", angle, stops: gradStops },
+        bgImageElement: null,
       };
     }
   }
 
-  return { type: "solid", color: "#0D0D0D" };
+  return { bg: { type: "solid", color: "#0D0D0D" }, bgImageElement: null };
 }
 
 // Parse speaker notes
@@ -672,11 +809,16 @@ export async function importPptx(file: File): Promise<Presentation> {
     const slideNum = parseInt(slideFiles[i].match(/\d+/)?.[0] || "1");
     const slideImages = await extractImages(zip, slideNum);
 
-    // Parse background
-    const background = parseBackground(doc, zip);
+    // Parse background (now also handles picture backgrounds)
+    const { bg: background, bgImageElement } = parseBackground(doc, slideImages);
 
     // Parse all shapes (sp = shape, pic = picture)
     const elements: SlideElement[] = [];
+    // If background is a picture, add it as first element (behind everything)
+    if (bgImageElement) {
+      bgImageElement.id = nextId();
+      elements.push(bgImageElement);
+    }
     const spTree = qs(doc, "spTree");
 
     if (spTree) {
