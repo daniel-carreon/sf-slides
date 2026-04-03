@@ -35,7 +35,7 @@ The Home Screen reads from `~/Documents/SF-Slides/presentations/`. Always copy t
     "created": "2026-04-02"
   },
   "defaults": {
-    "font_family": "Arial, Helvetica, sans-serif",
+    "font_family": "Inter, Helvetica Neue, Arial, sans-serif",
     "background": { "type": "solid", "color": "#0D0D0D" }
   },
   "slides": [
@@ -63,7 +63,7 @@ The Home Screen reads from `~/Documents/SF-Slides/presentations/`. Always copy t
   "font_size": 56, "color": "#ffffff",
   "bold": true, "italic": false, "underline": false,
   "align": "left", "valign": "top",
-  "font_family": "Arial, Helvetica, sans-serif",
+  "font_family": "Inter, Helvetica Neue, Arial, sans-serif",
   "line_spacing": 1.2, "letter_spacing": 0,
   "background": null, "padding": 0, "corner_radius": 0,
   "list_type": null
@@ -82,7 +82,7 @@ Required: `id`, `type`, `content`, `x`, `y`, `width`, `height`. Everything else 
     {"text": "GOLD text", "font_size": 56, "color": "#f69f02", "bold": true}
   ],
   "x": 120, "y": 300, "width": 1600, "height": 80,
-  "font_family": "Arial, Helvetica, sans-serif",
+  "font_family": "Inter, Helvetica Neue, Arial, sans-serif",
   "align": "center"
 }
 ```
