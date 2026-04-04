@@ -59,6 +59,7 @@ export default function Toolbar() {
   const setToolMode = useStore((s) => s.setToolMode);
   const zoom = useStore((s) => s.zoom);
   const setZoom = useStore((s) => s.setZoom);
+  const resetView = useStore((s) => s.resetView);
   const undo = useStore((s) => s.undo);
   const redo = useStore((s) => s.redo);
   const addSlide = useStore((s) => s.addSlide);
@@ -192,15 +193,19 @@ export default function Toolbar() {
         {/* Zoom */}
         <ToolButton
           icon={<ZoomOut size={14} />}
-          label="Zoom out"
+          label="Zoom out (Cmd+-)"
           onClick={() => setZoom(zoom - 0.1)}
         />
-        <span className="text-xs text-white/40 w-10 text-center">
+        <button
+          onClick={resetView}
+          title="Reset zoom (Cmd+0)"
+          className="text-xs text-white/40 w-10 text-center hover:text-white/70 transition-colors cursor-pointer"
+        >
           {Math.round(zoom * 100)}%
-        </span>
+        </button>
         <ToolButton
           icon={<ZoomIn size={14} />}
-          label="Zoom in"
+          label="Zoom in (Cmd+=)"
           onClick={() => setZoom(zoom + 0.1)}
         />
 

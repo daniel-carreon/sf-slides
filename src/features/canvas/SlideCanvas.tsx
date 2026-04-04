@@ -566,7 +566,10 @@ export default function SlideCanvas() {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <div className="shadow-2xl shadow-black/50 rounded-sm relative">
+      <div
+        className="shadow-2xl shadow-black/50 rounded-sm relative"
+        style={panX !== 0 || panY !== 0 ? { transform: `translate(${panX}px, ${panY}px)` } : undefined}
+      >
         <canvas ref={canvasRef} />
         {showGrid && (
           <svg
