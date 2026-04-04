@@ -48,6 +48,41 @@ pub fn run() {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![watch_file, stop_watching])
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+        .build(tauri::generate_context!())
+        .expect("error while building tauri application")
+        .run(|app, event| {
+            // Handle macOS "Open With" / double-click file open
+            if let tauri::RunEvent::Opened { urls } = event {
+                for url in urls {
+                    // url is a URL like file:///path/to/file.pptx
+                    let path = url.to_string();
+                    // Strip file:// prefix if present
+                    let file_path = if path.starts_with("file://") {
+                        percent_decode(path.strip_prefix("file://").unwrap_or(&path))
+                    } else {
+                        path.clone()
+                    };
+                    if file_path.ends_with(".sfslides") || file_path.ends_with(".pptx") || file_path.ends_with(".json") {
+                        let _ = app.emit("open-file", file_path);
+                    }
+                }
+            }
+        });
+}
+
+// Simple percent-decode for file paths (handles %20 spaces etc.)
+fn percent_decode(input: &str) -> String {
+    let mut result = String::new();
+    let mut chars = input.chars();
+    while let Some(c) = chars.next() {
+        if c == '%' {
+            let hex: String = chars.by_ref().take(2).collect();
+            if let Ok(byte) = u8::from_str_radix(&hex, 16) {
+                result.push(byte as char);
+            }
+        } else {
+            result.push(c);
+        }
+    }
+    result
 }
