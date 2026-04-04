@@ -25,6 +25,7 @@
     "@tauri-apps/plugin-dialog": "^2.6.0",
     "@tauri-apps/plugin-fs": "^2.4.5",
     "@tauri-apps/plugin-shell": "^2.3.5",
+    "@xmldom/xmldom": "^0.9.9",
     "fabric": "^7.2.0",
     "jszip": "^3.10.1",
     "lucide-react": "^1.7.0",

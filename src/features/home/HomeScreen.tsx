@@ -283,44 +283,67 @@ export default function HomeScreen() {
   useEffect(() => {
     loadProjects();
 
-    // Listen for file opened via macOS "Open With" or double-click
+    const openFile = async (filePath: string) => {
+      console.log("[HomeScreen] Opening file:", filePath);
+      try {
+        const fs = await import("@tauri-apps/plugin-fs");
+
+        if (filePath.endsWith(".pptx")) {
+          const bytes = await fs.readFile(filePath);
+          const { importPptx } = await import("@/features/file-io/importPptx");
+          const file = new File([bytes], filePath.split("/").pop() || "import.pptx");
+          const pres = await importPptx(file);
+          if (pres && pres.slides) {
+            setPresentation(pres, filePath);
+            setAppView("editor");
+          }
+        } else {
+          const content = await fs.readTextFile(filePath);
+          const data = JSON.parse(content) as Presentation;
+          if (data && data.slides) {
+            setPresentation(data, filePath);
+            setAppView("editor");
+          }
+        }
+      } catch (err) {
+        console.error("[HomeScreen] Failed to open file:", err);
+      }
+    };
+
+    // Poll for pending file — RunEvent::Opened may arrive before OR after mount
+    let cancelled = false;
     (async () => {
       try {
-        const { listen } = await import("@tauri-apps/api/event");
-        const unlisten = await listen<string>("open-file", async (event) => {
-          const filePath = event.payload;
-          console.log("[HomeScreen] open-file event:", filePath);
-          try {
-            const fs = await import("@tauri-apps/plugin-fs");
-
-            if (filePath.endsWith(".pptx")) {
-              // Import PPTX: read as binary, convert, then open
-              const bytes = await fs.readFile(filePath);
-              const { importPptx } = await import("@/features/file-io/importPptx");
-              const file = new File([bytes], filePath.split("/").pop() || "import.pptx");
-              const pres = await importPptx(file);
-              if (pres && pres.slides) {
-                setPresentation(pres, filePath);
-                setAppView("editor");
-              }
-            } else {
-              // .sfslides or .json: read as text
-              const content = await fs.readTextFile(filePath);
-              const data = JSON.parse(content) as Presentation;
-              if (data && data.slides) {
-                setPresentation(data, filePath);
-                setAppView("editor");
-              }
-            }
-          } catch (err) {
-            console.error("[HomeScreen] Failed to open file:", err);
+        const { invoke } = await import("@tauri-apps/api/core");
+        // Check immediately, then retry at 300ms and 1000ms
+        for (const delay of [0, 300, 1000]) {
+          if (cancelled) return;
+          if (delay > 0) await new Promise((r) => setTimeout(r, delay));
+          const pending = await invoke<string | null>("take_pending_file");
+          if (pending) {
+            await openFile(pending);
+            return;
           }
-        });
-        return () => { unlisten(); };
+        }
       } catch {
         // Not in Tauri context
       }
     })();
+
+    // Listen for file opens while the app is already running
+    let unlistenFn: (() => void) | undefined;
+    (async () => {
+      try {
+        const { listen } = await import("@tauri-apps/api/event");
+        unlistenFn = await listen<string>("open-file", (event) => {
+          openFile(event.payload);
+        });
+      } catch {
+        // Not in Tauri context
+      }
+    })();
+
+    return () => { cancelled = true; unlistenFn?.(); };
   }, [loadProjects, setPresentation, setAppView]);
 
   const openProject = async (project: ProjectInfo) => {
@@ -431,7 +454,10 @@ export default function HomeScreen() {
   return (
     <div className="h-screen w-screen flex flex-col bg-neutral-950 overflow-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between pl-24 pr-8 py-4 border-b border-white/5 titlebar-drag">
+      <header className="flex items-center justify-between pl-24 pr-8 py-4 border-b border-white/5 titlebar-drag" onDoubleClick={async (e) => {
+        if ((e.target as HTMLElement).closest('.titlebar-no-drag')) return;
+        try { const { getCurrentWindow } = await import("@tauri-apps/api/window"); await getCurrentWindow().toggleMaximize(); } catch {}
+      }}>
         <SFLogo />
         <div className="flex items-center gap-3">
           {/* Search */}

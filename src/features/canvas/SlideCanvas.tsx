@@ -21,6 +21,8 @@ export default function SlideCanvas() {
   const selectedElementIds = useStore((s) => s.selectedElementIds);
   const toolMode = useStore((s) => s.toolMode);
   const zoom = useStore((s) => s.zoom);
+  const panX = useStore((s) => s.panX);
+  const panY = useStore((s) => s.panY);
   const showGrid = useStore((s) => s.showGrid);
 
   const slide = presentation.slides[currentSlideIndex];
@@ -383,7 +385,9 @@ export default function SlideCanvas() {
     };
   }, [toolMode]);
 
-  // --- Resize canvas to fit container ---
+  // --- Resize canvas to fit container (zoom + pan aware) ---
+  const baseScaleRef = useRef(1);
+
   const resizeCanvas = useCallback(() => {
     const canvas = fabricRef.current;
     const container = containerRef.current;
@@ -394,8 +398,9 @@ export default function SlideCanvas() {
     const availW = rect.width - padding * 2;
     const availH = rect.height - padding * 2;
 
-    const scale =
-      Math.min(availW / SLIDE_WIDTH, availH / SLIDE_HEIGHT) * zoom;
+    const baseScale = Math.min(availW / SLIDE_WIDTH, availH / SLIDE_HEIGHT);
+    baseScaleRef.current = baseScale;
+    const scale = baseScale * zoom;
 
     canvas.setZoom(scale);
     canvas.setDimensions({
@@ -410,6 +415,79 @@ export default function SlideCanvas() {
     if (containerRef.current) observer.observe(containerRef.current);
     return () => observer.disconnect();
   }, [resizeCanvas]);
+
+  // --- Pinch-to-zoom + scroll-to-pan ---
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      // On macOS, pinch-to-zoom fires wheel events with ctrlKey=true
+      // Regular trackpad scroll fires without ctrlKey
+      const isPinch = e.ctrlKey || e.metaKey;
+
+      if (isPinch) {
+        // Zoom: pinch gesture or Ctrl+scroll
+        e.preventDefault();
+        e.stopPropagation();
+
+        const store = useStore.getState();
+        const currentZoom = store.zoom;
+
+        // deltaY is inverted for pinch: negative = zoom in, positive = zoom out
+        // Use smaller factor for smooth trackpad feel
+        const factor = e.deltaY > 0 ? 0.97 : 1.03;
+        const newZoom = Math.max(0.25, Math.min(5, currentZoom * factor));
+
+        store.setZoom(newZoom);
+      } else {
+        // Pan: regular two-finger scroll on trackpad
+        const store = useStore.getState();
+        if (store.zoom > 1.05) {
+          // Only pan when zoomed in past fit-to-screen
+          e.preventDefault();
+          store.setPan(
+            store.panX - e.deltaX,
+            store.panY - e.deltaY
+          );
+        }
+      }
+    };
+
+    // Must use { passive: false } to allow preventDefault on wheel
+    container.addEventListener("wheel", handleWheel, { passive: false });
+    return () => container.removeEventListener("wheel", handleWheel);
+  }, []);
+
+  // --- Keyboard zoom shortcuts ---
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Only handle when not typing in an input/textarea
+      const tag = (e.target as HTMLElement).tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
+
+      const isMeta = e.metaKey || e.ctrlKey;
+
+      if (isMeta && (e.key === "=" || e.key === "+")) {
+        // Cmd/Ctrl + = (zoom in)
+        e.preventDefault();
+        const store = useStore.getState();
+        store.setZoom(store.zoom + 0.1);
+      } else if (isMeta && e.key === "-") {
+        // Cmd/Ctrl + - (zoom out)
+        e.preventDefault();
+        const store = useStore.getState();
+        store.setZoom(store.zoom - 0.1);
+      } else if (isMeta && e.key === "0") {
+        // Cmd/Ctrl + 0 (reset to fit)
+        e.preventDefault();
+        useStore.getState().resetView();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   // --- Drag & Drop images ---
   const handleDragOver = useCallback((e: React.DragEvent) => {

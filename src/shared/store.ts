@@ -35,6 +35,8 @@ interface SlidesStore {
   selectedElementIds: string[];
   toolMode: ToolMode;
   zoom: number;
+  panX: number;
+  panY: number;
 
   // --- Undo/Redo ---
   undoStack: UndoSnapshot[];
@@ -58,6 +60,8 @@ interface SlidesStore {
   clearSelection: () => void;
   setToolMode: (mode: ToolMode) => void;
   setZoom: (zoom: number) => void;
+  setPan: (x: number, y: number) => void;
+  resetView: () => void;
 
   // --- Slide Actions ---
   addSlide: (index?: number) => void;
@@ -108,6 +112,8 @@ export const useStore = create<SlidesStore>((set, get) => ({
   selectedElementIds: [],
   toolMode: "select",
   zoom: 1,
+  panX: 0,
+  panY: 0,
   undoStack: [],
   redoStack: [],
   presenterActive: false,
@@ -136,7 +142,9 @@ export const useStore = create<SlidesStore>((set, get) => ({
   setSelectedElements: (ids) => set({ selectedElementIds: ids }),
   clearSelection: () => set({ selectedElementIds: [] }),
   setToolMode: (mode) => set({ toolMode: mode }),
-  setZoom: (zoom) => set({ zoom: Math.max(0.1, Math.min(3, zoom)) }),
+  setZoom: (zoom) => set({ zoom: Math.max(0.25, Math.min(5, zoom)) }),
+  setPan: (x, y) => set({ panX: x, panY: y }),
+  resetView: () => set({ zoom: 1, panX: 0, panY: 0 }),
 
   // --- Slide Actions ---
   addSlide: (index) => {

@@ -83,8 +83,17 @@ export default function Toolbar() {
     { mode: "line", icon: <Minus size={16} />, label: "Line (L)" },
   ];
 
+  const handleTitlebarDoubleClick = async (e: React.MouseEvent) => {
+    // Only handle double-clicks on the drag region itself, not on buttons
+    if ((e.target as HTMLElement).closest('.titlebar-no-drag')) return;
+    try {
+      const { getCurrentWindow } = await import("@tauri-apps/api/window");
+      await getCurrentWindow().toggleMaximize();
+    } catch { /* browser fallback: no-op */ }
+  };
+
   return (
-    <div className="flex items-center gap-0.5 pl-24 pr-3 py-1.5 bg-slide-panel border-b border-slide-border titlebar-drag">
+    <div className="flex items-center gap-0.5 pl-24 pr-3 py-1.5 bg-slide-panel border-b border-slide-border titlebar-drag" onDoubleClick={handleTitlebarDoubleClick}>
       {/* Home button + title */}
       <div className="flex items-center gap-2 titlebar-no-drag mr-2">
         <button
