@@ -282,7 +282,46 @@ export default function HomeScreen() {
 
   useEffect(() => {
     loadProjects();
-  }, [loadProjects]);
+
+    // Listen for file opened via macOS "Open With" or double-click
+    (async () => {
+      try {
+        const { listen } = await import("@tauri-apps/api/event");
+        const unlisten = await listen<string>("open-file", async (event) => {
+          const filePath = event.payload;
+          console.log("[HomeScreen] open-file event:", filePath);
+          try {
+            const fs = await import("@tauri-apps/plugin-fs");
+
+            if (filePath.endsWith(".pptx")) {
+              // Import PPTX: read as binary, convert, then open
+              const bytes = await fs.readFile(filePath);
+              const { importPptx } = await import("@/features/file-io/importPptx");
+              const file = new File([bytes], filePath.split("/").pop() || "import.pptx");
+              const pres = await importPptx(file);
+              if (pres && pres.slides) {
+                setPresentation(pres, filePath);
+                setAppView("editor");
+              }
+            } else {
+              // .sfslides or .json: read as text
+              const content = await fs.readTextFile(filePath);
+              const data = JSON.parse(content) as Presentation;
+              if (data && data.slides) {
+                setPresentation(data, filePath);
+                setAppView("editor");
+              }
+            }
+          } catch (err) {
+            console.error("[HomeScreen] Failed to open file:", err);
+          }
+        });
+        return () => { unlisten(); };
+      } catch {
+        // Not in Tauri context
+      }
+    })();
+  }, [loadProjects, setPresentation, setAppView]);
 
   const openProject = async (project: ProjectInfo) => {
     try {

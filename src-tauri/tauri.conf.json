@@ -39,7 +39,19 @@
     ],
     "macOS": {
       "minimumSystemVersion": "10.15"
-    }
+    },
+    "fileAssociations": [
+      {
+        "ext": ["sfslides"],
+        "mimeType": "application/json",
+        "description": "SF-Slides Presentation"
+      },
+      {
+        "ext": ["pptx"],
+        "mimeType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        "description": "PowerPoint Presentation"
+      }
+    ]
   },
   "plugins": {
     "fs": {
