@@ -885,8 +885,8 @@ export async function importPptx(file: File): Promise<Presentation> {
     for (const el of slides[0].elements) {
       if (el.type === "text") {
         const t = el as TextElement;
-        if (t.font_size > maxSize && t.content.trim().length > 2) {
-          maxSize = t.font_size;
+        if ((t.font_size ?? 0) > maxSize && t.content.trim().length > 2) {
+          maxSize = t.font_size ?? 0;
           title = t.content.trim();
         }
       } else if (el.type === "rich_text") {
