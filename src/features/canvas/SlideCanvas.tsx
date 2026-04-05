@@ -443,41 +443,47 @@ export default function SlideCanvas() {
     return () => observer.disconnect();
   }, [resizeCanvas]);
 
-  // --- Pinch-to-zoom + scroll-to-pan ---
+  // --- Pinch-to-zoom + scroll-to-pan (Figma/Canva-style) ---
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
     const handleWheel = (e: WheelEvent) => {
       // On macOS, pinch-to-zoom fires wheel events with ctrlKey=true
-      // Regular trackpad scroll fires without ctrlKey
       const isPinch = e.ctrlKey || e.metaKey;
 
       if (isPinch) {
-        // Zoom: pinch gesture or Ctrl+scroll
+        // Zoom toward cursor position (Figma behavior)
         e.preventDefault();
         e.stopPropagation();
 
         const store = useStore.getState();
         const currentZoom = store.zoom;
 
-        // deltaY is inverted for pinch: negative = zoom in, positive = zoom out
-        // Use smaller factor for smooth trackpad feel
-        const factor = e.deltaY > 0 ? 0.97 : 1.03;
-        const newZoom = Math.max(0.25, Math.min(5, currentZoom * factor));
+        // Proportional zoom: larger deltaY = faster zoom (not fixed step)
+        // Clamp deltaY to avoid huge jumps from fast scroll
+        const clamped = Math.max(-10, Math.min(10, e.deltaY));
+        const factor = 1 - clamped * 0.01;
+        const newZoom = Math.max(0.1, Math.min(8, currentZoom * factor));
+
+        // Zoom toward cursor: adjust pan so the point under cursor stays fixed
+        const rect = container.getBoundingClientRect();
+        const cursorX = e.clientX - rect.left;
+        const cursorY = e.clientY - rect.top;
+        const zoomRatio = newZoom / currentZoom;
+        const newPanX = cursorX - (cursorX - store.panX) * zoomRatio;
+        const newPanY = cursorY - (cursorY - store.panY) * zoomRatio;
 
         store.setZoom(newZoom);
+        store.setPan(newPanX, newPanY);
       } else {
-        // Pan: regular two-finger scroll on trackpad
+        // Pan: two-finger scroll on trackpad (always enabled, not just when zoomed)
+        e.preventDefault();
         const store = useStore.getState();
-        if (store.zoom > 1.05) {
-          // Only pan when zoomed in past fit-to-screen
-          e.preventDefault();
-          store.setPan(
-            store.panX - e.deltaX,
-            store.panY - e.deltaY
-          );
-        }
+        store.setPan(
+          store.panX - e.deltaX,
+          store.panY - e.deltaY
+        );
       }
     };
 
