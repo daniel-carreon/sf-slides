@@ -9,6 +9,7 @@ import PropertiesPanel from "@/features/properties/PropertiesPanel";
 import PresenterMode from "@/features/presenter/PresenterMode";
 import HomeScreen from "@/features/home/HomeScreen";
 import FindReplace from "@/features/find-replace/FindReplace";
+import CanvasContextMenu from "@/features/canvas/CanvasContextMenu";
 import { useFileOperations } from "@/features/file-io/useFileOperations";
 import { useFileWatcher } from "@/features/file-io/useFileWatcher";
 
@@ -92,6 +93,25 @@ function EditorView() {
         redo();
         return;
       }
+      // Cmd+A Select All
+      if (meta && e.key === "a") {
+        const active = document.activeElement;
+        if (
+          active?.tagName === "INPUT" ||
+          active?.tagName === "TEXTAREA" ||
+          (active as HTMLElement)?.contentEditable === "true"
+        ) {
+          return;
+        }
+        e.preventDefault();
+        const slide = presentation.slides[currentSlideIndex];
+        if (slide) {
+          useStore.getState().setSelectedElements(
+            slide.elements.filter((el) => !el.locked).map((el) => el.id)
+          );
+        }
+        return;
+      }
       // Cmd+C Copy
       if (meta && e.key === "c" && !shift && selectedElementIds.length > 0) {
         const slide = presentation.slides[currentSlideIndex];
@@ -103,9 +123,20 @@ function EditorView() {
         }
         return;
       }
+      // Cmd+X Cut
+      if (meta && e.key === "x" && !shift && selectedElementIds.length > 0) {
+        const slide = presentation.slides[currentSlideIndex];
+        if (slide) {
+          clipboardRef.current = selectedElementIds
+            .map((id) => slide.elements.find((el) => el.id === id))
+            .filter((el): el is SlideElement => !!el)
+            .map((el) => JSON.parse(JSON.stringify(el)));
+          removeElements(selectedElementIds);
+        }
+        return;
+      }
       // Cmd+V Paste
       if (meta && e.key === "v" && !shift && clipboardRef.current.length > 0) {
-        // Don't paste if typing in an input
         const active = document.activeElement;
         if (
           active?.tagName === "INPUT" ||
@@ -122,7 +153,6 @@ function EditorView() {
           const newId = addElement(newEl as Omit<SlideElement, "id">);
           newIds.push(newId);
         }
-        // Update clipboard with new positions for cascading paste
         clipboardRef.current = clipboardRef.current.map((el) => ({
           ...el,
           x: el.x + 30,
@@ -139,13 +169,23 @@ function EditorView() {
         }
         return;
       }
+      // Cmd+] Bring to Front / Cmd+[ Send to Back
+      if (meta && e.key === "]" && selectedElementIds.length === 1) {
+        e.preventDefault();
+        useStore.getState().bringToFront(selectedElementIds[0]);
+        return;
+      }
+      if (meta && e.key === "[" && selectedElementIds.length === 1) {
+        e.preventDefault();
+        useStore.getState().sendToBack(selectedElementIds[0]);
+        return;
+      }
       // Delete / Backspace
       if (
         (e.key === "Delete" || e.key === "Backspace") &&
         !meta &&
         selectedElementIds.length > 0
       ) {
-        // Don't delete if we're editing text
         const active = document.activeElement;
         if (
           active?.tagName === "INPUT" ||
@@ -158,6 +198,33 @@ function EditorView() {
         removeElements(selectedElementIds);
         return;
       }
+      // Arrow keys: Nudge selected elements (1px, or 10px with Shift)
+      if (
+        ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key) &&
+        selectedElementIds.length > 0 &&
+        !meta
+      ) {
+        const active = document.activeElement;
+        if (
+          active?.tagName === "INPUT" ||
+          active?.tagName === "TEXTAREA" ||
+          (active as HTMLElement)?.contentEditable === "true"
+        ) {
+          return;
+        }
+        e.preventDefault();
+        const nudge = shift ? 10 : 1;
+        const store = useStore.getState();
+        for (const id of selectedElementIds) {
+          const slide = store.presentation.slides[store.currentSlideIndex];
+          const el = slide?.elements.find((el) => el.id === id);
+          if (!el) continue;
+          const dx = e.key === "ArrowRight" ? nudge : e.key === "ArrowLeft" ? -nudge : 0;
+          const dy = e.key === "ArrowDown" ? nudge : e.key === "ArrowUp" ? -nudge : 0;
+          store.updateElement(id, { x: el.x + dx, y: el.y + dy });
+        }
+        return;
+      }
       // F5 or Cmd+Shift+P: Present
       if (e.key === "F5" || (meta && shift && e.key === "p")) {
         e.preventDefault();
@@ -167,6 +234,9 @@ function EditorView() {
 
       // Tool shortcuts (single key, no modifier)
       if (!meta && !shift && !e.altKey) {
+        const notTyping =
+          document.activeElement?.tagName !== "INPUT" &&
+          document.activeElement?.tagName !== "TEXTAREA";
         switch (e.key) {
           case "v":
           case "V":
@@ -174,31 +244,27 @@ function EditorView() {
             break;
           case "t":
           case "T":
-            // Don't switch to text tool if typing in an input
-            if (
-              document.activeElement?.tagName !== "INPUT" &&
-              document.activeElement?.tagName !== "TEXTAREA"
-            ) {
-              setToolMode("text");
-            }
+            if (notTyping) setToolMode("text");
             break;
           case "s":
           case "S":
-            if (
-              document.activeElement?.tagName !== "INPUT" &&
-              document.activeElement?.tagName !== "TEXTAREA"
-            ) {
-              setToolMode("shape");
-            }
+            if (notTyping) setToolMode("shape");
+            break;
+          case "i":
+          case "I":
+            if (notTyping) setToolMode("image");
             break;
           case "l":
           case "L":
-            if (
-              document.activeElement?.tagName !== "INPUT" &&
-              document.activeElement?.tagName !== "TEXTAREA"
-            ) {
-              setToolMode("line");
-            }
+            if (notTyping) setToolMode("line");
+            break;
+          case "h":
+          case "H":
+            if (notTyping) setToolMode("hand");
+            break;
+          case "Escape":
+            useStore.getState().clearSelection();
+            setToolMode("select");
             break;
         }
       }
@@ -253,7 +319,7 @@ function EditorView() {
         </div>
 
         {/* Canvas */}
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0" data-canvas-area>
           <SlideCanvas />
         </div>
 
@@ -262,6 +328,9 @@ function EditorView() {
           <PropertiesPanel />
         </div>
       </div>
+
+      {/* Context Menu */}
+      <CanvasContextMenu />
 
       {/* Find & Replace */}
       <FindReplace open={findReplaceOpen} onClose={() => setFindReplaceOpen(false)} />
