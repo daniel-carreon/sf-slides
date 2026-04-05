@@ -24,16 +24,46 @@ fn take_pending_file(state: tauri::State<'_, PendingFile>) -> Option<String> {
     result
 }
 
-/// Resolve the presentations directory. Always uses the repo path:
-/// ~/Developer/software/sf-slides/presentations/
+/// Resolve the presentations directory.
+/// Uses ~/Documents/SF-Slides/presentations/ for both dev and production.
+/// On first run, migrates files from the old dev location if they exist.
 fn resolve_presentations_dir() -> std::path::PathBuf {
     let home = std::env::var("HOME").unwrap_or_else(|_| "/tmp".to_string());
-    let dir = std::path::PathBuf::from(home)
+    let home_path = std::path::PathBuf::from(&home);
+
+    let dir = home_path
+        .join("Documents")
+        .join("SF-Slides")
+        .join("presentations");
+    let _ = std::fs::create_dir_all(&dir);
+
+    // Migrate from old dev location if it has files and new dir is empty
+    let old_dir = home_path
         .join("Developer")
         .join("software")
         .join("sf-slides")
         .join("presentations");
-    let _ = std::fs::create_dir_all(&dir);
+    if old_dir.exists() {
+        let new_is_empty = std::fs::read_dir(&dir)
+            .map(|mut d| d.next().is_none())
+            .unwrap_or(true);
+        if new_is_empty {
+            if let Ok(entries) = std::fs::read_dir(&old_dir) {
+                for entry in entries.flatten() {
+                    let path = entry.path();
+                    if path.is_file() {
+                        let dest = dir.join(path.file_name().unwrap_or_default());
+                        if let Err(e) = std::fs::copy(&path, &dest) {
+                            eprintln!("[SF-Slides] migrate: failed to copy {:?}: {}", path.file_name(), e);
+                        } else {
+                            eprintln!("[SF-Slides] migrate: copied {:?}", path.file_name());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     dir
 }
 
