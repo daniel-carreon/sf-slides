@@ -240,6 +240,9 @@ export interface Slide {
   elements: SlideElement[];
   notes?: string;
   transition?: string;
+  // HTML slide rendering (ai-agent-first architecture)
+  html?: string;           // Full HTML source (Tailwind + Inter + FA)
+  render_mode?: "elements" | "html"; // Which renderer to use (default: inferred)
 }
 
 // --- Presentation Defaults ---
@@ -303,6 +306,14 @@ export function createEmptySlide(id: number): Slide {
     elements: [],
     notes: "",
   };
+}
+
+/** Determine how a slide should render */
+export function getSlideRenderMode(slide: Slide): "elements" | "html" {
+  if (slide.render_mode) return slide.render_mode;
+  // Auto-detect: if html field exists and has content, use html mode
+  if (slide.html && slide.html.trim().length > 0) return "html";
+  return "elements";
 }
 
 let _nextElementId = Date.now();

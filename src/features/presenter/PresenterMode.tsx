@@ -2,9 +2,46 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import * as fabric from "fabric";
 import { useStore } from "@/shared/store";
 import { createFabricObject } from "@/features/canvas/element-renderers";
-import { SLIDE_WIDTH, SLIDE_HEIGHT } from "@/features/canvas/types";
+import { SLIDE_WIDTH, SLIDE_HEIGHT, getSlideRenderMode } from "@/features/canvas/types";
 import type { SlideElement } from "@/features/canvas/types";
 import { X } from "lucide-react";
+import { HtmlSlideRenderer } from "@/features/canvas/HtmlSlideRenderer";
+
+/** HTML slide in presenter mode — fills container responsively */
+function HtmlSlidePresenter({
+  html,
+  containerRef,
+}: {
+  html: string;
+  containerRef: React.RefObject<HTMLDivElement | null>;
+}) {
+  const [size, setSize] = useState({ width: SLIDE_WIDTH, height: SLIDE_HEIGHT });
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const updateSize = () => {
+      const rect = container.getBoundingClientRect();
+      const scale = Math.min(rect.width / SLIDE_WIDTH, rect.height / SLIDE_HEIGHT);
+      setSize({
+        width: Math.round(SLIDE_WIDTH * scale),
+        height: Math.round(SLIDE_HEIGHT * scale),
+      });
+    };
+    updateSize();
+    const ro = new ResizeObserver(updateSize);
+    ro.observe(container);
+    return () => ro.disconnect();
+  }, [containerRef]);
+
+  return (
+    <HtmlSlideRenderer
+      html={html}
+      width={size.width}
+      height={size.height}
+    />
+  );
+}
 
 // Get the max animation order for a slide's elements
 function getMaxAnimOrder(elements: SlideElement[]): number {
@@ -272,6 +309,13 @@ export default function PresenterMode() {
       >
         {blackScreen ? (
           <div className="text-white/20 text-lg">Screen blacked out (B)</div>
+        ) : slide && getSlideRenderMode(slide) === "html" && slide.html ? (
+          <div className={transitionClass} style={{ transition: "all 0.3s ease-in-out" }}>
+            <HtmlSlidePresenter
+              html={slide.html}
+              containerRef={containerRef}
+            />
+          </div>
         ) : (
           <div className={transitionClass} style={{ transition: "all 0.3s ease-in-out" }}>
             <canvas ref={canvasRef} />

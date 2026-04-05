@@ -1,17 +1,42 @@
-import { useEffect, useRef, useCallback, useState } from "react";
+import { useEffect, useRef, useCallback, useState, Component } from "react";
+import type { ReactNode, ErrorInfo } from "react";
 import * as fabric from "fabric";
 import { useStore } from "@/shared/store";
 import { createFabricObject, fabricObjectToElementUpdate } from "./element-renderers";
-import { SLIDE_WIDTH, SLIDE_HEIGHT } from "./types";
+import { SLIDE_WIDTH, SLIDE_HEIGHT, getSlideRenderMode } from "./types";
 import type { SlideElement, TextElement, ShapeElement, ImageElement } from "./types";
 import { ImagePlus } from "lucide-react";
+import { HtmlSlideRenderer } from "./HtmlSlideRenderer";
+import type { HtmlSlideRendererHandle } from "./HtmlSlideRenderer";
+import ElementOverlay from "./ElementOverlay";
 
 type FabricObjectWithData = fabric.FabricObject & { data?: Record<string, unknown> };
+
+/** Error boundary: if ElementOverlay crashes, the HTML slide still renders */
+class OverlayErrorBoundary extends Component<
+  { children: ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError(): { hasError: boolean } {
+    return { hasError: true };
+  }
+  componentDidCatch(error: Error, _info: ErrorInfo): void {
+    console.warn("[OverlayErrorBoundary] Caught:", error.message);
+  }
+  render(): ReactNode {
+    return this.state.hasError ? null : this.props.children;
+  }
+}
 
 export default function SlideCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fabricRef = useRef<fabric.Canvas | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const htmlRendererRef = useRef<HtmlSlideRendererHandle>(null);
   const syncingRef = useRef(false);
   const canvasEditRef = useRef(false); // true when canvas itself caused the store change
   const [dragOver, setDragOver] = useState(false);
@@ -230,10 +255,12 @@ export default function SlideCanvas() {
   }, []);
 
   // --- Sync slide elements to canvas ---
-  const elementsJson = JSON.stringify(slide?.elements);
+  const elementsJson = JSON.stringify(slide?.elements ?? []);
   useEffect(() => {
     const canvas = fabricRef.current;
     if (!canvas || !slide) return;
+    // Skip Fabric.js sync for HTML slides
+    if (getSlideRenderMode(slide) === "html") return;
 
     // If this change came from the canvas itself (drag/resize), don't re-render
     if (canvasEditRef.current) {
@@ -558,6 +585,30 @@ export default function SlideCanvas() {
     });
   }, []);
 
+  // Determine render mode for current slide
+  const renderMode = slide ? getSlideRenderMode(slide) : "elements";
+
+  // Calculate display dimensions for HTML slides
+  const [htmlDisplaySize, setHtmlDisplaySize] = useState({ width: SLIDE_WIDTH, height: SLIDE_HEIGHT });
+  useEffect(() => {
+    if (renderMode !== "html" || !containerRef.current) return;
+    const updateSize = () => {
+      const rect = containerRef.current!.getBoundingClientRect();
+      const padding = 40;
+      const availW = rect.width - padding * 2;
+      const availH = rect.height - padding * 2;
+      const scale = Math.min(availW / SLIDE_WIDTH, availH / SLIDE_HEIGHT) * zoom;
+      setHtmlDisplaySize({
+        width: Math.round(SLIDE_WIDTH * scale),
+        height: Math.round(SLIDE_HEIGHT * scale),
+      });
+    };
+    updateSize();
+    const observer = new ResizeObserver(updateSize);
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [renderMode, zoom]);
+
   return (
     <div
       ref={containerRef}
@@ -566,29 +617,69 @@ export default function SlideCanvas() {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <div
-        className="shadow-2xl shadow-black/50 rounded-sm relative"
-        style={panX !== 0 || panY !== 0 ? { transform: `translate(${panX}px, ${panY}px)` } : undefined}
-      >
-        <canvas ref={canvasRef} />
-        {showGrid && (
-          <svg
-            className="absolute inset-0 pointer-events-none"
-            style={{ width: "100%", height: "100%", opacity: 0.12 }}
-          >
-            <defs>
-              <pattern id="grid" width="10%" height="10%" patternUnits="userSpaceOnUse" x="0" y="0">
-                <line x1="0" y1="0" x2="0" y2="100%" stroke="#8B5CF6" strokeWidth="0.5" />
-                <line x1="0" y1="0" x2="100%" y2="0" stroke="#8B5CF6" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-            {/* Center crosshair */}
-            <line x1="50%" y1="0" x2="50%" y2="100%" stroke="#8B5CF6" strokeWidth="1" opacity="0.5" />
-            <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#8B5CF6" strokeWidth="1" opacity="0.5" />
-          </svg>
-        )}
-      </div>
+      {renderMode === "html" && slide?.html ? (
+        /* HTML Slide Renderer — iframe-based, full CSS power */
+        <div
+          className="shadow-2xl shadow-black/50 rounded-sm relative"
+          style={panX !== 0 || panY !== 0 ? { transform: `translate(${panX}px, ${panY}px)` } : undefined}
+        >
+          <HtmlSlideRenderer
+            ref={htmlRendererRef}
+            html={slide.html}
+            width={htmlDisplaySize.width}
+            height={htmlDisplaySize.height}
+          />
+          {/* Element selection overlay — enables click-to-select and drag-to-move.
+              Wrapped in try-catch rendering: if overlay crashes, slide still renders. */}
+          {slide.elements.length > 0 && toolMode === "select" && (
+            <OverlayErrorBoundary>
+            <ElementOverlay
+              elements={slide.elements}
+              selectedIds={selectedElementIds}
+              displayWidth={htmlDisplaySize.width}
+              displayHeight={htmlDisplaySize.height}
+              iframeEl={htmlRendererRef.current?.getIframe() ?? null}
+              onSelect={(ids) => useStore.getState().setSelectedElements(ids)}
+              onMove={(id, dx, dy) => {
+                useStore.getState().pushUndo();
+                const el = slide.elements.find((e) => e.id === id);
+                if (el) {
+                  useStore.getState().updateElement(id, {
+                    x: Math.round(el.x + dx),
+                    y: Math.round(el.y + dy),
+                  });
+                }
+              }}
+            />
+            </OverlayErrorBoundary>
+          )}
+        </div>
+      ) : (
+        /* Fabric.js Canvas — legacy element-based rendering */
+        <div
+          className="shadow-2xl shadow-black/50 rounded-sm relative"
+          style={panX !== 0 || panY !== 0 ? { transform: `translate(${panX}px, ${panY}px)` } : undefined}
+        >
+          <canvas ref={canvasRef} />
+          {showGrid && (
+            <svg
+              className="absolute inset-0 pointer-events-none"
+              style={{ width: "100%", height: "100%", opacity: 0.12 }}
+            >
+              <defs>
+                <pattern id="grid" width="10%" height="10%" patternUnits="userSpaceOnUse" x="0" y="0">
+                  <line x1="0" y1="0" x2="0" y2="100%" stroke="#8B5CF6" strokeWidth="0.5" />
+                  <line x1="0" y1="0" x2="100%" y2="0" stroke="#8B5CF6" strokeWidth="0.5" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+              {/* Center crosshair */}
+              <line x1="50%" y1="0" x2="50%" y2="100%" stroke="#8B5CF6" strokeWidth="1" opacity="0.5" />
+              <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#8B5CF6" strokeWidth="1" opacity="0.5" />
+            </svg>
+          )}
+        </div>
+      )}
 
       {/* Drop overlay */}
       {dragOver && (

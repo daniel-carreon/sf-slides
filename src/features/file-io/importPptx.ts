@@ -866,18 +866,44 @@ export async function importPptx(file: File): Promise<Presentation> {
   }
 
   // Try to get presentation title from core properties
-  let title = "Imported Presentation";
+  let title = "";
   const coreFile = zip.file("docProps/core.xml");
   if (coreFile) {
     try {
       const coreXml = await coreFile.async("text");
       const coreDoc = parser.parseFromString(coreXml, "text/xml");
       const titleEl = qs(coreDoc, "title");
-      if (titleEl?.textContent) title = titleEl.textContent;
+      if (titleEl?.textContent?.trim()) title = titleEl.textContent.trim();
     } catch {
       // ignore
     }
   }
+
+  // Fallback: extract title from the largest text on slide 1
+  if (!title && slides.length > 0) {
+    let maxSize = 0;
+    for (const el of slides[0].elements) {
+      if (el.type === "text") {
+        const t = el as TextElement;
+        if (t.font_size > maxSize && t.content.trim().length > 2) {
+          maxSize = t.font_size;
+          title = t.content.trim();
+        }
+      } else if (el.type === "rich_text") {
+        const rt = el as RichTextElement;
+        const fs = rt.runs?.[0]?.font_size || 0;
+        if (fs > maxSize) {
+          const text = rt.runs.map(r => r.text).join("").trim();
+          if (text.length > 2) {
+            maxSize = fs;
+            title = text;
+          }
+        }
+      }
+    }
+  }
+
+  if (!title) title = "Imported Presentation";
 
   return {
     version: 1,

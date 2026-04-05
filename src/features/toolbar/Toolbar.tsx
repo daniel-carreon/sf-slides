@@ -94,15 +94,24 @@ export default function Toolbar() {
   };
 
   return (
-    <div className="flex items-center gap-0.5 pl-24 pr-3 py-1.5 bg-slide-panel border-b border-slide-border titlebar-drag" onDoubleClick={handleTitlebarDoubleClick}>
+    <div className="flex items-center gap-0.5 pl-24 pr-3 py-2 bg-slide-panel border-b border-slide-border titlebar-drag" onDoubleClick={handleTitlebarDoubleClick}>
       {/* Home button + title */}
       <div className="flex items-center gap-2 titlebar-no-drag mr-2">
         <button
           onClick={() => setAppView("home")}
           title="Back to Home"
-          className="w-7 h-7 rounded-lg overflow-hidden flex-shrink-0 hover:opacity-80 transition-opacity"
+          className="w-7 h-7 rounded-lg overflow-hidden flex-shrink-0 hover:opacity-80 transition-opacity bg-gradient-to-br from-morado-500 to-morado-700 flex items-center justify-center"
         >
-          <img src="/sf-logo.png" alt="Home" className="w-full h-full" draggable={false} />
+          <img
+            src="/sf-logo.png"
+            alt="Home"
+            className="w-full h-full"
+            draggable={false}
+            onError={(e) => {
+              // Fallback: hide img and show parent gradient
+              (e.target as HTMLImageElement).style.display = "none";
+            }}
+          />
         </button>
         <span className="text-sm text-white/60 font-medium truncate max-w-[160px]">
           {presentationTitle}

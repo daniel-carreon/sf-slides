@@ -123,9 +123,17 @@ export function useFileOperations() {
         const data = await fs.readFile(path);
         const file = new File([data], path.split("/").pop() || "import.pptx");
         const { importPptx } = await import("./importPptx");
-        const presentation = await importPptx(file);
-        setPresentation(presentation, null);
-        console.log(`[Import] PPTX imported: ${presentation.slides.length} slides`);
+        const pres = await importPptx(file);
+
+        // Auto-save to presentations dir via Rust backend (mirrors HomeScreen behavior)
+        const { invoke } = await import("@tauri-apps/api/core");
+        const baseName = (path.split("/").pop() || "import").replace(/\.pptx$/i, "");
+        const savePath = await invoke<string>("save_presentation", {
+          name: baseName,
+          content: JSON.stringify(pres),
+        });
+        console.log(`[Import] PPTX imported: ${pres.slides.length} slides, saved to: ${savePath}`);
+        setPresentation(pres, savePath);
       }
     } catch (err) {
       console.warn("[Import] Tauri import failed, trying browser fallback:", err);

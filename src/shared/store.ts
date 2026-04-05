@@ -121,23 +121,32 @@ export const useStore = create<SlidesStore>((set, get) => ({
   setShowGrid: (show) => set({ showGrid: show }),
 
   // --- Document ---
-  setPresentation: (p, filePath) =>
+  setPresentation: (p, filePath) => {
+    // Normalize: ensure every slide has an elements array (HTML slides may omit it)
+    const normalized = {
+      ...p,
+      slides: p.slides.map((s) => ({
+        ...s,
+        elements: s.elements ?? [],
+      })),
+    };
     set({
-      presentation: p,
+      presentation: normalized,
       filePath: filePath ?? get().filePath,
       dirty: false,
       currentSlideIndex: 0,
       selectedElementIds: [],
       undoStack: [],
       redoStack: [],
-    }),
+    });
+  },
 
   setFilePath: (path) => set({ filePath: path }),
   setDirty: (d) => set({ dirty: d }),
 
   // --- Navigation ---
   setCurrentSlide: (index) =>
-    set({ currentSlideIndex: index, selectedElementIds: [] }),
+    set({ currentSlideIndex: index, selectedElementIds: [], panX: 0, panY: 0 }),
 
   setSelectedElements: (ids) => set({ selectedElementIds: ids }),
   clearSelection: () => set({ selectedElementIds: [] }),

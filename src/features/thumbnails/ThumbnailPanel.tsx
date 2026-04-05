@@ -1,9 +1,10 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useStore } from "@/shared/store";
-import { SLIDE_WIDTH, SLIDE_HEIGHT } from "@/features/canvas/types";
+import { SLIDE_WIDTH, SLIDE_HEIGHT, getSlideRenderMode } from "@/features/canvas/types";
 import type { Slide } from "@/features/canvas/types";
 import { Plus } from "lucide-react";
 import { useThumbnailImage } from "./useThumbnailRenderer";
+import { HtmlSlideRenderer } from "@/features/canvas/HtmlSlideRenderer";
 
 function ThumbnailItem({
   index,
@@ -18,7 +19,12 @@ function ThumbnailItem({
   onSelect: () => void;
   onContextMenu: (e: React.MouseEvent) => void;
 }) {
-  const thumbUrl = useThumbnailImage(slide);
+  const isHtml = getSlideRenderMode(slide) === "html";
+  const thumbUrl = useThumbnailImage(isHtml ? undefined : slide);
+
+  // Thumbnail width is ~192px (panel width minus padding)
+  const thumbWidth = 192;
+  const thumbHeight = Math.round(thumbWidth * (SLIDE_HEIGHT / SLIDE_WIDTH));
 
   return (
     <button
@@ -31,7 +37,13 @@ function ThumbnailItem({
       }`}
       style={{ aspectRatio: `${SLIDE_WIDTH}/${SLIDE_HEIGHT}` }}
     >
-      {thumbUrl ? (
+      {isHtml && slide.html ? (
+        <HtmlSlideRenderer
+          html={slide.html}
+          width={thumbWidth}
+          height={thumbHeight}
+        />
+      ) : thumbUrl ? (
         <img
           src={thumbUrl}
           alt={`Slide ${index + 1}`}

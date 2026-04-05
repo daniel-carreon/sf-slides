@@ -14,7 +14,7 @@ import type {
   SlideBackground,
   GradientFill,
 } from "@/features/canvas/types";
-import { SLIDE_WIDTH, SLIDE_HEIGHT } from "@/features/canvas/types";
+import { SLIDE_WIDTH, SLIDE_HEIGHT, getSlideRenderMode } from "@/features/canvas/types";
 
 // Convert px (1920x1080) to inches for LAYOUT_WIDE (12192000 x 6858000 EMU = 40/3" x 7.5")
 const PPTX_WIDE_WIDTH = 40 / 3; // 13.333... inches
@@ -240,6 +240,134 @@ function exportChartElement(
   });
 }
 
+/**
+ * Render an HTML slide in a hidden div and capture as base64 PNG.
+ * Uses a shadow DOM container to isolate slide styles from the app.
+ * No iframe needed — html2canvas captures directly from the DOM.
+ */
+async function captureHtmlSlideAsImage(html: string): Promise<string> {
+  const { EMBEDDED_FONTS_CSS } = await import("@/assets/fonts/embedded-fonts");
+  const { default: html2canvas } = await import("html2canvas");
+
+  // Extract body content from the full HTML document
+  const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+  const bodyContent = bodyMatch ? bodyMatch[1] : html;
+
+  // Extract inline styles from the HTML
+  const styleMatches = html.match(/<style[^>]*>([\s\S]*?)<\/style>/gi) || [];
+  const inlineStyles = styleMatches.map(s => {
+    const m = s.match(/<style[^>]*>([\s\S]*?)<\/style>/i);
+    return m ? m[1] : "";
+  }).join("\n");
+
+  // Create a hidden container in the main DOM (not an iframe)
+  const container = document.createElement("div");
+  container.style.position = "fixed";
+  container.style.left = "-9999px";
+  container.style.top = "-9999px";
+  container.style.width = `${SLIDE_WIDTH}px`;
+  container.style.height = `${SLIDE_HEIGHT}px`;
+  container.style.overflow = "hidden";
+  container.style.zIndex = "-1";
+
+  // Create the slide content div
+  const slideDiv = document.createElement("div");
+  slideDiv.style.width = `${SLIDE_WIDTH}px`;
+  slideDiv.style.height = `${SLIDE_HEIGHT}px`;
+  slideDiv.style.fontFamily = "'Inter', sans-serif";
+  slideDiv.style.backgroundColor = "#0D0D0D";
+  slideDiv.style.color = "#FFFFFF";
+  slideDiv.style.margin = "0";
+  slideDiv.style.overflow = "hidden";
+  slideDiv.style.position = "relative";
+  slideDiv.innerHTML = bodyContent;
+
+  // Inject embedded fonts + slide styles
+  const styleEl = document.createElement("style");
+  styleEl.textContent = EMBEDDED_FONTS_CSS + "\n" + inlineStyles;
+  container.appendChild(styleEl);
+  container.appendChild(slideDiv);
+  document.body.appendChild(container);
+
+  // Wait for fonts to load and render
+  await new Promise(r => setTimeout(r, 300));
+
+  try {
+    const canvas = await html2canvas(slideDiv, {
+      width: SLIDE_WIDTH,
+      height: SLIDE_HEIGHT,
+      scale: 1,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: "#0D0D0D",
+    });
+
+    const dataUrl = canvas.toDataURL("image/png");
+    document.body.removeChild(container);
+    return dataUrl;
+  } catch (err) {
+    document.body.removeChild(container);
+    throw err;
+  }
+}
+
+async function exportHtmlSlide(pptx: PptxGenJS, slide: Slide) {
+  const pptxSlide = pptx.addSlide();
+
+  // Strategy: capture HTML as background image, then overlay elements[] as editable components
+  try {
+    const dataUrl = await captureHtmlSlideAsImage(slide.html!);
+    // Add captured image as slide background
+    pptxSlide.addImage({
+      data: dataUrl,
+      x: 0,
+      y: 0,
+      w: "100%",
+      h: "100%",
+    });
+  } catch (err) {
+    console.warn("[Export] Failed to capture HTML slide, using elements-only:", err);
+    pptxSlide.background = { color: "0D0D0D" };
+  }
+
+  // If slide has detailed elements[], also export them as editable PPTX components
+  // These sit ON TOP of the background image, making text selectable/editable in PowerPoint
+  if (slide.elements.length > 1) {
+    const sorted = [...slide.elements].sort((a, b) => (a.z_index ?? 0) - (b.z_index ?? 0));
+    for (const el of sorted) {
+      try {
+        switch (el.type) {
+          case "text":
+          case "rich_text":
+            exportTextElement(pptxSlide, el as TextElement);
+            break;
+          case "shape":
+            exportShapeElement(pptxSlide, el as ShapeElement);
+            break;
+          case "image":
+            exportImageElement(pptxSlide, el as ImageElement);
+            break;
+          case "line":
+            exportLineElement(pptxSlide, el as LineElement);
+            break;
+          case "table":
+            exportTableElement(pptxSlide, el as TableElement);
+            break;
+          case "chart":
+            exportChartElement(pptxSlide, el as ChartElement);
+            break;
+        }
+      } catch (err) {
+        console.warn(`[Export] Failed to export element ${el.id}:`, err);
+      }
+    }
+  }
+
+  if (slide.notes) {
+    pptxSlide.addNotes(slide.notes);
+  }
+}
+
 function exportSlide(pptx: PptxGenJS, slide: Slide) {
   const pptxSlide = pptx.addSlide();
 
@@ -288,7 +416,14 @@ export async function exportPresentation() {
   pptx.title = presentation.metadata?.title || "Presentation";
 
   for (const slide of presentation.slides) {
-    exportSlide(pptx, slide);
+    const mode = getSlideRenderMode(slide);
+    if (mode === "html" && slide.html) {
+      // HTML slide: capture as image background + overlay elements[] as editable components
+      await exportHtmlSlide(pptx, slide);
+    } else {
+      // Legacy element-only slide: direct PPTX shapes
+      exportSlide(pptx, slide);
+    }
   }
 
   // Try Tauri native save

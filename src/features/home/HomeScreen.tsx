@@ -13,19 +13,27 @@ import {
   FileText,
 } from "lucide-react";
 
-/** Resolve the presentations directory to an absolute path that works in both dev and built app */
+/** Extract a visible fullscreen image from slide 1 as cover thumbnail.
+ *  Skips pure-black backgrounds (src < 20KB) and too-large images (src > 500KB). */
+function extractCoverImage(pres: Presentation) {
+  if (!pres.slides?.[0]) return;
+  for (const el of pres.slides[0].elements) {
+    if (el.type === "image") {
+      const img = el as any;
+      const srcLen = img.src?.length || 0;
+      if (img.width >= 1800 && img.height >= 1000 && img.src?.startsWith("data:") && srcLen > 20000 && srcLen < 500000) {
+        (pres.metadata as any).cover_image_data = img.src;
+        return;
+      }
+    }
+  }
+}
+
+/** Resolve the presentations directory — lives inside the project: sf-slides/presentations/ */
 async function getPresentationsDir(): Promise<string> {
   try {
-    const pathMod = await import("@tauri-apps/api/path");
-    // Try documentDir first (~/Documents/), fall back to homeDir
-    let base: string;
-    try {
-      base = await pathMod.documentDir();
-    } catch {
-      const home = await pathMod.homeDir();
-      base = home.endsWith("/") ? home + "Documents/" : home + "/Documents/";
-    }
-    const dir = base.endsWith("/") ? `${base}SF-Slides/presentations` : `${base}/SF-Slides/presentations`;
+    const { invoke } = await import("@tauri-apps/api/core");
+    const dir = await invoke<string>("get_presentations_dir");
     console.log("[HomeScreen] presentations dir:", dir);
     return dir;
   } catch (err) {
@@ -191,50 +199,56 @@ export default function HomeScreen() {
   const setPresentation = useStore((s) => s.setPresentation);
   const setAppView = useStore((s) => s.setAppView);
 
-  // Scan presentations directory
+  // Scan presentations directory via Rust commands (bypasses Tauri FS scope)
   const loadProjects = useCallback(async () => {
     setLoading(true);
     try {
-      const fs = await import("@tauri-apps/plugin-fs");
-      const presDir = await getPresentationsDir();
-      console.log("[HomeScreen] Scanning:", presDir);
-      // Ensure the directory exists
-      try { await fs.mkdir(presDir, { recursive: true }); } catch { /* already exists */ }
-      const entries = await fs.readDir(presDir);
-      console.log("[HomeScreen] Found entries:", entries.length, entries.map(e => e.name));
+      const { invoke } = await import("@tauri-apps/api/core");
+      const files = await invoke<Array<{ path: string; name: string; content: string }>>("list_presentations");
+      console.log("[HomeScreen] list_presentations returned:", files.length, "files");
       const projectList: ProjectInfo[] = [];
 
-      for (const entry of entries) {
-        if (
-          entry.name &&
-          (entry.name.endsWith(".sfslides") || entry.name.endsWith(".json"))
-        ) {
-          try {
-            const path = `${presDir}/${entry.name}`;
-            const content = await fs.readTextFile(path);
-            const data = JSON.parse(content) as Presentation;
-            const firstSlideBg = data.slides?.[0]?.background;
-            const bgColor =
-              firstSlideBg?.type === "solid"
-                ? firstSlideBg.color
-                : firstSlideBg?.type === "gradient"
-                  ? firstSlideBg.stops?.[0]?.color || "#0f0f17"
-                  : "#0f0f17";
+      for (const file of files) {
+        try {
+          const data = JSON.parse(file.content) as Presentation;
+          const firstSlideBg = data.slides?.[0]?.background;
+          const bgColor =
+            firstSlideBg?.type === "solid"
+              ? firstSlideBg.color
+              : firstSlideBg?.type === "gradient"
+                ? firstSlideBg.stops?.[0]?.color || "#0f0f17"
+                : "#0f0f17";
 
-            projectList.push({
-              path,
-              name: entry.name,
-              title: data.metadata?.title || entry.name.replace(/\.(sfslides|json)$/, ""),
-              author: data.metadata?.author || "",
-              created: data.metadata?.created || "",
-              slideCount: data.slides?.length || 0,
-              modified: Date.now(),
-              thumbnailColor: bgColor,
-              coverImageDataUrl: (data.metadata as any)?.cover_image_data || null,
-            });
-          } catch {
-            // Skip invalid files
+          // Try to extract a cover image: metadata field, or first fullscreen image from slide 1
+          let coverUrl = (data.metadata as any)?.cover_image_data || null;
+          console.log("[HomeScreen] cover for", data.metadata?.title, "→", coverUrl ? `${coverUrl.substring(0, 40)}... (${coverUrl.length} chars)` : "NONE");
+          if (!coverUrl && data.slides?.[0]) {
+            for (const el of data.slides[0].elements) {
+              if (el.type === "image" && (el as any).width >= 1800 && (el as any).height >= 1000) {
+                const src = (el as any).src as string;
+                const srcLen = src?.length || 0;
+                // Skip pure-black backgrounds (<20KB) and too-large images (>500KB)
+                if (src?.startsWith("data:") && srcLen > 20000 && srcLen < 500000) {
+                  coverUrl = src;
+                  break;
+                }
+              }
+            }
           }
+
+          projectList.push({
+            path: file.path,
+            name: file.name,
+            title: data.metadata?.title || file.name.replace(/\.(sfslides|json)$/, ""),
+            author: data.metadata?.author || "",
+            created: data.metadata?.created || "",
+            slideCount: data.slides?.length || 0,
+            modified: Date.now(),
+            thumbnailColor: bgColor,
+            coverImageDataUrl: coverUrl,
+          });
+        } catch {
+          // Skip invalid files
         }
       }
 
@@ -242,10 +256,10 @@ export default function HomeScreen() {
       projectList.sort((a, b) => b.created.localeCompare(a.created));
       setProjects(projectList);
     } catch (err) {
-      console.error("[HomeScreen] Tauri FS failed, trying dev fallback:", err);
+      console.error("[HomeScreen] list_presentations failed, trying dev fallback:", err);
       // Dev mode fallback: load from public/ via HTTP
       try {
-        const devFiles = ["Mi-Business-OS-v4.sfslides", "recursividad-agentica.sfslides"];
+        const devFiles = ["Mi-Business-OS-TalentLand.sfslides", "recursividad-agentica.sfslides"];
         const projectList: ProjectInfo[] = [];
         for (const name of devFiles) {
           try {
@@ -294,7 +308,18 @@ export default function HomeScreen() {
           const file = new File([bytes], filePath.split("/").pop() || "import.pptx");
           const pres = await importPptx(file);
           if (pres && pres.slides) {
-            setPresentation(pres, filePath);
+            // Extract cover thumbnail from first fullscreen image on slide 1
+            extractCoverImage(pres);
+
+            // Auto-save via Rust backend (bypasses FS plugin scope)
+            const { invoke } = await import("@tauri-apps/api/core");
+            const baseName = (filePath.split("/").pop() || "import").replace(/\.pptx$/i, "");
+            const savePath = await invoke<string>("save_presentation", {
+              name: baseName,
+              content: JSON.stringify(pres),
+            });
+            console.log("[HomeScreen] Auto-saved PPTX import to:", savePath);
+            setPresentation(pres, savePath);
             setAppView("editor");
           }
         } else {
@@ -348,15 +373,30 @@ export default function HomeScreen() {
 
   const openProject = async (project: ProjectInfo) => {
     try {
-      const fs = await import("@tauri-apps/plugin-fs");
-      const content = await fs.readTextFile(project.path);
+      const { invoke } = await import("@tauri-apps/api/core");
+      const content = await invoke<string>("read_presentation", { path: project.path });
       const data = JSON.parse(content) as Presentation;
       if (data && data.slides) {
         setPresentation(data, project.path);
         setAppView("editor");
       }
     } catch (err) {
-      console.error("Failed to open project:", err);
+      // Dev fallback: fetch from Vite dev server when Tauri FS is unavailable
+      try {
+        const fileName = project.path.split("/").pop() || project.path;
+        const res = await fetch(`/${fileName}?t=${Date.now()}`);
+        if (res.ok) {
+          const data = JSON.parse(await res.text()) as Presentation;
+          if (data && data.slides) {
+            setPresentation(data, project.path);
+            setAppView("editor");
+          }
+        } else {
+          console.error("Failed to open project:", err);
+        }
+      } catch (fetchErr) {
+        console.error("Failed to open project (both Tauri and fetch):", err, fetchErr);
+      }
     }
   };
 
@@ -368,15 +408,15 @@ export default function HomeScreen() {
         kind: "warning",
       });
       if (!confirmed) return;
-      const fs = await import("@tauri-apps/plugin-fs");
-      await fs.remove(project.path);
+      const { invoke } = await import("@tauri-apps/api/core");
+      await invoke("delete_presentation", { path: project.path });
       loadProjects();
     } catch (err) {
       // Fallback to browser confirm
       if (!confirm(`Delete "${project.title}"?`)) return;
       try {
-        const fs = await import("@tauri-apps/plugin-fs");
-        await fs.remove(project.path);
+        const { invoke } = await import("@tauri-apps/api/core");
+        await invoke("delete_presentation", { path: project.path });
         loadProjects();
       } catch (e) {
         console.error("Failed to delete:", e);
@@ -423,10 +463,21 @@ export default function HomeScreen() {
         const file = new File([data], path.split("/").pop() || "import.pptx");
         const { importPptx: parseFile } = await import("@/features/file-io/importPptx");
         const presentation = await parseFile(file);
-        setPresentation(presentation, null);
+        extractCoverImage(presentation);
+
+        // Auto-save via Rust backend (bypasses FS plugin scope)
+        const { invoke } = await import("@tauri-apps/api/core");
+        const baseName = (path.split("/").pop() || "import").replace(/\.pptx$/i, "");
+        const savePath = await invoke<string>("save_presentation", {
+          name: baseName,
+          content: JSON.stringify(presentation),
+        });
+        console.log("[HomeScreen] Auto-saved imported PPTX to:", savePath);
+        setPresentation(presentation, savePath);
         setAppView("editor");
       }
-    } catch {
+    } catch (err) {
+      console.error("[HomeScreen] Import failed:", err);
       // Browser fallback
       const input = document.createElement("input");
       input.type = "file";
