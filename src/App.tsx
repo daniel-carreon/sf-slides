@@ -307,7 +307,7 @@ function EditorView() {
   }, [handleKeyDown]);
 
   const [notesOpen, setNotesOpen] = useState(false);
-  const [panelOpen, setPanelOpen] = useState(true);
+  const [panelOpen, setPanelOpen] = useState(false);
   const notesSlide = useStore((s) => s.presentation.slides[s.currentSlideIndex]);
   const notesIndex = useStore((s) => s.currentSlideIndex);
   const updateSlideNotes = useStore((s) => s.updateSlideNotes);
