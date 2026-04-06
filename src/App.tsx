@@ -306,6 +306,64 @@ function EditorView() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
+  // Paste images from clipboard (screenshots, copied images)
+  useEffect(() => {
+    const handlePaste = async (e: ClipboardEvent) => {
+      const active = document.activeElement;
+      if (
+        active?.tagName === "INPUT" ||
+        active?.tagName === "TEXTAREA" ||
+        (active as HTMLElement)?.contentEditable === "true"
+      ) {
+        return;
+      }
+
+      const items = e.clipboardData?.items;
+      if (!items) return;
+
+      for (const item of Array.from(items)) {
+        if (item.type.startsWith("image/")) {
+          e.preventDefault();
+          const file = item.getAsFile();
+          if (!file) continue;
+
+          const reader = new FileReader();
+          reader.onload = () => {
+            const dataUrl = reader.result as string;
+            const img = new Image();
+            img.onload = () => {
+              // Scale down if too large (max 800px width)
+              let w = img.width;
+              let h = img.height;
+              if (w > 800) {
+                h = Math.round(h * (800 / w));
+                w = 800;
+              }
+              // Center on slide
+              const x = Math.round((1920 - w) / 2);
+              const y = Math.round((1080 - h) / 2);
+
+              const newId = addElement({
+                type: "image",
+                x, y, width: w, height: h,
+                src: dataUrl,
+                opacity: 1,
+                rotation: 0,
+              } as Omit<SlideElement, "id">);
+              useStore.getState().setSelectedElements([newId]);
+            };
+            img.src = dataUrl;
+          };
+          reader.readAsDataURL(file);
+          return;
+        }
+      }
+    };
+
+    window.addEventListener("paste", handlePaste);
+    return () => window.removeEventListener("paste", handlePaste);
+  }, [addElement]);
+
   const [notesOpen, setNotesOpen] = useState(false);
   const [panelOpen, setPanelOpen] = useState(false);
   const notesSlide = useStore((s) => s.presentation.slides[s.currentSlideIndex]);
