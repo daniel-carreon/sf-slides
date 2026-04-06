@@ -829,7 +829,7 @@ export default function PropertiesPanel() {
           <>
             <SlideBackgroundEditor />
             <SlideTransitionEditor />
-            <NotesEditor />
+            {/* Notes moved to bottom bar (Option+N) */}
           </>
         )}
       </div>

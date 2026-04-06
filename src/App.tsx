@@ -306,6 +306,23 @@ function EditorView() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
+  const [notesOpen, setNotesOpen] = useState(false);
+  const notesSlide = useStore((s) => s.presentation.slides[s.currentSlideIndex]);
+  const notesIndex = useStore((s) => s.currentSlideIndex);
+  const updateSlideNotes = useStore((s) => s.updateSlideNotes);
+
+  // Option+N toggle notes
+  useEffect(() => {
+    const handleNotesToggle = (e: KeyboardEvent) => {
+      if (e.altKey && (e.key === "n" || e.key === "N" || e.key === "ñ")) {
+        e.preventDefault();
+        setNotesOpen((v) => !v);
+      }
+    };
+    window.addEventListener("keydown", handleNotesToggle);
+    return () => window.removeEventListener("keydown", handleNotesToggle);
+  }, []);
+
   return (
     <div className="h-screen w-screen flex flex-col overflow-hidden bg-neutral-950">
       {/* Toolbar */}
@@ -328,6 +345,24 @@ function EditorView() {
           <PropertiesPanel />
         </div>
       </div>
+
+      {/* Speaker Notes Bar (bottom) — Toggle with Option+N */}
+      {notesOpen && (
+        <div className="border-t border-slide-border bg-slide-panel flex-shrink-0">
+          <div className="flex items-center justify-between px-4 py-1.5 border-b border-white/5">
+            <span className="text-[11px] text-white/40 font-medium tracking-wide uppercase">Speaker Notes</span>
+            <button onClick={() => setNotesOpen(false)} className="text-[10px] text-white/30 hover:text-white/60">
+              Option+N to close
+            </button>
+          </div>
+          <textarea
+            value={notesSlide?.notes ?? ""}
+            onChange={(e) => updateSlideNotes(notesIndex, e.target.value)}
+            placeholder="Add speaker notes..."
+            className="w-full bg-transparent px-4 py-2 text-sm text-white/70 resize-none h-[100px] focus:outline-none placeholder:text-white/20"
+          />
+        </div>
+      )}
 
       {/* Context Menu */}
       <CanvasContextMenu />
