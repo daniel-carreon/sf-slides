@@ -77,7 +77,11 @@ export default function SlideCanvas() {
       borderColor: "#8B5CF6",
       borderScaleFactor: 2,
       padding: 4,
+      noScaleCache: false,
     });
+
+    // Uniform scaling OFF: allow free width/height resize from corners
+    canvas.uniformScaling = false;
 
     fabricRef.current = canvas;
     // Expose for E2E testing
@@ -119,10 +123,13 @@ export default function SlideCanvas() {
       const update = fabricObjectToElementUpdate(obj);
       useStore.getState().updateElement(obj.data.elementId as string, update);
 
-      // Reset scale to 1 after applying (size baked into width/height)
+      // Bake scale into width/height so the object doesn't "jump"
       if (!(obj instanceof fabric.Textbox) && !(obj instanceof fabric.Line)) {
-        obj.set({ scaleX: 1, scaleY: 1 });
+        const newW = Math.round((obj.width ?? 0) * (obj.scaleX ?? 1));
+        const newH = Math.round((obj.height ?? 0) * (obj.scaleY ?? 1));
+        obj.set({ width: newW, height: newH, scaleX: 1, scaleY: 1 });
         obj.setCoords();
+        canvas.renderAll();
       }
     });
 
@@ -421,6 +428,7 @@ export default function SlideCanvas() {
     if (!canvas || !container) return;
 
     const rect = container.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
     const padding = 40;
     const availW = rect.width - padding * 2;
     const availH = rect.height - padding * 2;
@@ -434,6 +442,7 @@ export default function SlideCanvas() {
       width: SLIDE_WIDTH * scale,
       height: SLIDE_HEIGHT * scale,
     });
+    canvas.renderAll();
   }, [zoom]);
 
   useEffect(() => {
