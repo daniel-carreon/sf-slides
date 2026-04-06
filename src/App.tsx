@@ -307,20 +307,26 @@ function EditorView() {
   }, [handleKeyDown]);
 
   const [notesOpen, setNotesOpen] = useState(false);
+  const [panelOpen, setPanelOpen] = useState(true);
   const notesSlide = useStore((s) => s.presentation.slides[s.currentSlideIndex]);
   const notesIndex = useStore((s) => s.currentSlideIndex);
   const updateSlideNotes = useStore((s) => s.updateSlideNotes);
 
-  // Option+N toggle notes
+  // Option+N toggle notes, Option+P toggle properties panel
   useEffect(() => {
-    const handleNotesToggle = (e: KeyboardEvent) => {
-      if (e.altKey && (e.key === "n" || e.key === "N" || e.key === "ñ")) {
+    const handleToggle = (e: KeyboardEvent) => {
+      if (!e.altKey) return;
+      if (e.key === "n" || e.key === "N" || e.key === "ñ") {
         e.preventDefault();
         setNotesOpen((v) => !v);
       }
+      if (e.key === "p" || e.key === "P" || e.key === "π") {
+        e.preventDefault();
+        setPanelOpen((v) => !v);
+      }
     };
-    window.addEventListener("keydown", handleNotesToggle);
-    return () => window.removeEventListener("keydown", handleNotesToggle);
+    window.addEventListener("keydown", handleToggle);
+    return () => window.removeEventListener("keydown", handleToggle);
   }, []);
 
   return (
@@ -340,10 +346,12 @@ function EditorView() {
           <SlideCanvas />
         </div>
 
-        {/* Properties */}
-        <div className="w-[280px] min-w-[200px] border-l border-slide-border flex-shrink-0">
-          <PropertiesPanel />
-        </div>
+        {/* Properties — Toggle with Option+P */}
+        {panelOpen && (
+          <div className="w-[280px] min-w-[200px] border-l border-slide-border flex-shrink-0">
+            <PropertiesPanel />
+          </div>
+        )}
       </div>
 
       {/* Speaker Notes Bar (bottom) — Toggle with Option+N */}

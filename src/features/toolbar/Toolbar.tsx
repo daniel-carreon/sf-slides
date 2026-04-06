@@ -22,6 +22,7 @@ import {
   ZoomOut,
   Layers,
   Grid3x3,
+  RefreshCw,
 } from "lucide-react";
 
 interface ToolButtonProps {
@@ -249,6 +250,13 @@ export default function Toolbar() {
           <Download size={14} />
           <span>.pptx</span>
         </button>
+
+        {/* Refresh */}
+        <ToolButton
+          icon={<RefreshCw size={14} />}
+          label="Force refresh (Cmd+Shift+R)"
+          onClick={() => window.location.reload()}
+        />
 
         {/* Present */}
         <button
